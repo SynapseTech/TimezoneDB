@@ -84,7 +84,7 @@ fun Application.configureSecurity() {
                     // user not logged in, create user with this discord id
                     val user = User(
                         discordId = discordId,
-                        username = "${discordUser.username}#${discordUser.discriminator}"
+                        username = discordUser.username
                     )
                     user.save()
                     user._id
