@@ -1,11 +1,14 @@
 package dev.synapsetech.tzdb.data
 
+import dev.synapsetech.tzdb.util.ZoneInfoJson
+import dev.synapsetech.tzdb.util.toApiJson
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
 import io.ktor.server.auth.jwt.*
 import io.ktor.util.pipeline.*
 import kotlinx.serialization.Serializable
 import org.litote.kmongo.*
+import java.time.ZoneId
 
 @Serializable
 data class User(
@@ -25,6 +28,8 @@ data class User(
         getCollection().deleteOneById(_id)
     }
 
+    fun toApiJson() = UserJson(_id, username, discordId, ZoneId.of(zoneId).toApiJson())
+
     companion object {
         private const val COLLECTION_NAME = "users"
 
@@ -39,3 +44,10 @@ fun PipelineContext<Unit, ApplicationCall>.getUser(): User? {
     val userId = principal!!.payload.getClaim("userId").asLong()
     return User.findById(userId)
 }
+
+@Serializable data class UserJson(
+    val id: Long,
+    val username: String,
+    val discordId: Long?,
+    val timezoneInfo: ZoneInfoJson,
+)

@@ -11,37 +11,52 @@ import io.ktor.server.routing.*
 import java.time.ZoneId
 
 fun Route.userRoutes() {
-    authenticate("auth-jwt") {
-        route("/users/@me") {
-            get {
-                val user = getUser()
-                if (user != null) call.respond(user)
+
+    route("/users/") {
+        authenticate("auth-jwt") {
+            route("@me") {
+                get {
+                    val user = getUser()
+                    if (user != null) call.respond(user)
+                    else call.respond(HttpStatusCode.NotFound)
+                }
+
+                patch {
+                    // @todo
+                }
+
+                delete {
+                    val user = getUser()
+                    if (user != null) {
+                        user.delete()
+                        call.respond(HttpStatusCode.OK)
+                    } else call.respond(HttpStatusCode.NotFound)
+                }
+            }
+        }
+
+        get("/{id}") {
+            val userId = call.parameters["id"]?.toLong() ?: run {
+                call.respond(HttpStatusCode.BadRequest)
+                return@get
+            }
+
+            val user = User.findById(userId)
+            if (user != null) call.respond(user.toApiJson())
+            else call.respond(HttpStatusCode.NotFound)
+        }
+
+        route("/byPlatform") {
+            get("/discord/{id}") {
+                val discordId = call.parameters["id"]?.toLong() ?: run {
+                    call.respond(HttpStatusCode.BadRequest)
+                    return@get
+                }
+
+                val user = User.findByDiscordId(discordId)
+                if (user != null) call.respond(user.toApiJson())
                 else call.respond(HttpStatusCode.NotFound)
             }
-
-            patch {
-                // @todo
-            }
-
-            delete {
-                val user = getUser()
-                if (user != null) {
-                    user.delete()
-                    call.respond(HttpStatusCode.OK)
-                } else call.respond(HttpStatusCode.NotFound)
-            }
         }
-    }
-
-    get("/users/{id}/timezoneInfo") {
-        val userId = call.parameters["id"]?.toLong()
-        if (userId == null) {
-            call.respond(HttpStatusCode.BadRequest)
-            return@get
-        }
-
-        val user = User.findById(userId)
-        if (user != null) call.respond(ZoneId.of(user.zoneId).toApiJson())
-        else call.respond(HttpStatusCode.NotFound)
     }
 }

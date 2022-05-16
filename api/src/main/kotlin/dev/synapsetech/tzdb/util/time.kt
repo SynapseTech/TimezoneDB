@@ -2,15 +2,22 @@ package dev.synapsetech.tzdb.util
 
 import java.time.LocalDateTime
 import java.time.ZoneId
+import kotlinx.serialization.Serializable
 import java.time.format.DateTimeFormatter
 
-fun ZoneId.toApiJson(): Map<String, Any> {
+fun ZoneId.toApiJson(): ZoneInfoJson {
     val offsetFormatter = DateTimeFormatter.ofPattern("xxx")
     val dt = LocalDateTime.now()
     val zdt = dt.atZone(this)
 
-    return mapOf(
-        "id" to this.id,
-        "offset" to offsetFormatter.format(zdt.offset),
+    return ZoneInfoJson(
+        this.id,
+        offsetFormatter.format(zdt.offset),
     )
 }
+
+@Serializable
+data class ZoneInfoJson(
+    val id: String,
+    val offset: String
+)
