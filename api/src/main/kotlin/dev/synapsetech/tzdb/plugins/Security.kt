@@ -43,7 +43,7 @@ fun Application.configureSecurity() {
             client = httpClient
         }
 
-        jwt {
+        jwt("auth-jwt") {
             val jwtAudience = MainConfig.INSTANCE.jwt.audience
             realm = MainConfig.INSTANCE.jwt.realm
             verifier(
