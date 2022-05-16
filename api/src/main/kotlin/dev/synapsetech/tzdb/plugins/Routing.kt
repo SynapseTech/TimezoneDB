@@ -1,9 +1,11 @@
 package dev.synapsetech.tzdb.plugins
 
+import dev.synapsetech.tzdb.data.User
 import io.ktor.server.application.*
 import io.ktor.server.locations.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import io.ktor.server.sessions.*
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -14,7 +16,12 @@ fun Application.configureRouting() {
 
     routing {
         get("/") {
-            call.respondText("Hello World!")
+            val sess = call.sessions.get<UserSession>()
+            if (sess?.userId != null) {
+                val user = User.findById(sess.userId)
+                if (user != null) call.respond(user)
+                else call.respond(mapOf<String, Any>())
+            } else call.respond(mapOf<String, Any>())
         }
 
         get("/v1/zones") {

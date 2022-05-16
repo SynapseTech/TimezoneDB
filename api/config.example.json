@@ -1,4 +1,5 @@
 {
+  "webUrl": "https://tzdb.synapsetech.dev",
   "port": 8080,
   "oauth": {
     "discord": {
@@ -6,5 +7,15 @@
       "clientSecret": "",
       "redirectUri": ""
     }
+  },
+  "database": {
+    "mongoUri": "mongodb://localhost",
+    "mongoDatabase": "timezonedb"
+  },
+  "jwt": {
+    "secret": "keyboard cat",
+    "domain": "tzapi.synapsetech.dev",
+    "audience": "*",
+    "realm": "API Access"
   }
 }

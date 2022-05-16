@@ -38,4 +38,6 @@ dependencies {
     testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
     implementation("org.litote.kmongo:kmongo-serialization:4.5.1")
+    implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
+    implementation("xyz.downgoon:snowflake:1.0.0")
 }

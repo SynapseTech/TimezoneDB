@@ -7,8 +7,11 @@ import java.io.File
 
 @Serializable
 data class MainConfig(
+    val webUrl: String,
     val port: Int,
+    val database: DatabaseConfigPart,
     val oauth: OauthConfigPart,
+    val jwt: JwtConfigPart,
 ) {
     companion object {
         lateinit var INSTANCE: MainConfig

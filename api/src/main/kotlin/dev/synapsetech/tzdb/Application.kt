@@ -1,6 +1,7 @@
 package dev.synapsetech.tzdb
 
 import dev.synapsetech.tzdb.config.MainConfig
+import dev.synapsetech.tzdb.data.Mongo
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import dev.synapsetech.tzdb.plugins.*
@@ -13,7 +14,9 @@ fun main(args: Array<String>) {
     } else args[0]
     MainConfig.loadFile(File(configFile))
 
-    println(MainConfig.INSTANCE.oauth.discord.clientId)
+    Mongo.init(MainConfig.INSTANCE.database)
+
+//    println(MainConfig.INSTANCE.oauth.discord.clientId)
 
     embeddedServer(Netty, port = MainConfig.INSTANCE.port, host = "0.0.0.0") {
         configureRouting()
