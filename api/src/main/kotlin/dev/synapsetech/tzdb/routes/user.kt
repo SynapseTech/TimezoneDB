@@ -24,7 +24,11 @@ fun Route.userRoutes() {
             }
 
             delete {
-                // @todo
+                val user = getUser()
+                if (user != null) {
+                    user.delete()
+                    call.respond(HttpStatusCode.OK)
+                } else call.respond(HttpStatusCode.NotFound)
             }
         }
     }

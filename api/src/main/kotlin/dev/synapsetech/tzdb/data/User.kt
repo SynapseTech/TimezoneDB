@@ -21,6 +21,10 @@ data class User(
         else col.replaceOneById(_id, this)
     }
 
+    fun delete() {
+        getCollection().deleteOneById(_id)
+    }
+
     companion object {
         private const val COLLECTION_NAME = "users"
 
