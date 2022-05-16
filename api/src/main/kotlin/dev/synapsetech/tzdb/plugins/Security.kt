@@ -19,11 +19,8 @@ import io.ktor.util.pipeline.*
 import kotlinx.coroutines.MainScope
 import java.util.*
 
-// todo: fill all this out
-
 const val discordAuthorizeUrl = "https://discord.com/api/oauth2/authorize"
 const val discordTokenUrl = "https://discord.com/api/oauth2/token"
-
 
 fun Application.configureSecurity() {
     install(Authentication) {
@@ -110,5 +107,3 @@ fun Application.configureSecurity() {
     val username: String,
     val discriminator: String,
 )
-
-class UserSession(val userId: Long? = null)

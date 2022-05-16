@@ -28,9 +28,16 @@ data class User(
         getCollection().deleteOneById(_id)
     }
 
-    fun toApiJson() = UserJson(_id, username, discordId, ZoneId.of(zoneId).toApiJson())
+    fun toApiJson() = Json(_id, username, discordId, ZoneId.of(zoneId).toApiJson())
 
     companion object {
+        @Serializable data class Json(
+            val id: Long,
+            val username: String,
+            val discordId: Long?,
+            val timezoneInfo: ZoneInfoJson,
+        )
+
         private const val COLLECTION_NAME = "users"
 
         fun getCollection() = Mongo.database.getCollection<User>(COLLECTION_NAME)
@@ -44,10 +51,3 @@ fun PipelineContext<Unit, ApplicationCall>.getUser(): User? {
     val userId = principal!!.payload.getClaim("userId").asLong()
     return User.findById(userId)
 }
-
-@Serializable data class UserJson(
-    val id: Long,
-    val username: String,
-    val discordId: Long?,
-    val timezoneInfo: ZoneInfoJson,
-)
