@@ -15,15 +15,40 @@ My primary goals for the project is to allow users to set a timezone and other u
 ## Roadmap
 The following are the things that need to be done, with no set time constraints.
 
-- [x] Get data structure fleshed out for essential data 
-- [ ] Time logic 
-- [x] API auth and account routes
-- [ ] Site homepage
-- [ ] Account settings page on site
-- [x] API public routes 
-- [ ] Public profiles and profile pages
+- [ ] API
+  - [x] Data structure & Saving
+  - [x] Account routes
+  - [x] Public routes
+  - [ ] Auth
+    - [x] Discord
+    - [x] GitHub
+    - [ ] Twitter
+    - [ ] Reddit
+    - [ ] Twitch
+- [ ] Site
+  - [x] Account settings page on site
+  - [x] Time Setting logic - Web
+  - [ ] Public profiles and profile pages
+  - [ ] Site homepage
 - [ ] Browser extension
+  - [ ] Twitter
+    - [ ] Profile
+    - [ ] Hover card
+    - [ ] On Tweet
+  - [ ] Github
+    - [ ] Profile
+    - [ ] Hover card
+  - [ ] Reddit
+    - [ ] Comment
+    - [ ] Post
+    - [ ] Profile
+  - [ ] Twitch
+    - [ ] Channel
+    - [ ] Chat
 - [ ] [Powercord](https://powercord.dev) plugin
+  - [ ] Profile
+  - [ ] Message
+  - [ ] Hover card
 
 # Contributing
 All the essential API logic for the project can be found under the `api` directory and is written in Kotlin. [Ktor](https://ktor.io) is used for HTTP handling.

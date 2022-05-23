@@ -1,4 +1,4 @@
-import type { User } from '../lib/data';
+import type {User, ZoneInfo} from '../lib/data';
 import { useAuthStore } from '../stores/auth';
 import {useRouter} from "vue-router";
 
@@ -17,8 +17,31 @@ export async function getUser(id: string | number = '@me'): Promise<User | undef
                 'Accept': 'application/json',
             },
         });
-        if (res.ok) return await res.json() as User;
+        if (res.ok) return await res.json();
     }
+}
+
+export async function patchUser(patch: { zoneId: string }, id: string | number = '@me'): Promise<void> {
+    const authStore = useAuthStore();
+    if (authStore.loggedIn) {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/v1/users/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${authStore.token}`,
+                'Content-Type': 'application/json',
+            },
+            method: 'PATCH',
+            body: JSON.stringify(patch),
+        });
+
+        if (res.ok) return Promise.resolve();
+        else return Promise.reject();
+    }
+}
+
+export async function getZones(): Promise<ZoneInfo[]> {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/v1/zones`);
+    if (!res.ok) return Promise.reject();
+    return await res.json()
 }
 
 export async function deleteAccount() {

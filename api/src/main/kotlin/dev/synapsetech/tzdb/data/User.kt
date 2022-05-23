@@ -32,15 +32,17 @@ data class User(
 
     fun toApiJson() = Json(_id, username, discordId, githubId, ZoneId.of(zoneId).toApiJson())
 
-    companion object {
-        @Serializable data class Json(
-            val id: Long,
-            val username: String,
-            val discordId: Long?,
-            val githubId: Long?,
-            val timezoneInfo: ZoneInfoJson,
-        )
+    @Serializable data class Json(
+        val id: Long,
+        val username: String,
+        val discordId: Long?,
+        val githubId: Long?,
+        val timezoneInfo: ZoneInfoJson,
+    )
 
+    @Serializable data class Patch(val zoneId: String?)
+
+    companion object {
         private const val COLLECTION_NAME = "users"
 
         fun getCollection() = Mongo.database.getCollection<User>(COLLECTION_NAME)

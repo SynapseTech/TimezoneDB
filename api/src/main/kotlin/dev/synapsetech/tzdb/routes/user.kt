@@ -6,6 +6,7 @@ import dev.synapsetech.tzdb.util.toApiJson
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
+import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import java.time.ZoneId
@@ -16,12 +17,22 @@ fun Route.userRoutes() {
             route("@me") {
                 get {
                     val user = getUser()
-                    if (user != null) call.respond(user)
+                    if (user != null) call.respond(user.toApiJson())
                     else call.respond(HttpStatusCode.NotFound)
                 }
 
                 patch {
-                    // @todo
+                    val patch = call.receive<User.Patch>()
+                    val user = getUser()
+
+                    if (user != null) {
+                        patch.zoneId?.let {
+                            user.zoneId = it
+                        }
+
+                        user.save()
+                        call.respond(HttpStatusCode.OK)
+                    } else call.respond(HttpStatusCode.NotFound)
                 }
 
                 delete {
