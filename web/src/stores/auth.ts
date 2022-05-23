@@ -16,4 +16,5 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   return { logIn, logOut, token, loggedIn };
-});
+  // @ts-ignore
+}, { persist: true });

@@ -10,6 +10,7 @@ onMounted(() => {
 
   if (params.has('token')) {
     authStore.logIn(params.get('token')!!);
+    window.location.search = '';
   }
 })
 </script>
