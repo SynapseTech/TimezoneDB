@@ -25,7 +25,7 @@ All of the essential API logic for the project can be found under the `api` dire
 
 All supported platform integrations will be included in subdirectories of the `platforms` directory.
 
-The website code will be kept inside of the `site` directory and written using Typescript and a TBD framework.
+The website code will be kept inside of the `web` directory and written using Typescript and a TBD framework.
 
 Before you contribute, we ask that you have a working knowledge of HTTP services and the languages we are using to facilitate such communications in this project (Kotlin & Typescript). We also ask that you respect our users, employees and fellow contributors when contributing to our software.
 
