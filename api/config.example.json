@@ -6,6 +6,11 @@
       "clientId": "",
       "clientSecret": "",
       "redirectUri": ""
+    },
+    "github": {
+      "clientId": "",
+      "clientSecret": "",
+      "redirectUri": ""
     }
   },
   "database": {

@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class OauthConfigPart(
     val discord: OauthCodeGrantProvider,
+    val github: OauthCodeGrantProvider,
 ) {
     @Serializable
     data class OauthCodeGrantProvider(

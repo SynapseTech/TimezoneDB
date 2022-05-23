@@ -11,7 +11,6 @@ import io.ktor.server.routing.*
 import java.time.ZoneId
 
 fun Route.userRoutes() {
-
     route("/users/") {
         authenticate("auth-jwt") {
             route("@me") {
@@ -54,6 +53,17 @@ fun Route.userRoutes() {
                 }
 
                 val user = User.findByDiscordId(discordId)
+                if (user != null) call.respond(user.toApiJson())
+                else call.respond(HttpStatusCode.NotFound)
+            }
+
+            get("/github/{id}") {
+                val githubId = call.parameters["id"]?.toLong() ?: run {
+                    call.respond(HttpStatusCode.BadRequest)
+                    return@get
+                }
+
+                val user = User.findByGithubId(githubId)
                 if (user != null) call.respond(user.toApiJson())
                 else call.respond(HttpStatusCode.NotFound)
             }

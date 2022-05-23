@@ -14,7 +14,9 @@ import java.time.ZoneId
 data class User(
     val username: String,
     val _id: Long = snowflake.nextId(),
+    var email: String,
     var discordId: Long? = null,
+    var githubId: Long? = null,
     var zoneId: String = "UTC",
 ) {
     fun save() {
@@ -28,13 +30,14 @@ data class User(
         getCollection().deleteOneById(_id)
     }
 
-    fun toApiJson() = Json(_id, username, discordId, ZoneId.of(zoneId).toApiJson())
+    fun toApiJson() = Json(_id, username, discordId, githubId, ZoneId.of(zoneId).toApiJson())
 
     companion object {
         @Serializable data class Json(
             val id: Long,
             val username: String,
             val discordId: Long?,
+            val githubId: Long?,
             val timezoneInfo: ZoneInfoJson,
         )
 
@@ -42,7 +45,9 @@ data class User(
 
         fun getCollection() = Mongo.database.getCollection<User>(COLLECTION_NAME)
         fun findById(id: Long) = getCollection().findOneById(id)
+        fun findByEmail(email: String) = getCollection().findOne(User::email eq email)
         fun findByDiscordId(discordId: Long) = getCollection().findOne(User::discordId eq discordId)
+        fun findByGithubId(githubId: Long) = getCollection().findOne(User::githubId eq githubId)
     }
 }
 
