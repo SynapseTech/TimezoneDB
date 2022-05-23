@@ -30,7 +30,7 @@ onMounted(async () => {
 
       <div class='flex-grow-0 flex items-center'>
         <template v-if='loggedIn'>
-          <div v-if='account' class='item noHover'>Logged in as {{ account.username }}</div>
+          <div v-if='account' class='item noHover hidden lg:inline-block'>Logged in as {{ account.username }}</div>
           <RouterLink to='/account' active-class='active' class='item'>Account</RouterLink>
           <button class='item' @click='logout'>Log Out</button>
         </template>

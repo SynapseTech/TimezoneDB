@@ -5,6 +5,8 @@ import type { User, ZoneInfo } from "../lib/data";
 import {getUser, redirectLogin, deleteAccount, getZones, patchUser} from "../lib/api";
 // @ts-ignore
 import VueSelect from "vue-multiselect";
+import Footer from "@/components/Footer.vue";
+import Page from "@/components/Page.vue";
 
 const account = ref<User | undefined>();
 const zones = ref<ZoneInfo[]>([]);
@@ -54,30 +56,28 @@ function confirmDeleteAccount() {
 </script>
 
 <template>
-  <div class="bg-gray-200 h-screen flex flex-col">
-    <Navbar />
-
-    <main v-if="account" class="container mx-auto bg-white flex-grow p-4">
-      <section class="mb-8">
-        <h1 class="text-3xl mb-4 font-bold">Linked Accounts</h1>
-        <p class="mb-2">Below are your linked accounts, and options to link new ones. Click any to link or re-link</p>
-        <button class='account github' @click='redirectLogin("github")'>
+  <Page>
+    <main v-if="account" class="container mx-auto bg-white h-full flex-grow p-4">
+      <section class="settingSection">
+        <h1 class="heading">Linked Accounts</h1>
+        <p class="description">Below are your linked accounts, and options to link new ones. Click any to link or re-link</p>
+        <button class='btn github' @click='redirectLogin("github")'>
           GitHub
           <span class="linkTag">{{ account.githubId ? 'Linked' : 'Not Linked' }}</span>
         </button>
-        <button class='account discord' @click='redirectLogin("discord")'>
+        <button class='btn discord' @click='redirectLogin("discord")'>
           Discord
           <span class="linkTag">{{ account.discordId ? 'Linked' : 'Not Linked' }}</span>
         </button>
       </section>
 
-      <section class="mb-8">
-        <h1 class="text-3xl mb-4 font-bold">Timezone</h1>
-        <p class="mb-2">Below you can edit your timezone</p>
-        <div class="flex items-center">
+      <section class="settingSection">
+        <h1 class="heading">Timezone</h1>
+        <p class="description">Below you can edit your timezone</p>
+        <div class="flex items-center w-full">
           <VueSelect v-model="selectedZoneId" :options="zones.map(it => it.id)" />
           <button
-              class="btn green ml-3"
+              class="btn green noFullMobile ml-3"
               v-if="selectedZoneId !== account.timezoneInfo.id"
               @click="saveAccount"
           >
@@ -86,18 +86,18 @@ function confirmDeleteAccount() {
         </div>
       </section>
 
-      <section class="mb-8">
-        <h1 class="text-3xl mb-4 text-red-500 font-bold">Delete Account</h1>
-        <p class="mb-2">Below is the option to delete your account. You will be prompted to confirm this action, because it is <b>irreversible</b>!</p>
+      <section class="settingSection">
+        <h1 class="heading text-red-500">Delete Account</h1>
+        <p class="description">Below is the option to delete your account. You will be prompted to confirm this action, because it is <b>irreversible</b>!</p>
         <button class='btn red' @click='confirmDeleteAccount'>
           Delete Account
         </button>
       </section>
     </main>
+  </Page>
 
-    <div v-if="showToast" :class="toastClass">
-      {{toastMessage}}
-    </div>
+  <div v-if="showToast" :class="toastClass">
+    {{toastMessage}}
   </div>
 </template>
 
@@ -114,8 +114,28 @@ function confirmDeleteAccount() {
   }
 }
 
+.settingSection {
+  @apply flex flex-col items-center lg:items-start;
+
+  &:not(:last-of-type) {
+    @apply mb-8;
+  }
+
+  .heading {
+    @apply text-3xl mb-4 font-bold;
+  }
+
+  .description {
+    @apply mb-2 text-center lg:text-left;
+  }
+}
+
 .btn {
-  @apply rounded text-white px-3 py-2 flex items-center;
+  @apply rounded text-white px-3 py-2 flex items-center w-full lg:w-auto justify-center;
+
+  &.noFullMobile {
+    @apply w-auto;
+  }
 
   &.red {
     @apply bg-red-500;
@@ -131,14 +151,6 @@ function confirmDeleteAccount() {
     &:hover {
       @apply bg-green-600;
     }
-  }
-}
-
-.account {
-  @apply rounded text-white px-3 py-2 flex items-center;
-
-  &:hover {
-    @apply cursor-pointer;
   }
 
   .linkTag {
@@ -178,7 +190,7 @@ function confirmDeleteAccount() {
   }
 
   &:not(:first-of-type) {
-    @apply mt-3;
-  }
+     @apply mt-3;
+ }
 }
 </style>
