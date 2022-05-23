@@ -20,9 +20,5 @@ import Footer from "./Footer.vue";
 
 .content {
   @apply flex-grow flex flex-col;
-
-  ::v-deep(*) {
-    @apply h-full
-  }
 }
 </style>

@@ -57,7 +57,7 @@ function confirmDeleteAccount() {
 
 <template>
   <Page>
-    <main v-if="account" class="container mx-auto bg-white h-full flex-grow p-4">
+    <main v-if="account" class="container mx-auto bg-white flex-grow p-4">
       <section class="settingSection">
         <h1 class="heading">Linked Accounts</h1>
         <p class="description">Below are your linked accounts, and options to link new ones. Click any to link or re-link</p>
@@ -190,7 +190,7 @@ function confirmDeleteAccount() {
   }
 
   &:not(:first-of-type) {
-     @apply mt-3;
- }
+    @apply mt-3;
+  }
 }
 </style>
