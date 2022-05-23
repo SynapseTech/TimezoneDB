@@ -9,8 +9,11 @@
     "lint": "eslint timezonedb-web --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "autoprefixer": "^10.4.7",
     "pinia": "^2.0.13",
     "pinia-plugin-persistedstate": "^1.6.0",
+    "postcss": "^8.4.14",
+    "tailwindcss": "^3.0.24",
     "vue": "^3.2.33",
     "vue-router": "^4.0.14"
   },
