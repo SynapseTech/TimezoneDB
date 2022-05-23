@@ -1,18 +1,22 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router';
+import {RouterView, useRouter} from 'vue-router';
 import { onMounted } from 'vue';
 import { useAuthStore } from './stores/auth';
 
 const authStore = useAuthStore();
+const router = useRouter();
 
-onMounted(() => {
+onMounted(async () => {
   const params = new URLSearchParams(window.location.search);
 
   if (params.has('token')) {
     authStore.logIn(params.get('token')!!);
-    window.location.search = '';
+    await router.push('/account');
   }
-})
+
+  if (authStore.loggedIn && router.currentRoute.value.name === 'home')
+    await router.push('/account');
+});
 </script>
 
 <template>

@@ -5,7 +5,7 @@ import piniaPluginPersistedState from 'pinia-plugin-persistedstate';
 import App from './App.vue';
 import router from './router';
 
-import './index.scss';
+import './tailwind-include.css';
 
 const app = createApp(App);
 

@@ -29,7 +29,7 @@ fun genJwt(userId: Long) = JWT.create()
     .withAudience(MainConfig.INSTANCE.jwt.audience)
     .withIssuer(MainConfig.INSTANCE.jwt.domain)
     .withClaim("userId", userId)
-    .withExpiresAt(Date(System.currentTimeMillis() + 60000))
+    .withExpiresAt(Date(System.currentTimeMillis() + 7 * 24 * 60 * 60 * 1000)) // a week
     .sign(Algorithm.HMAC256(MainConfig.INSTANCE.jwt.secret))
 
 fun Application.configureSecurity() {

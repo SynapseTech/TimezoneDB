@@ -1,5 +1,8 @@
 # TimezoneDB
-> TimezoneDB is an easy, cross-platform method of keeping track of others' timezones.
+TimezoneDB is an easy, cross-platform method of keeping track of others' timezones.
+
+> **Note**
+> This project is "source-visible", meaning while it may be open source, we are not committed to documenting it for hosting it on your own. This also means we offer no warranty if you attempt to do so. *Self-host at your own risk!*
 
 ## Project motivation
 Now more than ever, people across the world are connected by the internet in new and exciting ways. As amazing and cool as this is, it also brings to light one small problem: time differences. This becomes especially noticable in instant message platforms like [Discord](https://discord.com) or on social media. A great many people already put their timezone in a bio or a status, in an effort to help other users determine their time.
