@@ -3,20 +3,18 @@ package dev.synapsetech.tzdb.plugins
 import io.ktor.server.auth.*
 import kotlinx.serialization.Serializable
 import io.ktor.http.*
-import io.ktor.server.sessions.*
 import io.ktor.server.auth.jwt.*
 import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
 import dev.synapsetech.tzdb.config.MainConfig
 import dev.synapsetech.tzdb.data.User
 import dev.synapsetech.tzdb.httpClient
+import dev.synapsetech.tzdb.util.TwitterTransport
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import io.ktor.util.pipeline.*
-import kotlinx.coroutines.MainScope
 import java.util.*
 
 const val discordAuthorizeUrl = "https://discord.com/api/oauth2/authorize"
@@ -25,7 +23,7 @@ const val discordTokenUrl = "https://discord.com/api/oauth2/token"
 const val githubAuthorizeUrl = "https://github.com/login/oauth/authorize"
 const val githubTokenUrl = "https://github.com/login/oauth/access_token"
 
-fun genJwt(userId: Long) = JWT.create()
+fun genJwt(userId: Long): String = JWT.create()
     .withAudience(MainConfig.INSTANCE.jwt.audience)
     .withIssuer(MainConfig.INSTANCE.jwt.domain)
     .withClaim("userId", userId)
@@ -61,6 +59,21 @@ fun Application.configureSecurity() {
                     clientId = MainConfig.INSTANCE.oauth.github.clientId,
                     clientSecret = MainConfig.INSTANCE.oauth.github.clientSecret,
                     defaultScopes = listOf("user")
+                )
+            }
+            client = httpClient
+        }
+
+        oauth("auth-oauth-twitter") {
+            urlProvider = { MainConfig.INSTANCE.oauth.twitter.redirectUri }
+            providerLookup = {
+                OAuthServerSettings.OAuth1aServerSettings(
+                    name = "twitter",
+                    requestTokenUrl = "https://api.twitter.com/oauth/request_token",
+                    authorizeUrl = "https://api.twitter.com/oauth/authorize",
+                    accessTokenUrl = "https://api.twitter.com/oauth/access_token",
+                    consumerKey = MainConfig.INSTANCE.oauth.twitter.consumerKey,
+                    consumerSecret = MainConfig.INSTANCE.oauth.twitter.consumerSecret,
                 )
             }
             client = httpClient
@@ -170,6 +183,49 @@ fun Application.configureSecurity() {
                     }
 
                     emailUser.githubId = githubId
+                    emailUser.save()
+                    emailUser._id
+                }
+
+                val token = genJwt(userId)
+                val webUri = Url(MainConfig.INSTANCE.webUrl).toURI().resolve("/?token=$token")
+                call.respondRedirect(webUri.toString())
+            }
+        }
+
+        authenticate("auth-oauth-twitter") {
+            get("/auth/twitter") {
+                call.respondRedirect("/auth/callback/twitter")
+            }
+
+            get("/auth/callback/twitter") {
+                val principal: OAuthAccessTokenResponse.OAuth1a = call.principal() ?: run {
+                    call.respond(HttpStatusCode.BadRequest)
+                    return@get
+                }
+
+                val (email, name, twitterId) = TwitterTransport.getUser(principal.tokenSecret, principal.token)
+
+                val emailUser = User.findByEmail(email)
+
+                val userId = if (emailUser == null) {
+                    // create user
+                    val user = User(
+                        twitterId = twitterId,
+                        username = name,
+                        email = email,
+                    )
+                    user.save()
+                    user._id
+                } else {
+                    // add to acc
+                    val possibleOtherUser = User.findByTwitterId(twitterId)
+                    if (possibleOtherUser != null && possibleOtherUser._id != emailUser._id) {
+                        call.respond(HttpStatusCode.BadRequest)
+                        return@get
+                    }
+
+                    emailUser.twitterId = twitterId
                     emailUser.save()
                     emailUser._id
                 }

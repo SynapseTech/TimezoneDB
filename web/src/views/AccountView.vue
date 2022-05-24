@@ -4,9 +4,8 @@ import {computed, onMounted, ref} from "vue";
 import type { User, ZoneInfo } from "../lib/data";
 import {getUser, redirectLogin, deleteAccount, getZones, patchUser} from "../lib/api";
 // @ts-ignore
-import VueSelect from "vue-multiselect";
-import Footer from "@/components/Footer.vue";
-import Page from "@/components/Page.vue";
+import VueSelect from "vue-multiselect"
+import Page from "../components/Page.vue";
 
 const account = ref<User | undefined>();
 const zones = ref<ZoneInfo[]>([]);
@@ -68,6 +67,10 @@ function confirmDeleteAccount() {
         <button class='btn discord' @click='redirectLogin("discord")'>
           Discord
           <span class="linkTag">{{ account.discordId ? 'Linked' : 'Not Linked' }}</span>
+        </button>
+        <button class='btn twitter' @click='redirectLogin("twitter")'>
+          Twitter
+          <span class="linkTag">{{ account.twitterId ? 'Linked' : 'Not Linked' }}</span>
         </button>
       </section>
 
@@ -185,6 +188,22 @@ function confirmDeleteAccount() {
 
       .linkTag {
         color: darken(#5865F2, 10);
+      }
+    }
+  }
+
+  &.twitter {
+    background-color: #1da1f2;
+
+    .linkTag {
+      color: #1da1f2;
+    }
+
+    &:hover {
+      background-color: darken(#1da1f2, 10);
+
+      .linkTag {
+        color: darken(#1da1f2, 10);
       }
     }
   }

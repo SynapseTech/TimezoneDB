@@ -11,6 +11,11 @@
       "clientId": "",
       "clientSecret": "",
       "redirectUri": ""
+    },
+    "twitter": {
+      "consumerKey": "",
+      "consumerSecret": "",
+      "redirectUri": ""
     }
   },
   "database": {

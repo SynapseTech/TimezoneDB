@@ -10,6 +10,7 @@ import { redirectLogin } from '../lib/api';
         <h2 class='w-full text-center text-2xl mb-4'>Log in or create an account</h2>
         <button class='loginOption github' @click='redirectLogin("github")'>GitHub</button>
         <button class='loginOption discord' @click='redirectLogin("discord")'>Discord</button>
+        <button class='loginOption twitter' @click='redirectLogin("twitter")'>Twitter</button>
       </div>
     </section>
   </main>
@@ -36,6 +37,14 @@ import { redirectLogin } from '../lib/api';
 
     &:hover {
       background-color: darken(#5865F2, 10);
+    }
+  }
+
+  &.twitter {
+    background-color: #1da1f2;
+
+    &:hover {
+      background-color: darken(#1da1f2, 10);
     }
   }
 

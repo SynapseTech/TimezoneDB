@@ -13,15 +13,12 @@ fun main(args: Array<String>) {
         "./config.json"
     } else args[0]
     MainConfig.loadFile(File(configFile))
-
     Mongo.init(MainConfig.INSTANCE.database)
 
-//    println(MainConfig.INSTANCE.oauth.discord.clientId)
-
     embeddedServer(Netty, port = MainConfig.INSTANCE.port, host = "0.0.0.0") {
+        configureHTTP()
         configureRouting()
         configureSecurity()
-        configureHTTP()
         configureSerialization()
     }.start(wait = true)
 }

@@ -17,6 +17,7 @@ data class User(
     var email: String,
     var discordId: Long? = null,
     var githubId: Long? = null,
+    var twitterId: Long? = null,
     var zoneId: String = "UTC",
 ) {
     fun save() {
@@ -30,13 +31,14 @@ data class User(
         getCollection().deleteOneById(_id)
     }
 
-    fun toApiJson() = Json(_id, username, discordId, githubId, ZoneId.of(zoneId).toApiJson())
+    fun toApiJson() = Json(_id, username, discordId, githubId, twitterId, ZoneId.of(zoneId).toApiJson())
 
     @Serializable data class Json(
         val id: Long,
         val username: String,
         val discordId: Long?,
         val githubId: Long?,
+        val twitterId: Long?,
         val timezoneInfo: ZoneInfoJson,
     )
 
@@ -50,6 +52,7 @@ data class User(
         fun findByEmail(email: String) = getCollection().findOne(User::email eq email)
         fun findByDiscordId(discordId: Long) = getCollection().findOne(User::discordId eq discordId)
         fun findByGithubId(githubId: Long) = getCollection().findOne(User::githubId eq githubId)
+        fun findByTwitterId(twitterId: Long) = getCollection().findOne(User::twitterId eq twitterId)
     }
 }
 

@@ -8,5 +8,6 @@ export interface User {
     username: string;
     githubId?: number;
     discordId?: number;
+    twitterId?: number;
     timezoneInfo: ZoneInfo;
 }
