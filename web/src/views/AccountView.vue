@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import Navbar from '../components/Navbar.vue';
+import { faGithub, faDiscord, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import {computed, onMounted, ref} from "vue";
 import type { User, ZoneInfo } from "../lib/data";
 import {getUser, redirectLogin, deleteAccount, getZones, patchUser} from "../lib/api";
@@ -60,18 +60,23 @@ function confirmDeleteAccount() {
       <section class="settingSection">
         <h1 class="heading">Linked Accounts</h1>
         <p class="description">Below are your linked accounts, and options to link new ones. Click any to link or re-link</p>
-        <button class='btn github' @click='redirectLogin("github")'>
-          GitHub
-          <span class="linkTag">{{ account.githubId ? 'Linked' : 'Not Linked' }}</span>
-        </button>
-        <button class='btn discord' @click='redirectLogin("discord")'>
-          Discord
-          <span class="linkTag">{{ account.discordId ? 'Linked' : 'Not Linked' }}</span>
-        </button>
-        <button class='btn twitter' @click='redirectLogin("twitter")'>
-          Twitter
-          <span class="linkTag">{{ account.twitterId ? 'Linked' : 'Not Linked' }}</span>
-        </button>
+        <div class="accounts">
+          <button class='btn github' @click='redirectLogin("github")'>
+            <font-awesome-icon :icon="faGithub" class="mr-2"></font-awesome-icon>
+            GitHub
+            <span class="linkTag">{{ account.githubId ? 'Linked' : 'Not Linked' }}</span>
+          </button>
+          <button class='btn discord' @click='redirectLogin("discord")'>
+            <font-awesome-icon :icon="faDiscord" class="mr-2"></font-awesome-icon>
+            Discord
+            <span class="linkTag">{{ account.discordId ? 'Linked' : 'Not Linked' }}</span>
+          </button>
+          <button class='btn twitter' @click='redirectLogin("twitter")'>
+            <font-awesome-icon :icon="faTwitter" class="mr-2"></font-awesome-icon>
+            Twitter
+            <span class="linkTag">{{ account.twitterId ? 'Linked' : 'Not Linked' }}</span>
+          </button>
+        </div>
       </section>
 
       <section class="settingSection">
@@ -105,6 +110,23 @@ function confirmDeleteAccount() {
 </template>
 
 <style scoped lang="scss">
+
+.accounts {
+  @apply flex flex-wrap;
+
+  .btn {
+    @apply mb-3;
+
+    &:last-of-type {
+      @apply mb-0 lg:mb-3;
+    }
+
+    &:not(:last-of-type) {
+      @apply lg:mr-3 inline-flex;
+    }
+  }
+}
+
 .toast {
   @apply bottom-2 right-2 rounded text-white px-3 py-2 absolute;
 
@@ -136,6 +158,10 @@ function confirmDeleteAccount() {
 .btn {
   @apply rounded text-white px-3 py-2 flex items-center w-full lg:w-auto justify-center;
 
+  :global(.svg-inline--fa) {
+    @apply leading-none;
+  }
+
   &.noFullMobile {
     @apply w-auto;
   }
@@ -157,7 +183,7 @@ function confirmDeleteAccount() {
   }
 
   .linkTag {
-    @apply text-xs bg-white rounded-sm ml-1 px-1;
+    @apply text-xs bg-white rounded-sm ml-2 px-1;
   }
 
   &.github {
@@ -206,10 +232,6 @@ function confirmDeleteAccount() {
         color: darken(#1da1f2, 10);
       }
     }
-  }
-
-  &:not(:first-of-type) {
-    @apply mt-3;
   }
 }
 </style>
