@@ -9,7 +9,7 @@
     "lint": "eslint timezonedb-web --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "@vueuse/core": "^8.5.0",
+    "@vueuse/core": "^8.6.0",
     "pinia": "^2.0.13",
     "pinia-plugin-persistedstate": "^1.6.0",
     "sass": "^1.52.2",
