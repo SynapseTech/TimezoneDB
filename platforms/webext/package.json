@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@ffflorian/jszip-cli": "^3.1.6",
-    "@iconify/json": "^2.1.30",
+    "@iconify/json": "^2.1.56",
     "@types/fs-extra": "^9.0.13",
     "@types/node": "^17.0.25",
     "@types/webextension-polyfill": "^0.8.3",
