@@ -20,7 +20,7 @@ import { faGithub, faTwitter, faDiscord, faReddit, faTwitch } from "@fortawesome
 
     <main class="container mx-auto p-4">
       <h3 class="font-light text-4xl text-center">Supported Platforms</h3>
-      <div class="grid grid-cols-5 gap-2 w-full mt-2">
+      <div class="grid grid-cols-4 gap-2 w-full mt-2">
         <div class="platformCard github">
           <font-awesome-icon :icon="faGithub" fixed-width class="icon" />
           <h4 class="heading">GitHub</h4>
@@ -33,10 +33,10 @@ import { faGithub, faTwitter, faDiscord, faReddit, faTwitch } from "@fortawesome
           <font-awesome-icon :icon="faTwitter" fixed-width class="icon" />
           <h4 class="heading">Twitter</h4>
         </div>
-        <div class="platformCard reddit">
-          <font-awesome-icon :icon="faReddit" fixed-width class="icon" />
-          <h4 class="heading">Reddit</h4>
-        </div>
+<!--        <div class="platformCard reddit">-->
+<!--          <font-awesome-icon :icon="faReddit" fixed-width class="icon" />-->
+<!--          <h4 class="heading">Reddit</h4>-->
+<!--        </div>-->
         <div class="platformCard twitch">
           <font-awesome-icon :icon="faTwitch" fixed-width class="icon" />
           <h4 class="heading">Twitch</h4>
