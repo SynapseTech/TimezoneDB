@@ -13,42 +13,7 @@ The goal of this project is to allow people to set their timezone in a standardi
 My primary goals for the project is to allow users to set a timezone and other users to see their timezone and current time via application extensions. There will be no secondary or tertiary goals.
 
 ## Roadmap
-The following are the things that need to be done, with no set time constraints.
-
-- [ ] API
-  - [x] Data structure & Saving
-  - [x] Account routes
-  - [x] Public routes
-  - [ ] Auth
-    - [x] Discord
-    - [x] GitHub
-    - [x] Twitter
-    - [ ] Reddit
-    - [ ] Twitch
-- [ ] Site
-  - [x] Account settings page on site
-  - [x] Time Setting logic - Web
-  - [ ] Public profiles and profile pages
-  - [ ] Site homepage
-- [ ] Browser extension
-  - [x] Configurable base URL
-  - [ ] Configurable date format
-  - [ ] Twitter
-    - [ ] Profile
-    - [ ] Hover card
-    - [ ] On Tweet
-  - [x] Github
-    - [x] Profile
-  - [ ] Reddit
-    - [ ] Comment
-    - [ ] Post
-    - [ ] Profile
-  - [ ] Twitch
-    - [ ] Channel
-    - [ ] Chat
-- [ ] [Powercord](https://powercord.dev) plugin
-  - [ ] Profile
-  - [ ] Message
+Moved to the issues tab.
 
 # Contributing
 All the essential API logic for the project can be found under the `api` directory and is written in Kotlin. [Ktor](https://ktor.io) is used for HTTP handling.
