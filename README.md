@@ -31,6 +31,8 @@ The following are the things that need to be done, with no set time constraints.
   - [ ] Public profiles and profile pages
   - [ ] Site homepage
 - [ ] Browser extension
+  - [x] Configurable base URL
+  - [ ] Configurable date format
   - [ ] Twitter
     - [ ] Profile
     - [ ] Hover card
