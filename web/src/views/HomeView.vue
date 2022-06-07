@@ -73,7 +73,7 @@ import { faGithub, faTwitter, faDiscord, faReddit, faTwitch } from "@fortawesome
   }
 
   .icon {
-    @apply text-2xl mr-2 align-bottom;
+    @apply text-2xl lg:mr-2 align-bottom;
   }
 
   .heading {
