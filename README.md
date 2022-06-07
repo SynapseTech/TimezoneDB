@@ -22,7 +22,7 @@ The following are the things that need to be done, with no set time constraints.
   - [ ] Auth
     - [x] Discord
     - [x] GitHub
-    - [ ] Twitter
+    - [x] Twitter
     - [ ] Reddit
     - [ ] Twitch
 - [ ] Site
@@ -37,7 +37,6 @@ The following are the things that need to be done, with no set time constraints.
     - [ ] On Tweet
   - [ ] Github
     - [ ] Profile
-    - [ ] Hover card
   - [ ] Reddit
     - [ ] Comment
     - [ ] Post
@@ -48,7 +47,6 @@ The following are the things that need to be done, with no set time constraints.
 - [ ] [Powercord](https://powercord.dev) plugin
   - [ ] Profile
   - [ ] Message
-  - [ ] Hover card
 
 # Contributing
 All the essential API logic for the project can be found under the `api` directory and is written in Kotlin. [Ktor](https://ktor.io) is used for HTTP handling.
