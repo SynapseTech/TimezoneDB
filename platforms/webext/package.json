@@ -9,10 +9,12 @@
   "author": "Thomas Chin",
   "license": "ISC",
   "dependencies": {
+    "dateformat": "^5.0.3",
     "vue": "^3.0.5",
     "webextension-polyfill-ts": "^0.24.0"
   },
   "devDependencies": {
+    "@types/dateformat": "^5.0.0",
     "@types/jest": "^26.0.20",
     "@vue/compiler-sfc": "^3.0.5",
     "@vue/test-utils": "^2.0.0-rc.0",

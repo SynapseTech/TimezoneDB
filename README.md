@@ -35,8 +35,8 @@ The following are the things that need to be done, with no set time constraints.
     - [ ] Profile
     - [ ] Hover card
     - [ ] On Tweet
-  - [ ] Github
-    - [ ] Profile
+  - [x] Github
+    - [x] Profile
   - [ ] Reddit
     - [ ] Comment
     - [ ] Post
