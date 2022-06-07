@@ -9,10 +9,10 @@
     "lint": "eslint timezonedb-web --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "@vueuse/core": "^8.5.0",
+    "@vueuse/core": "^8.6.0",
     "pinia": "^2.0.13",
-    "pinia-plugin-persistedstate": "^1.6.0",
-    "sass": "^1.52.1",
+    "pinia-plugin-persistedstate": "^1.6.1",
+    "sass": "^1.52.2",
     "vue": "^3.2.33",
     "vue-multiselect": "^3.0.0-alpha.2",
     "vue-router": "^4.0.14",
@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.0",
-    "@types/node": "^16.11.27",
+    "@types/node": "^17.0.39",
     "@vitejs/plugin-vue": "^2.3.1",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-typescript": "^10.0.0",
@@ -34,8 +34,8 @@
     "postcss": "^8.4.12",
     "prettier": "^2.5.1",
     "tailwindcss": "^3.0.24",
-    "typescript": "~4.6.3",
+    "typescript": "~4.7.3",
     "vite": "^2.9.1",
-    "vue-tsc": "^0.33.9"
+    "vue-tsc": "^0.36.0"
   }
 }
