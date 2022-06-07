@@ -1,0 +1,121 @@
+@import './colors.scss';
+
+.btn {
+  @apply rounded text-white px-3 py-2 flex items-center w-full lg:w-auto justify-center;
+
+  :global(.svg-inline--fa) {
+    @apply leading-none;
+  }
+
+  &.noFullMobile {
+    @apply w-auto;
+  }
+
+  &.red {
+    @apply bg-red-500;
+
+    &:hover {
+      @apply bg-red-600;
+    }
+  }
+
+  &.green {
+    @apply bg-green-500;
+
+    &:hover {
+      @apply bg-green-600;
+    }
+  }
+
+  &.sky {
+    @apply bg-sky-400;
+
+    &:hover {
+      @apply bg-sky-500;
+    }
+  }
+
+  .linkTag {
+    @apply text-xs bg-white rounded-sm ml-2 px-1;
+  }
+
+  &.github {
+    background-color: $github;
+
+    .linkTag {
+      color: $github;
+    }
+
+    &:hover {
+      background-color: darken($github, 10);
+
+      .linkTag {
+        color: darken($github, 10);
+      }
+    }
+  }
+
+  &.discord {
+    background-color: $discord;
+
+    .linkTag {
+      color: $discord;
+    }
+
+    &:hover {
+      background-color: darken($discord, 10);
+
+      .linkTag {
+        color: darken($discord, 10);
+      }
+    }
+  }
+
+  &.twitter {
+    background-color: $twitter;
+
+    .linkTag {
+      color: $twitter;
+    }
+
+    &:hover {
+      background-color: darken($twitter, 10);
+
+      .linkTag {
+        color: darken($twitter, 10);
+      }
+    }
+  }
+
+  &.reddit {
+    background-color: $reddit;
+
+    .linkTag {
+      color: $reddit;
+    }
+
+    &:hover {
+      background-color: darken($reddit, 10);
+
+      .linkTag {
+        color: darken($reddit, 10);
+      }
+    }
+  }
+
+  &.twitch {
+    background-color: $twitch;
+
+    .linkTag {
+      color: $twitch;
+    }
+
+    &:hover {
+      background-color: darken($twitch, 10);
+
+      .linkTag {
+        color: darken($twitch, 10);
+      }
+    }
+  }
+}
