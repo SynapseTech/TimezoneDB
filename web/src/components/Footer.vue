@@ -7,7 +7,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
     &copy; {{ new Date().getFullYear() }}&nbsp;
     <a href="https://synapsetech.dev" class="hover:text-gray-800 hover:underline">Synapse Technologies, LLC</a>
 
-    <a href="https://github.com/SynapseTech/TimezoneDB" class="ml-8 hover:underline">
+    <a href="https://github.com/SynapseTech/TimezoneDB" class="ml-8 hover:underline hidden lg:inline">
       <font-awesome-icon :icon="faGithub" fixed-width class="mr-1 no-underline" />Project Source
     </a>
   </footer>
