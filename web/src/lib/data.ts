@@ -9,5 +9,6 @@ export interface User {
     githubId?: number;
     discordId?: number;
     twitterId?: number;
+    twitchId?: number;
     timezoneInfo: ZoneInfo;
 }

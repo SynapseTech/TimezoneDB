@@ -12,6 +12,7 @@ import dev.synapsetech.tzdb.httpClient
 import dev.synapsetech.tzdb.util.TwitterTransport
 import io.ktor.client.call.*
 import io.ktor.client.request.*
+import io.ktor.client.statement.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
@@ -22,6 +23,9 @@ const val discordTokenUrl = "https://discord.com/api/oauth2/token"
 
 const val githubAuthorizeUrl = "https://github.com/login/oauth/authorize"
 const val githubTokenUrl = "https://github.com/login/oauth/access_token"
+
+const val twitchAuthorizeUrl = "https://id.twitch.tv/oauth2/authorize"
+const val twitchTokenUrl = "https://id.twitch.tv/oauth2/token"
 
 fun genJwt(userId: Long): String = JWT.create()
     .withAudience(MainConfig.INSTANCE.jwt.audience)
@@ -74,6 +78,22 @@ fun Application.configureSecurity() {
                     accessTokenUrl = "https://api.twitter.com/oauth/access_token",
                     consumerKey = MainConfig.INSTANCE.oauth.twitter.consumerKey,
                     consumerSecret = MainConfig.INSTANCE.oauth.twitter.consumerSecret,
+                )
+            }
+            client = httpClient
+        }
+
+        oauth("auth-oauth-twitch") {
+            urlProvider = { MainConfig.INSTANCE.oauth.twitch.redirectUri }
+            providerLookup = {
+                OAuthServerSettings.OAuth2ServerSettings(
+                    name = "twitch",
+                    authorizeUrl = twitchAuthorizeUrl,
+                    accessTokenUrl = twitchTokenUrl,
+                    requestMethod = HttpMethod.Post,
+                    clientId = MainConfig.INSTANCE.oauth.twitch.clientId,
+                    clientSecret = MainConfig.INSTANCE.oauth.twitch.clientSecret,
+                    defaultScopes = listOf("user:read:email")
                 )
             }
             client = httpClient
@@ -235,6 +255,58 @@ fun Application.configureSecurity() {
                 call.respondRedirect(webUri.toString())
             }
         }
+
+        authenticate("auth-oauth-twitch") {
+            get("/auth/twitch") {
+                call.respondRedirect("/auth/callback/twitch")
+            }
+
+            get("/auth/callback/twitch") {
+                val principal: OAuthAccessTokenResponse.OAuth2? = call.principal()
+
+                val response = httpClient.get("https://api.twitch.tv/helix/users") {
+                    headers {
+                        append("Accept", "application/json")
+                        append("Authorization", "Bearer ${principal?.accessToken}")
+                        append("Client-Id", MainConfig.INSTANCE.oauth.twitch.clientId)
+                    }
+                }
+
+                println(response.bodyAsText())
+
+                val twitchResponse: TwitchResponse = response.body()
+                val twitchUser = twitchResponse.data[0]
+                val twitchId = twitchUser.id.toLong()
+
+                val emailUser = User.findByEmail(twitchUser.email)
+
+                val userId = if (emailUser == null) {
+                    // create user
+                    val user = User(
+                        twitchId = twitchId,
+                        username = twitchUser.display_name,
+                        email = twitchUser.email,
+                    )
+                    user.save()
+                    user._id
+                } else {
+                    // add to acc
+                    val possibleOtherUser = User.findByTwitchId(twitchId)
+                    if (possibleOtherUser != null && possibleOtherUser._id != emailUser._id) {
+                        call.respond(HttpStatusCode.BadRequest)
+                        return@get
+                    }
+
+                    emailUser.twitchId = twitchId
+                    emailUser.save()
+                    emailUser._id
+                }
+
+                val token = genJwt(userId)
+                val webUri = Url(MainConfig.INSTANCE.webUrl).toURI().resolve("/?token=$token")
+                call.respondRedirect(webUri.toString())
+            }
+        }
     }
 }
 
@@ -249,4 +321,14 @@ fun Application.configureSecurity() {
     val id: Long,
     val email: String,
     val login: String,
+)
+
+@Serializable data class TwitchUser(
+    val id: String,
+    val display_name: String,
+    val email: String,
+)
+
+@Serializable data class TwitchResponse(
+    val data: List<TwitchUser>,
 )
