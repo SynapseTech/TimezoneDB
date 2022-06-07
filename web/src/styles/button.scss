@@ -1,0 +1,79 @@
+.btn {
+  @apply rounded text-white px-3 py-2 flex items-center w-full lg:w-auto justify-center;
+
+  :global(.svg-inline--fa) {
+    @apply leading-none;
+  }
+
+  &.noFullMobile {
+    @apply w-auto;
+  }
+
+  &.red {
+    @apply bg-red-500;
+
+    &:hover {
+      @apply bg-red-600;
+    }
+  }
+
+  &.green {
+    @apply bg-green-500;
+
+    &:hover {
+      @apply bg-green-600;
+    }
+  }
+
+  .linkTag {
+    @apply text-xs bg-white rounded-sm ml-2 px-1;
+  }
+
+  &.github {
+    background-color: #333333;
+
+    .linkTag {
+      color: #333333;
+    }
+
+    &:hover {
+      background-color: darken(#333333, 10);
+
+      .linkTag {
+        color: darken(#333333, 10);
+      }
+    }
+  }
+
+  &.discord {
+    background-color: #5865F2;
+
+    .linkTag {
+      color: #5865F2;
+    }
+
+    &:hover {
+      background-color: darken(#5865F2, 10);
+
+      .linkTag {
+        color: darken(#5865F2, 10);
+      }
+    }
+  }
+
+  &.twitter {
+    background-color: #1da1f2;
+
+    .linkTag {
+      color: #1da1f2;
+    }
+
+    &:hover {
+      background-color: darken(#1da1f2, 10);
+
+      .linkTag {
+        color: darken(#1da1f2, 10);
+      }
+    }
+  }
+}
