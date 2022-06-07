@@ -16,6 +16,11 @@
       "consumerKey": "",
       "consumerSecret": "",
       "redirectUri": ""
+    },
+    "twitch": {
+      "clientId": "",
+      "clientSecret": "",
+      "redirectUri": ""
     }
   },
   "database": {

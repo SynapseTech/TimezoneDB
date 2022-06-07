@@ -19,6 +19,7 @@ data class Oauth1aProvider(
 data class OauthConfigPart(
     val discord: OauthCodeGrantProvider,
     val github: OauthCodeGrantProvider,
+    val twitch: OauthCodeGrantProvider,
     val twitter: Oauth1aProvider,
 )
 

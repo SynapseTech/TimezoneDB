@@ -1,8 +1,8 @@
 <script setup lang='ts'>
-import { faGithub, faDiscord, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faDiscord, faTwitter, faTwitch } from "@fortawesome/free-brands-svg-icons";
 import {computed, onMounted, ref} from "vue";
 import type { User, ZoneInfo } from "../lib/data";
-import {getUser, redirectLogin, deleteAccount, getZones, patchUser} from "../lib/api";
+import { getUser, redirectLogin, deleteAccount, getZones, patchUser } from "../lib/api";
 // @ts-ignore
 import VueSelect from "vue-multiselect"
 import Page from "../components/Page.vue";
@@ -75,6 +75,11 @@ function confirmDeleteAccount() {
             <font-awesome-icon :icon="faTwitter" class="mr-2"></font-awesome-icon>
             Twitter
             <span class="linkTag">{{ account.twitterId ? 'Linked' : 'Not Linked' }}</span>
+          </button>
+          <button class='btn twitch' @click='redirectLogin("twitch")'>
+            <font-awesome-icon :icon="faTwitch" class="mr-2"></font-awesome-icon>
+            Twitch
+            <span class="linkTag">{{ account.twitchId ? 'Linked' : 'Not Linked' }}</span>
           </button>
         </div>
       </section>

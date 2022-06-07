@@ -15,9 +15,10 @@ data class MainConfig(
 ) {
     companion object {
         lateinit var INSTANCE: MainConfig
+        private val json = Json { ignoreUnknownKeys = true }
 
         fun loadFile(file: File) {
-            INSTANCE = Json.decodeFromString(file.readText())
+            INSTANCE = json.decodeFromString(file.readText())
         }
     }
 }
