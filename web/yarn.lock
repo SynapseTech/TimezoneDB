@@ -48,10 +48,10 @@
   dependencies:
     "@fortawesome/fontawesome-common-types" "6.1.1"
 
-"@fortawesome/vue-fontawesome@3.0.0-4":
-  version "3.0.0-4"
-  resolved "https://registry.yarnpkg.com/@fortawesome/vue-fontawesome/-/vue-fontawesome-3.0.0-4.tgz#f90c62160c436e102f82d8bc02ec44de2cf008dc"
-  integrity sha512-dQVhhMRcUPCb0aqk5ohm0KGk5OJ7wFZ9aYapLzJB3Z+xs7LhkRWLTb87reelUAG5PFDjutDAXuloT9hi6cz72A==
+"@fortawesome/vue-fontawesome@3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@fortawesome/vue-fontawesome/-/vue-fontawesome-3.0.0.tgz#33b1853a18282f7022d18b7156bde6f9ac861c9f"
+  integrity sha512-VAnPH09+DTrdLmmOVP6Xw3+0psJViPjIqVEieXeihMvlpsTE9N/yWEDqkKmaHxjCkeUjoPEg90TNQbhTmtQK/A==
 
 "@humanwhocodes/config-array@^0.9.2":
   version "0.9.5"
