@@ -136,7 +136,6 @@ async function handleAutocompleteRow (row: HTMLElement) {
 
 function handleMutation (mutations: MutationRecord[]) {
     for (const { addedNodes } of mutations) {
-        // @ts-ignore
         for (const node of addedNodes) {
             if (node instanceof HTMLElement) {
                 if (node.id.startsWith('chat-messages-')) {

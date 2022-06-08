@@ -1,1 +1,1 @@
-export type Account = 'github' | 'twitter' | 'discord'
+export type Account = 'github' | 'twitter' | 'discord' | 'twitch';

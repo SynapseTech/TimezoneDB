@@ -1,5 +1,6 @@
 import { inject as injectGithub } from './modules/github';
 import { inject as injectTwitter } from './modules/twitter';
+import { inject as injectTwitch } from './modules/twitch';
 import { inject as injectDiscord } from './modules/discord';
 import {initReact} from "./util/react";
 
@@ -21,6 +22,10 @@ import {initReact} from "./util/react";
         case 'ptb.discord.com':
             injectDiscord();
             console.log('[TimezoneDB] Loaded Discord module.')
+            break;
+        case 'www.twitch.tv':
+            injectTwitch();
+            console.log('[TimezoneDB] Loaded Twitch module.')
             break;
     }
 })()
