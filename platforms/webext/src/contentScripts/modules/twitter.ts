@@ -48,7 +48,7 @@ async function injectProfileHeader (header: HTMLElement) {
         return
     }
 
-    const template = header.children[header.children.length - 1]
+    const template = header.children[header.children.length - 1];
     header.appendChild(
         h(
             'span',
