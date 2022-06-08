@@ -1,10 +1,27 @@
 {
   "compilerOptions": {
-    "moduleResolution": "node",
-    "target": "ES2020",
-    "noImplicitAny": false,
+    "sourceMap": false,
     "strict": true,
-    "sourceMap": false
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitAny": false,
+    "allowUnreachableCode": false,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": false,
+    "isolatedModules": true,
+
+    "lib": [ "esnext", "dom" ],
+    "target": "es6",
+    "module": "esnext",
+    "moduleResolution": "node"
   },
   "include": ["./**/*.ts", "./**/*.vue"],
   "exclude": ["./dist", "node_modules"]

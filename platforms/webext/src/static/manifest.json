@@ -2,22 +2,15 @@
   "name": "TimezoneDB",
   "version": "0.0.1",
   "description": "TimezoneDB is an easy, cross-platform method of keeping track of others' timezones.",
-  "manifest_version": 3,
-  "permissions": ["storage"],
-  "host_permissions": [
-    "https://twitter.com/",
-    "https://github.com/",
-    "https://discord.com/",
-    "https://reddit.com/",
-    "https://www.twitch.tv/"
-  ],
+  "manifest_version": 2,
+  "permissions": ["storage", "currentTab"],
   "icons": {
     "16": "logo-16.png",
     "48": "logo-48.png",
     "128": "logo-128.png"
   },
   "background": {
-    "service_worker": "js/background.js"
+    "scripts": ["js/background.js"]
   },
   "options_ui": {
     "page": "options.html",
@@ -26,11 +19,7 @@
   "content_scripts": [
     {
       "matches": [
-        "https://twitter.com/*",
-        "https://github.com/*",
-        "https://discord.com/*",
-        "https://reddit.com/*",
-        "https://*.twitch.tv/*"
+        "<all_urls>"
       ],
       "js": ["js/content-script.js"]
     }
