@@ -1,9 +1,9 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Build Web Extension (Prod)" type="js.build_tools.npm">
+  <configuration default="false" name="Web Extension Pack" type="js.build_tools.npm">
     <package-json value="$PROJECT_DIR$/platforms/webext/package.json" />
     <command value="run" />
     <scripts>
-      <script value="build:prod" />
+      <script value="pack" />
     </scripts>
     <node-interpreter value="project" />
     <envs />
