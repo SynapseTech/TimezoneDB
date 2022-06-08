@@ -78,6 +78,28 @@ fun Route.userRoutes() {
                 if (user != null) call.respond(user.toApiJson())
                 else call.respond(HttpStatusCode.NotFound)
             }
+
+            get("/twitter/{id}") {
+                val twitterId = call.parameters["id"]?.toLong() ?: run {
+                    call.respond(HttpStatusCode.BadRequest)
+                    return@get
+                }
+
+                val user = User.findByTwitterId(twitterId)
+                if (user != null) call.respond(user.toApiJson())
+                else call.respond(HttpStatusCode.NotFound)
+            }
+
+            get("/twitch/{id}") {
+                val twitchId = call.parameters["id"]?.toLong() ?: run {
+                    call.respond(HttpStatusCode.BadRequest)
+                    return@get
+                }
+
+                val user = User.findByTwitchId(twitchId)
+                if (user != null) call.respond(user.toApiJson())
+                else call.respond(HttpStatusCode.NotFound)
+            }
         }
     }
 }
