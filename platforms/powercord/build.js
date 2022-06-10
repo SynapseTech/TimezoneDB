@@ -18,7 +18,7 @@ function manifest() {
   blankManifest.version = pkg.version;
   blankManifest.license = pkg.license;
 
-  return JSON.stringify(blankManifest);
+  return JSON.stringify(blankManifest, null, 2);
 }
 
 if (mode === 'dev') {

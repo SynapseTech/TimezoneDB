@@ -5,7 +5,7 @@
     <scripts>
       <script value="build" />
     </scripts>
-    <arguments value="dev C:\Users\lizai\Documents\powercord\src\Powercord\plugins\timezonedb-dev" />
+    <arguments value="dev C:\Users\lizai\Documents\powercord\src\Powercord\plugins\timezonedb-powercord" />
     <node-interpreter value="project" />
     <envs />
     <method v="2" />
