@@ -26,11 +26,11 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import { commentDiscussion } from '../icons/octicons';
+import { globe } from '../icons/twitter';
 import { fetchTimezone } from '../util/fetch';
 import { fetchReactProp } from '../util/react';
 import { h, css } from '../util/dom';
-import {formatTimezone} from "../util/misc";
+import { formatTimezone } from '../util/misc';
 
 export const match = /^https:\/\/(.+\.)?twitter\.com/
 
@@ -53,7 +53,7 @@ async function injectProfileHeader (header: HTMLElement) {
         h(
             'span',
             { class: template.className, 'data-timezonedb': 'true' },
-            commentDiscussion({ class: template.children[0].getAttribute('class')! }),
+            globe({ class: template.children[0].getAttribute('class')! }),
             formatTimezone(timezone, true)
         )
     )
@@ -85,7 +85,7 @@ async function injectProfilePopOut (popout: HTMLElement) {
                     marginRight: '4px',
                 }),
             },
-            commentDiscussion({
+            globe({
                 style: css({
                     color: 'inherit',
                     fill: 'currentColor',
