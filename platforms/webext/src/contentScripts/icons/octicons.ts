@@ -26,6 +26,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+// modified to be a clock
 export function commentDiscussion (props: Record<string, string>) {
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path')
@@ -33,7 +34,6 @@ export function commentDiscussion (props: Record<string, string>) {
     svg.setAttribute('width', '16')
     svg.setAttribute('height', '16')
     path.setAttribute('fill-rule', 'evenodd')
-    // icon is now a clock instead of message box.
     path.setAttribute('d', 'M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zm.5 4.75a.75.75 0 00-1.5 0v3.5a.75.75 0 00.471.696l2.5 1a.75.75 0 00.557-1.392L8.5 7.742V4.75z')
     svg.appendChild(path)
 

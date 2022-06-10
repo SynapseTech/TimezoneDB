@@ -30,7 +30,7 @@ import { commentDiscussion } from '../icons/octicons';
 import { fetchTimezone } from '../util/fetch';
 import { fetchReactProp } from '../util/react';
 import { h, css } from '../util/dom';
-import {formatTimezone} from "~/contentScripts/util/misc";
+import { formatTimezone } from '~/contentScripts/util/misc';
 
 export const match = /^https:\/\/(.+\.)?twitch\.tv/
 

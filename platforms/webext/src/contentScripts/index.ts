@@ -2,7 +2,7 @@ import { inject as injectGithub } from './modules/github';
 import { inject as injectTwitter } from './modules/twitter';
 import { inject as injectTwitch } from './modules/twitch';
 import { inject as injectDiscord } from './modules/discord';
-import {initReact} from "./util/react";
+import { initReact } from './util/react';
 
 // Firefox `browser.tabs.executeScript()` requires scripts return a primitive value
 (() => {

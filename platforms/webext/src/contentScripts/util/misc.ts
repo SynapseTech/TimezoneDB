@@ -1,5 +1,5 @@
-import { ZoneInfo } from "../types/api";
-import dateFormat from "dateformat";
+import { ZoneInfo } from '~/types/api';
+import dateFormat from 'dateformat';
 
 export function adjustForTimezone(d: Date, offset: number): Date {
     const date = d.toISOString();

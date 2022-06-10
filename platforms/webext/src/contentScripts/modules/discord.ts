@@ -28,8 +28,8 @@
 
 import { fetchReactProp } from '~/contentScripts/util/react';
 import { h, css } from '~/contentScripts/util/dom';
-import { fetchTimezone } from "~/contentScripts/util/fetch";
-import { formatTimezone } from "~/contentScripts/util/misc";
+import { fetchTimezone } from '~/contentScripts/util/fetch';
+import { formatTimezone } from '~/contentScripts/util/misc';
 
 export const match = /^https:\/\/(.+\.)?discord\.com\/(channels|activity|login|app|library|store)/
 
