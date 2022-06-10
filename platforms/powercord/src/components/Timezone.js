@@ -5,10 +5,10 @@ const store = require('../store/store.js')
 const { formatTimezone } = require('../util.js')
 const UsersStore = getModule([ 'getCurrentUser', 'getUser' ], false)
 
-function Timezone ({ userId, render, prefix, display, timezone }) {
+function Timezone ({ userId, render, prefix, display, timezone, displayCurrent }) {
   React.useEffect(() => void loadTimezone(userId), [ userId ])
   if (!timezone) return null;
-  const p = formatTimezone(timezone)
+  const p = formatTimezone(timezone, displayCurrent ?? false)
 
   if (!p || !display) return null
   return render

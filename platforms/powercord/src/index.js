@@ -61,7 +61,8 @@ class TimezoneDB extends Plugin {
               { className: 'timezonedb-timezone' },
               React.createElement(Timezone, {
                 userId: props.message.author.id,
-                prefix: ' • '
+                prefix: ' • ',
+                displayCurrent: true,
               })
             )
           )
@@ -79,6 +80,7 @@ class TimezoneDB extends Plugin {
         res.props.children.push(
           React.createElement(Timezone, {
             userId: user.id,
+            displayCurrent: true,
             render: (p) => React.createElement(
               'div',
               { className: 'aboutMeSection-PUghFQ' },
@@ -91,9 +93,12 @@ class TimezoneDB extends Plugin {
         res.props.children[3].props.children.push(
           React.createElement(
             'div',
-            { className: 'timezonedb-timezone aboutMeBody-1J8rhz markup-eYLPri clamped-2ZePhX' },
+            {
+              className: 'timezonedb-timezone aboutMeBody-1J8rhz markup-eYLPri clamped-2ZePhX',
+            },
             React.createElement(Timezone, {
               userId: user.id,
+              displayCurrent: true,
               prefix: '\n'
             })
           )
@@ -129,7 +134,7 @@ class TimezoneDB extends Plugin {
         React.createElement(
           'span',
           { className: 'timezonedb-timezone' },
-          React.createElement(Timezone, { userId: this.props.user.id, prefix: ' • ' })
+          React.createElement(Timezone, { userId: this.props.user.id, displayCurrent: true, prefix: ' • ' })
         )
       )
 
