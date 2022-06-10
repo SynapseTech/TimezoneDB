@@ -74,7 +74,7 @@ async function handleMessage (node: HTMLElement) {
                     fontWeight: '500',
                 }),
             },
-            ` • ${formatTimezone(timezone)}`
+            ` • ${formatTimezone(timezone, true)}`
         )
     )
 }
@@ -130,7 +130,7 @@ async function handleAutocompleteRow (row: HTMLElement) {
 
     const element = document.createElement('span')
     element.className = 'timezonedb-autocomplete-timezones'
-    element.innerText = ` • ${formatTimezone(timezone)}`
+    element.innerText = ` • ${formatTimezone(timezone, true)}`
     tag.appendChild(element)
 }
 
