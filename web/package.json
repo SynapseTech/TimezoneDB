@@ -9,17 +9,17 @@
     "lint": "eslint timezonedb-web --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-brands-svg-icons": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/vue-fontawesome": "3.0.0",
     "@vueuse/core": "^8.6.0",
     "pinia": "^2.0.13",
     "pinia-plugin-persistedstate": "^1.6.1",
     "sass": "^1.52.3",
     "vue": "^3.2.37",
     "vue-multiselect": "^3.0.0-alpha.2",
-    "vue-router": "^4.0.16",
-    "@fortawesome/fontawesome-svg-core": "^6.1.1",
-    "@fortawesome/free-brands-svg-icons": "^6.1.1",
-    "@fortawesome/free-solid-svg-icons": "^6.1.1",
-    "@fortawesome/vue-fontawesome": "3.0.0"
+    "vue-router": "^4.0.16"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.0",
