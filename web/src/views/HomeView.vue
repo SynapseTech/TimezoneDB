@@ -116,10 +116,7 @@ const screenshots = ref<ScreenshotData[]>([
 
 <style scoped lang="scss">
 @import '../styles/button.scss';
-
-.pageHeading {
-  @apply font-light text-4xl text-center;
-}
+@import '../styles/text.scss';
 
 .platformCard {
   @apply rounded-lg flex items-center justify-center text-white p-2;
