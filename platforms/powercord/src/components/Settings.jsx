@@ -67,6 +67,11 @@ function Settings ({ getSetting, updateSetting, toggleSetting }) {
         required
         onChange={val => updateSetting('api-url', val.endsWith('/') ? val.slice(0, -1) : val)}
       />
+
+      <a
+        href='https://tzdb.synapsetech.dev/legal/attribution'
+        target='_blank'
+      >Attribution</a>
     </div>
   )
 }

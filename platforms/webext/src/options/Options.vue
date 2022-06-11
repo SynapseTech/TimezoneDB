@@ -20,6 +20,10 @@
 
     <footer>
       &copy; {{ new Date().getFullYear() }} Synapse Technologies, LLC
+      <a
+        href='https://tzdb.synapsetech.dev/legal/attribution'
+        target='_blank'
+      >Attribution</a>
     </footer>
   </div>
 </template>
@@ -58,6 +62,10 @@ body {
 
 footer {
   @apply bg-gray-300 border-gray-400 border-t-[1px] border-opacity-10 text-gray-600 flex items-center justify-center flex-grow-0 py-2;
+
+  a {
+    @apply hover:underline ml-8;
+  }
 }
 
 main {
