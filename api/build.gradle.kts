@@ -8,6 +8,11 @@ plugins {
     id("org.jetbrains.kotlin.plugin.serialization") version "1.7.0"
 }
 
+repositories {
+    mavenCentral()
+    maven { url = uri("https://maven.pkg.jetbrains.space/public/p/ktor/eap") }
+}
+
 group = "dev.synapsetech.tzdb"
 version = "0.0.1"
 application {
@@ -15,11 +20,6 @@ application {
 
     val isDevelopment: Boolean = project.ext.has("development")
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
-}
-
-repositories {
-    mavenCentral()
-    maven { url = uri("https://maven.pkg.jetbrains.space/public/p/ktor/eap") }
 }
 
 dependencies {
@@ -41,4 +41,16 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
     implementation("xyz.downgoon:snowflake:1.0.0")
     implementation("com.google.guava:guava:31.1-jre")
+}
+
+tasks.withType<Jar> {
+    manifest {
+        attributes["Main-Class"] = "dev.synapsetech.tzdb.ApplicationKt"
+    }
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from(configurations.runtimeClasspath.get().files.map {
+        if (it.isDirectory) it else zipTree(it)
+    })
 }
