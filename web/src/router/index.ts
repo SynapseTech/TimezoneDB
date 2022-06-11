@@ -19,6 +19,11 @@ const router = createRouter({
       name: 'login',
       component: () => import('../views/LoginView.vue'),
     },
+    {
+      path: '/legal/attribution',
+      name: 'attribution',
+      component: () => import('../views/legal/Attribution.vue'),
+    },
   ],
 });
 
