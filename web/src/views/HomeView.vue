@@ -4,8 +4,8 @@ import { faGithub, faTwitter, faDiscord, faTwitch } from "@fortawesome/free-bran
 import { ref } from 'vue';
 
 interface ScreenshotData {
-  src: String;
-  description: String;
+  src: string;
+  description: string;
 }
 
 const screenshots = ref<ScreenshotData[]>([
