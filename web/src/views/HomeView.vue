@@ -64,6 +64,10 @@ const screenshots = ref<ScreenshotData[]>([
           <a class="btn sky noFullMobile mt-2 ml-2" href="">Add to Firefox</a> <!-- todo: firefox link -->
           <a class="btn sky noFullMobile mt-2 ml-2" href="">Add to Edge</a> <!-- todo: edge link -->
         </div>
+
+        <p class='text-gray-500 mt-2'>
+          Inspired by <a href='https://pronoundb.org' class='hover:underline' target='_blank' rel='noopener noreferrer nofollow'>PronounDB</a>.
+        </p>
       </div>
     </header>
 

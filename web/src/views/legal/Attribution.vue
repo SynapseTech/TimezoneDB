@@ -14,7 +14,7 @@ import pdbLicense from '../../assets/pdbLicense.txt?raw';
         under the BSD 3 Clause license seen below:
       </p>
 
-      <pre class='bg-gray-200 rounded leading-none p-2 overflow-x-scroll'>{{ pdbLicense }}</pre>
+      <pre class='bg-gray-200 rounded leading-none p-2 overflow-x-auto'>{{ pdbLicense }}</pre>
     </div>
   </Page>
 </template>
