@@ -11,7 +11,7 @@ import pdbLicense from '../../assets/pdbLicense.txt?raw';
         This project would not have happened had it not been for inspiration from
         <a href='https://pronoundb.org' target='_blank'>PronounDB</a>. A lot of
         code from that project was found useful for this project and is licensed
-        under the BSD 3 Clause license seen below:
+        under the BSD 3-Clause license seen below:
       </p>
 
       <pre class='bg-gray-200 rounded leading-none p-2 overflow-x-auto'>{{ pdbLicense }}</pre>
