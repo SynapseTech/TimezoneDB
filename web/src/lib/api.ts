@@ -1,10 +1,12 @@
 import type {User, ZoneInfo} from '../lib/data';
 import { useAuthStore } from '../stores/auth';
-import {useRouter} from "vue-router";
+import { useRouter } from 'vue-router';
 
-export function redirectLogin(provider: string = 'github') {
+export function redirectLogin(provider: string = 'github', link: boolean = false) {
+    const authStore = useAuthStore();
     const apiUrl = import.meta.env.VITE_API_URL
-    const endpoint = `${apiUrl}/auth/${provider}`;
+    let endpoint = `${apiUrl}/auth/${provider}`;
+    if (link) endpoint += `?intent=link&token=${authStore.token}`;
     window.location.replace(endpoint);
 }
 

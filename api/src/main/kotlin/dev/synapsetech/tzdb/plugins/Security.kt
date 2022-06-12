@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 import io.ktor.http.*
 import io.ktor.server.auth.jwt.*
 import com.auth0.jwt.JWT
+import com.auth0.jwt.JWTVerifier
 import com.auth0.jwt.algorithms.Algorithm
 import dev.synapsetech.tzdb.config.MainConfig
 import dev.synapsetech.tzdb.data.User
@@ -12,10 +13,10 @@ import dev.synapsetech.tzdb.httpClient
 import dev.synapsetech.tzdb.util.TwitterTransport
 import io.ktor.client.call.*
 import io.ktor.client.request.*
-import io.ktor.client.statement.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import io.ktor.server.sessions.*
 import java.util.*
 
 const val discordAuthorizeUrl = "https://discord.com/api/oauth2/authorize"
@@ -33,6 +34,12 @@ fun genJwt(userId: Long): String = JWT.create()
     .withClaim("userId", userId)
     .withExpiresAt(Date(System.currentTimeMillis() + 7 * 24 * 60 * 60 * 1000)) // a week
     .sign(Algorithm.HMAC256(MainConfig.INSTANCE.jwt.secret))
+
+val jwtVerifier: JWTVerifier = JWT
+    .require(Algorithm.HMAC256(MainConfig.INSTANCE.jwt.secret))
+    .withAudience(MainConfig.INSTANCE.jwt.audience)
+    .withIssuer(MainConfig.INSTANCE.jwt.domain)
+    .build()
 
 fun Application.configureSecurity() {
     install(Authentication) {
@@ -100,15 +107,8 @@ fun Application.configureSecurity() {
         }
 
         jwt("auth-jwt") {
-            val jwtAudience = MainConfig.INSTANCE.jwt.audience
             realm = MainConfig.INSTANCE.jwt.realm
-            verifier(
-                JWT
-                    .require(Algorithm.HMAC256(MainConfig.INSTANCE.jwt.secret))
-                    .withAudience(jwtAudience)
-                    .withIssuer(MainConfig.INSTANCE.jwt.domain)
-                    .build()
-            )
+            verifier(jwtVerifier)
             validate { credential ->
                 if (credential.payload.getClaim("userId").asLong() != null)
                     JWTPrincipal(credential.payload)
@@ -118,13 +118,49 @@ fun Application.configureSecurity() {
     }
 
     routing {
+        get("/auth/discord") {
+            call.request.queryParameters["intent"]?.let { intent ->
+                if (intent == "link") {
+                    val jwt = call.request.queryParameters["token"] ?: run {
+                        call.respond(HttpStatusCode.BadRequest)
+                        return@get
+                    }
+
+                    val decoded = jwtVerifier.verify(jwt)
+                    val userId = decoded.getClaim("userId").asLong() ?: run {
+                        call.respond(HttpStatusCode.Unauthorized)
+                        return@get
+                    }
+
+                    call.response.cookies.append("tzdb-link-user", userId.toString())
+                }
+            }
+
+            call.respondRedirect("/auth/login/discord")
+        }
+
         authenticate("auth-oauth-discord") {
-            get("/auth/discord") {
+            get("/auth/login/discord") {
                 call.respondRedirect("/auth/callback/discord")
             }
 
             get("/auth/callback/discord") {
                 val principal: OAuthAccessTokenResponse.OAuth2? = call.principal()
+
+                var link = false
+                var userId: Long? = null
+
+                call.request.cookies["tzdb-link-user"]?.let {
+                    link = true
+                    userId = it.toLongOrNull()
+                }
+
+                call.response.cookies.appendExpired("tzdb-link-user")
+
+                if (link && userId == null) {
+                    call.respond(HttpStatusCode.BadRequest)
+                    return@get
+                }
 
                 val response = httpClient.get("https://discord.com/api/users/@me") {
                     headers {
@@ -135,43 +171,88 @@ fun Application.configureSecurity() {
                 val discordUser: DiscordUser = response.body()
                 val discordId = discordUser.id.toLong()
 
-                val emailUser = User.findByEmail(discordUser.email)
-
-                val userId = if (emailUser == null) {
-                    // create user
-                    val user = User(
-                        discordId = discordId,
-                        username = discordUser.username,
-                        email = discordUser.email,
-                    )
-                    user.save()
-                    user._id
-                } else {
-                    // add to acc
+                if (link) {
                     val possibleOtherUser = User.findByDiscordId(discordId)
-                    if (possibleOtherUser != null && possibleOtherUser._id != emailUser._id) {
-                        call.respond(HttpStatusCode.BadRequest)
+                    if (possibleOtherUser != null) {
+                        call.respond(HttpStatusCode.BadRequest, "Account already linked")
                         return@get
                     }
 
-                    emailUser.discordId = discordId
-                    emailUser.save()
-                    emailUser._id
+                    val thisUser = User.findById(userId!!)!!
+                    thisUser.discordId = discordId
+                    thisUser.save()
+                } else {
+                    val possibleUser = User.findByDiscordId(discordId)
+                    userId = if (possibleUser != null) possibleUser._id
+                    else {
+                        val emailUser = User.findByEmail(discordUser.email)
+                        if (emailUser != null) {
+                            emailUser.discordId = discordId
+                            emailUser.save()
+                            emailUser._id
+                        } else {
+                            val user = User(
+                                discordId = discordId,
+                                username = discordUser.username,
+                                email = discordUser.email,
+                            )
+                            user.save()
+                            user._id
+                        }
+                    }
                 }
 
-                val token = genJwt(userId)
+                val token = genJwt(userId!!)
                 val webUri = Url(MainConfig.INSTANCE.webUrl).toURI().resolve("/?token=$token")
                 call.respondRedirect(webUri.toString())
             }
         }
 
+        get("/auth/github") {
+            call.request.queryParameters["intent"]?.let { intent ->
+                if (intent == "link") {
+                    val jwt = call.request.queryParameters["token"] ?: run {
+                        call.respond(HttpStatusCode.BadRequest)
+                        return@get
+                    }
+
+                    val decoded = jwtVerifier.verify(jwt)
+                    val userId = decoded.getClaim("userId").asLong() ?: run {
+                        call.respond(HttpStatusCode.Unauthorized)
+                        return@get
+                    }
+
+                    call.response.cookies.append("tzdb-link-user", userId.toString())
+                }
+            }
+
+            call.respondRedirect("/auth/login/github")
+        }
+
         authenticate("auth-oauth-github") {
-            get("/auth/github") {
+            get("/auth/login/github") {
                 call.respondRedirect("/auth/callback/github")
             }
 
             get("/auth/callback/github") {
                 val principal: OAuthAccessTokenResponse.OAuth2? = call.principal()
+
+                var link = false
+                var userId: Long? = null
+
+                call.request.cookies["tzdb-link-user"]?.let {
+                    link = true
+                    userId = it.toLongOrNull()
+                }
+
+                call.response.cookies.appendExpired("tzdb-link-user")
+
+                if (link && userId == null) {
+                    call.respond(HttpStatusCode.BadRequest)
+                    return@get
+                }
+
+                call.application.environment.log.info("link: $link")
 
                 val response = httpClient.get("https://api.github.com/user") {
                     headers {
@@ -183,38 +264,66 @@ fun Application.configureSecurity() {
                 val githubUser: GithubUser = response.body()
                 val githubId = githubUser.id
 
-                val emailUser = User.findByEmail(githubUser.email)
-
-                val userId = if (emailUser == null) {
-                    // create user
-                    val user = User(
-                        githubId = githubId,
-                        username = githubUser.login,
-                        email = githubUser.email,
-                    )
-                    user.save()
-                    user._id
-                } else {
-                    // add to acc
+                if (link) {
                     val possibleOtherUser = User.findByGithubId(githubId)
-                    if (possibleOtherUser != null && possibleOtherUser._id != emailUser._id) {
-                        call.respond(HttpStatusCode.BadRequest)
+                    if (possibleOtherUser != null) {
+                        call.respond(HttpStatusCode.BadRequest, "Account already linked")
                         return@get
                     }
 
-                    emailUser.githubId = githubId
-                    emailUser.save()
-                    emailUser._id
+                    val thisUser = User.findById(userId!!)!!
+                    thisUser.githubId = githubId
+                    thisUser.save()
+                } else {
+                    val possibleUser = User.findByGithubId(githubId)
+                    userId = if (possibleUser != null) possibleUser._id
+                    else {
+                        val emailUser = User.findByEmail(githubUser.email)
+                        if (emailUser != null) {
+                            emailUser.githubId = githubId
+                            emailUser.save()
+                            emailUser._id
+                        } else {
+                            val user = User(
+                                githubId = githubId,
+                                username = githubUser.login,
+                                email = githubUser.email,
+                            )
+                            user.save()
+                            user._id
+                        }
+                    }
                 }
 
-                val token = genJwt(userId)
+                val token = genJwt(userId!!)
                 val webUri = Url(MainConfig.INSTANCE.webUrl).toURI().resolve("/?token=$token")
                 call.respondRedirect(webUri.toString())
             }
         }
 
+        get("/auth/twitter") {
+            call.request.queryParameters["intent"]?.let { intent ->
+                if (intent == "link") {
+                    val jwt = call.request.queryParameters["token"] ?: run {
+                        call.respond(HttpStatusCode.BadRequest)
+                        return@get
+                    }
+
+                    val decoded = jwtVerifier.verify(jwt)
+                    val userId = decoded.getClaim("userId").asLong() ?: run {
+                        call.respond(HttpStatusCode.Unauthorized)
+                        return@get
+                    }
+
+                    call.response.cookies.append("tzdb-link-user", userId.toString())
+                }
+            }
+
+            call.respondRedirect("/auth/login/twitter")
+        }
+
         authenticate("auth-oauth-twitter") {
-            get("/auth/twitter") {
+            get("/auth/login/twitter") {
                 call.respondRedirect("/auth/callback/twitter")
             }
 
@@ -224,45 +333,99 @@ fun Application.configureSecurity() {
                     return@get
                 }
 
+                var link = false
+                var userId: Long? = null
+
+                call.request.cookies["tzdb-link-user"]?.let {
+                    link = true
+                    userId = it.toLongOrNull()
+                }
+
+                if (link && userId == null) {
+                    call.respond(HttpStatusCode.BadRequest);
+                    return@get
+                }
+
                 val (email, name, twitterId) = TwitterTransport.getUser(principal.tokenSecret, principal.token)
 
-                val emailUser = User.findByEmail(email)
-
-                val userId = if (emailUser == null) {
-                    // create user
-                    val user = User(
-                        twitterId = twitterId,
-                        username = name,
-                        email = email,
-                    )
-                    user.save()
-                    user._id
-                } else {
-                    // add to acc
+                if (link) {
                     val possibleOtherUser = User.findByTwitterId(twitterId)
-                    if (possibleOtherUser != null && possibleOtherUser._id != emailUser._id) {
-                        call.respond(HttpStatusCode.BadRequest)
+                    if (possibleOtherUser != null) {
+                        call.respond(HttpStatusCode.BadRequest, "Account already linked")
                         return@get
                     }
 
-                    emailUser.twitterId = twitterId
-                    emailUser.save()
-                    emailUser._id
+                    val thisUser = User.findById(userId!!)!!
+                    thisUser.twitterId = twitterId
+                    thisUser.save()
+                } else {
+                    val possibleUser = User.findByTwitterId(twitterId)
+                    userId = if (possibleUser != null) possibleUser._id
+                    else {
+                        val emailUser = User.findByEmail(email)
+                        if (emailUser != null) {
+                            emailUser.twitterId = twitterId
+                            emailUser.save()
+                            emailUser._id
+                        } else {
+                            val user = User(
+                                twitterId = twitterId,
+                                username = name,
+                                email = email,
+                            )
+                            user.save()
+                            user._id
+                        }
+                    }
                 }
 
-                val token = genJwt(userId)
+                val token = genJwt(userId!!)
                 val webUri = Url(MainConfig.INSTANCE.webUrl).toURI().resolve("/?token=$token")
                 call.respondRedirect(webUri.toString())
             }
         }
 
+        get("/auth/twitch") {
+            call.request.queryParameters["intent"]?.let { intent ->
+                if (intent == "link") {
+                    val jwt = call.request.queryParameters["token"] ?: run {
+                        call.respond(HttpStatusCode.BadRequest)
+                        return@get
+                    }
+
+                    val decoded = jwtVerifier.verify(jwt)
+                    val userId = decoded.getClaim("userId").asLong() ?: run {
+                        call.respond(HttpStatusCode.Unauthorized)
+                        return@get
+                    }
+
+                    call.response.cookies.append("tzdb-link-user", userId.toString())
+                }
+            }
+
+            call.respondRedirect("/auth/login/twitch")
+        }
+
         authenticate("auth-oauth-twitch") {
-            get("/auth/twitch") {
+            get("/auth/login/twitch") {
                 call.respondRedirect("/auth/callback/twitch")
             }
 
             get("/auth/callback/twitch") {
                 val principal: OAuthAccessTokenResponse.OAuth2? = call.principal()
+
+                var link = false
+                var userId: Long? = null
+
+                call.request.cookies["tzdb-link-user"]?.let {
+                    link = true
+                    userId = it.toLongOrNull()
+                }
+
+                if (link && userId == null) {
+                    call.respond(HttpStatusCode.BadRequest)
+                    return@get
+                }
 
                 val response = httpClient.get("https://api.twitch.tv/helix/users") {
                     headers {
@@ -272,37 +435,42 @@ fun Application.configureSecurity() {
                     }
                 }
 
-                println(response.bodyAsText())
-
                 val twitchResponse: TwitchResponse = response.body()
                 val twitchUser = twitchResponse.data[0]
                 val twitchId = twitchUser.id.toLong()
 
-                val emailUser = User.findByEmail(twitchUser.email)
-
-                val userId = if (emailUser == null) {
-                    // create user
-                    val user = User(
-                        twitchId = twitchId,
-                        username = twitchUser.display_name,
-                        email = twitchUser.email,
-                    )
-                    user.save()
-                    user._id
-                } else {
-                    // add to acc
+                if (link) {
                     val possibleOtherUser = User.findByTwitchId(twitchId)
-                    if (possibleOtherUser != null && possibleOtherUser._id != emailUser._id) {
-                        call.respond(HttpStatusCode.BadRequest)
+                    if (possibleOtherUser != null && possibleOtherUser._id != userId) {
+                        call.respond(HttpStatusCode.BadRequest, "Account already linked")
                         return@get
                     }
 
-                    emailUser.twitchId = twitchId
-                    emailUser.save()
-                    emailUser._id
+                    val thisUser = User.findById(userId!!)!!
+                    thisUser.twitchId = twitchId
+                    thisUser.save()
+                } else {
+                    val possibleUser = User.findByTwitchId(twitchId)
+                    userId = if (possibleUser != null) possibleUser._id
+                    else {
+                        val emailUser = User.findByEmail(twitchUser.email)
+                        if (emailUser != null) {
+                            emailUser.twitchId = twitchId
+                            emailUser.save()
+                            emailUser._id
+                        } else {
+                            val user = User(
+                                twitchId = twitchId,
+                                username = twitchUser.display_name,
+                                email = twitchUser.email,
+                            )
+                            user.save()
+                            user._id
+                        }
+                    }
                 }
 
-                val token = genJwt(userId)
+                val token = genJwt(userId!!)
                 val webUri = Url(MainConfig.INSTANCE.webUrl).toURI().resolve("/?token=$token")
                 call.respondRedirect(webUri.toString())
             }

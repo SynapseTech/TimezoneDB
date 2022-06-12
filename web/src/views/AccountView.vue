@@ -61,22 +61,22 @@ function confirmDeleteAccount() {
         <h1 class="heading">Linked Accounts</h1>
         <p class="description">Below are your linked accounts, and options to link new ones. Click any to link or re-link</p>
         <div class="accounts">
-          <button class='btn github' @click='redirectLogin("github")'>
+          <button class='btn github' @click='redirectLogin("github", true)'>
             <font-awesome-icon :icon="faGithub" class="mr-2"></font-awesome-icon>
             GitHub
             <span class="linkTag">{{ account.githubId ? 'Linked' : 'Not Linked' }}</span>
           </button>
-          <button class='btn discord' @click='redirectLogin("discord")'>
+          <button class='btn discord' @click='redirectLogin("discord", true)'>
             <font-awesome-icon :icon="faDiscord" class="mr-2"></font-awesome-icon>
             Discord
             <span class="linkTag">{{ account.discordId ? 'Linked' : 'Not Linked' }}</span>
           </button>
-          <button class='btn twitter' @click='redirectLogin("twitter")'>
+          <button class='btn twitter' @click='redirectLogin("twitter", true)'>
             <font-awesome-icon :icon="faTwitter" class="mr-2"></font-awesome-icon>
             Twitter
             <span class="linkTag">{{ account.twitterId ? 'Linked' : 'Not Linked' }}</span>
           </button>
-          <button class='btn twitch' @click='redirectLogin("twitch")'>
+          <button class='btn twitch' @click='redirectLogin("twitch", true)'>
             <font-awesome-icon :icon="faTwitch" class="mr-2"></font-awesome-icon>
             Twitch
             <span class="linkTag">{{ account.twitchId ? 'Linked' : 'Not Linked' }}</span>
