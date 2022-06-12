@@ -62,7 +62,7 @@ fun Application.configureSecurity() {
                     requestMethod = HttpMethod.Post,
                     clientId = MainConfig.INSTANCE.oauth.github.clientId,
                     clientSecret = MainConfig.INSTANCE.oauth.github.clientSecret,
-                    defaultScopes = listOf("user")
+                    defaultScopes = listOf("user:email")
                 )
             }
             client = httpClient
