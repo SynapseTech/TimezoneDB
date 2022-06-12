@@ -156,9 +156,7 @@ export async function executeReactProp (node: HTMLElement, propPath: QueryElemen
 
 // Inject main context bridge for Chromium
 export function initReact () {
-    console.log(!isFirefox)
     if (!isFirefox) {
-        console.log("react init 1")
         window.addEventListener('message', (e) => {
             if (e.source === window && e.data?.source === 'timezonedb') {
                 const data = e.data.payload
@@ -173,101 +171,9 @@ export function initReact () {
             }
         })
 
-        console.log("react init 2")
-        const runtime = () => {
-            function fetchReactProp(targets: Array<Element | null>, propPath: QueryElement[]) {
-                const first = targets.find(Boolean)
-                if (!first) return []
-
-                const reactKey = Object.keys(first).find((k) => k.startsWith('__reactInternalInstance') || k.startsWith('__reactFiber'))
-                if (!reactKey) return []
-
-                let props = []
-                for (const element of targets) {
-                    if (!element) {
-                        // @ts-ignore
-                        props.push(null)
-                        continue
-                    }
-
-                    let res = (element as any)[reactKey]
-                    for (const prop of propPath) {
-                        if (!res) break
-                        if (typeof prop === 'string') {
-                            res = res[prop]
-                            continue
-                        }
-
-                        const queue = [ res ]
-                        res = null
-                        while (queue.length) {
-                            const el = queue.shift()
-                            if (prop.$find in el) {
-                                res = el
-                                break
-                            }
-
-                            for (const p of prop.$in) {
-                                // eslint-disable-next-line eqeqeq -- Intentional check for undefined & null
-                                if (p in el && el[p] != null) queue.push(el[p])
-                            }
-                        }
-                    }
-
-                    // @ts-ignore
-                    props.push(res)
-                }
-
-                return props
-            }
-
-            function executeReactProp (targets: Array<Element | null>, propPath: QueryElement[], args: any[]) {
-                const fn = propPath.pop()!
-                if (typeof fn !== 'string') throw new Error('invalid query')
-                const obj = fetchReactProp(targets, propPath)
-                // @ts-ignore
-                return obj.map((o) => o[fn].apply(o, args))
-            }
-
-
-            console.log("react runtime 3")
-            window.addEventListener('message', (e) => {
-                if (e.source === window && e.data?.source === 'timezonedb') {
-                    const data = e.data.payload
-                    if (data.action === 'bridge.query') {
-                        const elements = data.targets.map((target: string) => {
-                            const node = document.querySelector(`[data-timezonedb-target-id="${target}"]`)
-                            if (node) node.removeAttribute('data-timezonedb-target-id')
-                            return node
-                        })
-
-                        let res
-                        if (data.args) {
-                            res = executeReactProp(elements, data.props, data.args)
-                        } else {
-                            res = fetchReactProp(elements, data.props)
-                        }
-
-                        window.postMessage({
-                            source: 'timezonedb',
-                            payload: {
-                                action: 'bridge.result',
-                                id: data.id,
-                                res: res,
-                            },
-                        }, e.origin)
-                    }
-                }
-            })
-        }
-
-        const script = runtime.toString()
-            // .replace('window.doFetch(),', `${doFetchReactProp.toString()};`)
-            // .replace('window.doExecute(),', `${doExecuteReactProp.toString()};`)
-
         const scriptEl = document.createElement('script')
-        scriptEl.textContent = `(${script})()`
-        console.log(scriptEl.textContent);
+        console.log("runtimeUrl", browser.runtime.getURL('/reactRuntime.js'))
+        scriptEl.src = browser.runtime.getURL('/reactRuntime.js')
         document.head.appendChild(scriptEl)
     }
 }
