@@ -171,9 +171,9 @@ fun Application.configureSecurity() {
                 val discordUser: DiscordUser = response.body()
                 val discordId = discordUser.id.toLong()
 
+                val possibleOtherUser = User.findByDiscordId(discordId)
                 if (link) {
-                    val possibleOtherUser = User.findByDiscordId(discordId)
-                    if (possibleOtherUser != null) {
+                    if (possibleOtherUser != null && possibleOtherUser._id != userId) {
                         call.respond(HttpStatusCode.BadRequest, "Account already linked")
                         return@get
                     }
@@ -182,8 +182,7 @@ fun Application.configureSecurity() {
                     thisUser.discordId = discordId
                     thisUser.save()
                 } else {
-                    val possibleUser = User.findByDiscordId(discordId)
-                    userId = if (possibleUser != null) possibleUser._id
+                    userId = if (possibleOtherUser != null) possibleOtherUser._id
                     else {
                         val emailUser = User.findByEmail(discordUser.email)
                         if (emailUser != null) {
@@ -252,8 +251,6 @@ fun Application.configureSecurity() {
                     return@get
                 }
 
-                call.application.environment.log.info("link: $link")
-
                 val response = httpClient.get("https://api.github.com/user") {
                     headers {
                         append("Accept", "application/vnd.github.v3+json")
@@ -264,9 +261,21 @@ fun Application.configureSecurity() {
                 val githubUser: GithubUser = response.body()
                 val githubId = githubUser.id
 
+                val githubEmail: String = githubUser.email ?: run {
+                    val emailResponse = httpClient.get("https://api.github.com/user/emails") {
+                        headers {
+                            append("Accept", "application/vnd.github.v3+json")
+                            append("Authorization", "token ${principal?.accessToken}")
+                        }
+                    }
+
+                    val emails: List<GithubUserEmail> = emailResponse.body()
+                    emails.find { it.primary }!!.email
+                }
+
+                val possibleOtherUser = User.findByGithubId(githubId)
                 if (link) {
-                    val possibleOtherUser = User.findByGithubId(githubId)
-                    if (possibleOtherUser != null) {
+                    if (possibleOtherUser != null && possibleOtherUser._id != userId) {
                         call.respond(HttpStatusCode.BadRequest, "Account already linked")
                         return@get
                     }
@@ -275,10 +284,9 @@ fun Application.configureSecurity() {
                     thisUser.githubId = githubId
                     thisUser.save()
                 } else {
-                    val possibleUser = User.findByGithubId(githubId)
-                    userId = if (possibleUser != null) possibleUser._id
+                    userId = if (possibleOtherUser != null) possibleOtherUser._id
                     else {
-                        val emailUser = User.findByEmail(githubUser.email)
+                        val emailUser = User.findByEmail(githubEmail)
                         if (emailUser != null) {
                             emailUser.githubId = githubId
                             emailUser.save()
@@ -287,7 +295,7 @@ fun Application.configureSecurity() {
                             val user = User(
                                 githubId = githubId,
                                 username = githubUser.login,
-                                email = githubUser.email,
+                                email = githubEmail,
                             )
                             user.save()
                             user._id
@@ -348,9 +356,9 @@ fun Application.configureSecurity() {
 
                 val (email, name, twitterId) = TwitterTransport.getUser(principal.tokenSecret, principal.token)
 
+                val possibleOtherUser = User.findByTwitterId(twitterId)
                 if (link) {
-                    val possibleOtherUser = User.findByTwitterId(twitterId)
-                    if (possibleOtherUser != null) {
+                    if (possibleOtherUser != null && possibleOtherUser._id != userId) {
                         call.respond(HttpStatusCode.BadRequest, "Account already linked")
                         return@get
                     }
@@ -359,8 +367,7 @@ fun Application.configureSecurity() {
                     thisUser.twitterId = twitterId
                     thisUser.save()
                 } else {
-                    val possibleUser = User.findByTwitterId(twitterId)
-                    userId = if (possibleUser != null) possibleUser._id
+                    userId = if (possibleOtherUser != null) possibleOtherUser._id
                     else {
                         val emailUser = User.findByEmail(email)
                         if (emailUser != null) {
@@ -439,8 +446,8 @@ fun Application.configureSecurity() {
                 val twitchUser = twitchResponse.data[0]
                 val twitchId = twitchUser.id.toLong()
 
+                val possibleOtherUser = User.findByTwitchId(twitchId)
                 if (link) {
-                    val possibleOtherUser = User.findByTwitchId(twitchId)
                     if (possibleOtherUser != null && possibleOtherUser._id != userId) {
                         call.respond(HttpStatusCode.BadRequest, "Account already linked")
                         return@get
@@ -450,8 +457,7 @@ fun Application.configureSecurity() {
                     thisUser.twitchId = twitchId
                     thisUser.save()
                 } else {
-                    val possibleUser = User.findByTwitchId(twitchId)
-                    userId = if (possibleUser != null) possibleUser._id
+                    userId = if (possibleOtherUser != null) possibleOtherUser._id
                     else {
                         val emailUser = User.findByEmail(twitchUser.email)
                         if (emailUser != null) {
@@ -487,8 +493,13 @@ fun Application.configureSecurity() {
 
 @Serializable data class GithubUser(
     val id: Long,
-    val email: String,
+    val email: String?,
     val login: String,
+)
+
+@Serializable data class GithubUserEmail(
+    val email: String,
+    val primary: Boolean,
 )
 
 @Serializable data class TwitchUser(
