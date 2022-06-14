@@ -63,6 +63,8 @@ const screenshots = ref<ScreenshotData[]>([
           <a
             class="btn sky noFullMobile mt-2"
             href="https://chrome.google.com/webstore/detail/timezonedb/pnaipdklkdgobgkhkkimnbdfhenkcfga"
+            target="_blank"
+            rel="noopener noreferrer nofollow"
           >Add to Chrome</a>
           <a class="btn sky noFullMobile mt-2 ml-2" href="">Add to Firefox</a> <!-- todo: firefox link -->
           <a class="btn sky noFullMobile mt-2 ml-2" href="">Add to Edge</a> <!-- todo: edge link -->
