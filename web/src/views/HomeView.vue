@@ -60,7 +60,10 @@ const screenshots = ref<ScreenshotData[]>([
         <h2 class='mt-2 text-gray-600 text-xl text-center'>An easy, cross-platform method of keeping track of other people's timezones.</h2>
 
         <div class="flex items-center flex-wrap justify-center">
-          <a class="btn sky noFullMobile mt-2" href="">Add to Chrome</a> <!-- todo: chrome web store link -->
+          <a
+            class="btn sky noFullMobile mt-2"
+            href="https://chrome.google.com/webstore/detail/timezonedb/pnaipdklkdgobgkhkkimnbdfhenkcfga"
+          >Add to Chrome</a>
           <a class="btn sky noFullMobile mt-2 ml-2" href="">Add to Firefox</a> <!-- todo: firefox link -->
           <a class="btn sky noFullMobile mt-2 ml-2" href="">Add to Edge</a> <!-- todo: edge link -->
           <a
