@@ -1,7 +1,7 @@
 {
   "name": "tzdb-webext",
   "displayName": "TimezoneDB",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "TimezoneDB is an easy, cross-platform method of keeping track of others' timezones.",
   "private": true,
   "scripts": {
