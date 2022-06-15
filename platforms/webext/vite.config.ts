@@ -94,7 +94,6 @@ export default defineConfig(({ command }) => ({
     },
     rollupOptions: {
       input: {
-        background: r('src/background/main.html'),
         options: r('src/options/index.html'),
       },
     },

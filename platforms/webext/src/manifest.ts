@@ -14,9 +14,6 @@ export async function getManifest() {
     name: pkg.displayName || pkg.name,
     version: pkg.version,
     description: pkg.description,
-    browser_action: {
-      default_icon: './assets/icon-512.png',
-    },
     content_security_policy: {
       extension_pages: baseCsp,
     },
