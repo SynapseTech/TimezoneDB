@@ -17,6 +17,10 @@
     &:hover {
       @apply bg-red-600;
     }
+
+    &.disabled:hover {
+      @apply bg-red-500;
+    }
   }
 
   &.green {
@@ -25,6 +29,10 @@
     &:hover {
       @apply bg-green-600;
     }
+
+    &.disabled:hover {
+      @apply bg-green-500;
+    }
   }
 
   &.sky {
@@ -32,6 +40,10 @@
 
     &:hover {
       @apply bg-sky-500;
+    }
+
+    &.disabled:hover {
+      @apply bg-sky-400;
     }
   }
 
@@ -46,7 +58,7 @@
       color: $github;
     }
 
-    &:hover {
+    &:hover:not(.disabled) {
       background-color: darken($github, 10);
 
       .linkTag {
@@ -62,7 +74,7 @@
       color: $discord;
     }
 
-    &:hover {
+    &:hover:not(.disabled) {
       background-color: darken($discord, 10);
 
       .linkTag {
@@ -78,7 +90,7 @@
       color: $twitter;
     }
 
-    &:hover {
+    &:hove:not(.disabled) {
       background-color: darken($twitter, 10);
 
       .linkTag {
@@ -94,7 +106,7 @@
       color: $reddit;
     }
 
-    &:hover {
+    &:hover:not(.disabled) {
       background-color: darken($reddit, 10);
 
       .linkTag {
@@ -110,7 +122,7 @@
       color: $twitch;
     }
 
-    &:hover {
+    &:hover:not(.disabled) {
       background-color: darken($twitch, 10);
 
       .linkTag {

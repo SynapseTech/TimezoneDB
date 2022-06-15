@@ -66,8 +66,8 @@ const screenshots = ref<ScreenshotData[]>([
             target="_blank"
             rel="noopener noreferrer nofollow"
           >Add to Chrome</a>
-          <a class="btn sky noFullMobile mt-2 ml-2" href="">Add to Firefox</a> <!-- todo: firefox link -->
-          <a class="btn sky noFullMobile mt-2 ml-2" href="">Add to Edge</a> <!-- todo: edge link -->
+          <a class="btn disabled sky noFullMobile mt-2 ml-2" aria-disabled="true">Add to Firefox (Coming Soon)</a>
+          <a class="btn disabled sky noFullMobile mt-2 ml-2" aria-disabled="true">Add to Edge (Coming Soon)</a>
           <a
             class="btn discord noFullMobile mt-2 ml-2"
             download="timezonedb-powercord.zip"
