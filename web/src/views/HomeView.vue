@@ -1,60 +1,60 @@
 <script setup lang="ts">
-import Page from '../components/Page.vue';
-import {
-	faGithub,
-	faTwitter,
-	faDiscord,
-	faTwitch,
-} from '@fortawesome/free-brands-svg-icons';
-import { ref } from 'vue';
+	import Page from '../components/Page.vue';
+	import {
+		faGithub,
+		faTwitter,
+		faDiscord,
+		faTwitch,
+	} from '@fortawesome/free-brands-svg-icons';
+	import { ref } from 'vue';
 
-interface ScreenshotData {
-	src: string;
-	description: string;
-}
+	interface ScreenshotData {
+		src: string;
+		description: string;
+	}
 
-const screenshots = ref<ScreenshotData[]>([
-	{
-		src: 'https://i-work-at-the.cocaine.institute/Lizzy62a0ae49URyXxQ5wWXuC.png',
-		description: 'Twitch chat integration',
-	},
-	{
-		src: 'https://i-work-at-the.cocaine.institute/Lizzy62a0acd8WmGASu9BFfaw.png',
-		description: 'Twitch profile integration',
-	},
-	{
-		src: 'https://i-work-at-the.cocaine.institute/Lizzy62a0ae78fL2snKTMlFVS.png',
-		description: 'Twitch profile card integration',
-	},
-	{
-		src: 'https://i-work-at-the.cocaine.institute/Lizzy62a0a869P1M6bqHKCaot.png',
-		description: 'Discord autocomplete integration',
-	},
-	{
-		src: 'https://i-work-at-the.cocaine.institute/Lizzy62a0a85beBl7H8c21vFz.png',
-		description: 'Discord profile integration',
-	},
-	{
-		src: 'https://i-work-at-the.cocaine.institute/Lizzy62a0a828XDKENwWYh7TT.png',
-		description: 'Discord profile card integration',
-	},
-	{
-		src: 'https://i-work-at-the.cocaine.institute/Lizzy62a0a83cuEFOQw3irjqH.png',
-		description: 'Discord message integration',
-	},
-	{
-		src: 'https://i-work-at-the.cocaine.institute/Lizzy62a09d2ahY6TzhkSIDil.png',
-		description: 'Twitter profile card integration',
-	},
-	{
-		src: 'https://i-work-at-the.cocaine.institute/Lizzy62a09aeffo7sJ3ADYc12.png',
-		description: 'Twitter profile integration',
-	},
-	{
-		src: 'https://i-work-at-the.cocaine.institute/Lizzy62a3658bOrX6HJdsvWD0.png',
-		description: 'Github profile integration',
-	},
-]);
+	const screenshots = ref<ScreenshotData[]>([
+		{
+			src: 'https://i-work-at-the.cocaine.institute/Lizzy62a0ae49URyXxQ5wWXuC.png',
+			description: 'Twitch chat integration',
+		},
+		{
+			src: 'https://i-work-at-the.cocaine.institute/Lizzy62a0acd8WmGASu9BFfaw.png',
+			description: 'Twitch profile integration',
+		},
+		{
+			src: 'https://i-work-at-the.cocaine.institute/Lizzy62a0ae78fL2snKTMlFVS.png',
+			description: 'Twitch profile card integration',
+		},
+		{
+			src: 'https://i-work-at-the.cocaine.institute/Lizzy62a0a869P1M6bqHKCaot.png',
+			description: 'Discord autocomplete integration',
+		},
+		{
+			src: 'https://i-work-at-the.cocaine.institute/Lizzy62a0a85beBl7H8c21vFz.png',
+			description: 'Discord profile integration',
+		},
+		{
+			src: 'https://i-work-at-the.cocaine.institute/Lizzy62a0a828XDKENwWYh7TT.png',
+			description: 'Discord profile card integration',
+		},
+		{
+			src: 'https://i-work-at-the.cocaine.institute/Lizzy62a0a83cuEFOQw3irjqH.png',
+			description: 'Discord message integration',
+		},
+		{
+			src: 'https://i-work-at-the.cocaine.institute/Lizzy62a09d2ahY6TzhkSIDil.png',
+			description: 'Twitter profile card integration',
+		},
+		{
+			src: 'https://i-work-at-the.cocaine.institute/Lizzy62a09aeffo7sJ3ADYc12.png',
+			description: 'Twitter profile integration',
+		},
+		{
+			src: 'https://i-work-at-the.cocaine.institute/Lizzy62a3658bOrX6HJdsvWD0.png',
+			description: 'Github profile integration',
+		},
+	]);
 </script>
 
 <template>
@@ -92,7 +92,7 @@ const screenshots = ref<ScreenshotData[]>([
 					<a
 						class="btn discord noFullMobile mt-2 ml-2"
 						download="timezonedb-powercord.zip"
-						href="https://downloads.synapsetech.workers.dev/tzdb-powercord-v0.0.1-release.zip"
+						href="https://downloads.synapsetech.workers.dev/tzdb-powercord-v0.0.2-release.zip"
 						>Download Powercord plugin</a
 					>
 				</div>
@@ -180,38 +180,38 @@ const screenshots = ref<ScreenshotData[]>([
 </template>
 
 <style scoped lang="scss">
-@import '../styles/button.scss';
-@import '../styles/text.scss';
+	@import '../styles/button.scss';
+	@import '../styles/text.scss';
 
-.platformCard {
-	@apply rounded-lg flex items-center justify-center text-white p-2;
+	.platformCard {
+		@apply rounded-lg flex items-center justify-center text-white p-2;
 
-	&.github {
-		background-color: $github;
+		&.github {
+			background-color: $github;
+		}
+
+		&.discord {
+			background-color: $discord;
+		}
+
+		&.twitter {
+			background-color: $twitter;
+		}
+
+		&.reddit {
+			background-color: $reddit;
+		}
+
+		&.twitch {
+			background-color: $twitch;
+		}
+
+		.icon {
+			@apply text-2xl lg:mr-2 align-bottom;
+		}
+
+		.heading {
+			@apply hidden lg:block text-2xl align-top;
+		}
 	}
-
-	&.discord {
-		background-color: $discord;
-	}
-
-	&.twitter {
-		background-color: $twitter;
-	}
-
-	&.reddit {
-		background-color: $reddit;
-	}
-
-	&.twitch {
-		background-color: $twitch;
-	}
-
-	.icon {
-		@apply text-2xl lg:mr-2 align-bottom;
-	}
-
-	.heading {
-		@apply hidden lg:block text-2xl align-top;
-	}
-}
 </style>
