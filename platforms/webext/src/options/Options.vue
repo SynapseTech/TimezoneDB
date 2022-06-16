@@ -17,7 +17,7 @@
 						>Documentation</a
 					>)
 				</label>
-				<input id="timeFormatInput" type="text" v-model="apiUrl" />
+				<input id="timeFormatInput" type="text" v-model="timeFormat" />
 			</section>
 
 			<div class="btns">
@@ -114,6 +114,10 @@
 
 		label {
 			@apply mr-2 flex-grow-0 font-bold;
+
+			a {
+				@apply hover:underline;
+			}
 		}
 
 		input {
