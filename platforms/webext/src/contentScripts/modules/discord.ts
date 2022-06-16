@@ -64,6 +64,21 @@ async function handleMessage(node: HTMLElement) {
 	]);
 	if (!id) return;
 
+	const maybeTimestamp = await fetchReactProp(node, [
+		'return',
+		'return',
+		'memoizedProps',
+		'message',
+		'timestamp',
+	]);
+
+	let timestamp: Date;
+	let useCurrent: boolean = false;
+	if (!maybeTimestamp) {
+		timestamp = new Date();
+		useCurrent = true;
+	} else timestamp = maybeTimestamp;
+
 	const timezone = await fetchTimezone('discord', id);
 	if (timezone === 'unspecified') return;
 
@@ -82,7 +97,12 @@ async function handleMessage(node: HTMLElement) {
 					fontWeight: '500',
 				}),
 			},
-			` • ${formatTimezone(timezone, true)}`,
+			` • ${await formatTimezone(
+				timezone,
+				true,
+				timestamp,
+				useCurrent ? 'Currently' : 'Sent at',
+			)}`,
 		),
 	);
 }
@@ -100,7 +120,7 @@ async function handleUserPopOut(node: HTMLElement) {
 	const frag = document.createDocumentFragment();
 	frag.appendChild(h('div', { style: Styles.header }, 'Timezone'));
 	frag.appendChild(
-		h('div', { style: Styles.text }, formatTimezone(timezone, true)),
+		h('div', { style: Styles.text }, await formatTimezone(timezone, true)),
 	);
 	node.querySelector('[class^="bodyInnerWrapper"]')?.appendChild(frag);
 
@@ -138,7 +158,7 @@ async function handleUserModal(node: HTMLElement) {
 		),
 	);
 	frag.appendChild(
-		h('div', { style: Styles.text }, formatTimezone(timezone, true)),
+		h('div', { style: Styles.text }, await formatTimezone(timezone, true)),
 	);
 
 	container.classList.add('has-timezone');
@@ -167,16 +187,16 @@ async function handleAutocompleteRow(row: HTMLElement) {
 
 	const element = document.createElement('span');
 	element.className = 'timezonedb-autocomplete-timezones';
-	element.innerText = ` • ${formatTimezone(timezone, true)}`;
+	element.innerText = ` • ${await formatTimezone(timezone, true)}`;
 	tag.appendChild(element);
 }
 
-function handleMutation(mutations: MutationRecord[]) {
+async function handleMutation(mutations: MutationRecord[]) {
 	for (const { addedNodes } of mutations) {
 		for (const node of addedNodes) {
 			if (node instanceof HTMLElement) {
 				if (node.id.startsWith('chat-messages-')) {
-					handleMessage(node);
+					await handleMessage(node);
 					continue;
 				}
 
@@ -196,20 +216,20 @@ function handleMutation(mutations: MutationRecord[]) {
 						'div[role="dialog"][class^="userPopout-"]',
 					)
 				) {
-					handleUserPopOut(node);
+					await handleUserPopOut(node);
 					continue;
 				}
 
 				if (node.querySelector('div[class^="userInfoSection-"]')) {
 					if (node.querySelector('[aria-modal="true"]')) {
-						handleUserModal(node);
+						await handleUserModal(node);
 						continue;
 					}
 
 					const modal =
 						node.parentElement?.parentElement?.parentElement
 							?.parentElement;
-					if (modal) handleUserModal(modal);
+					if (modal) await handleUserModal(modal);
 					continue;
 				}
 
@@ -226,10 +246,8 @@ function handleMutation(mutations: MutationRecord[]) {
 				if (
 					node.className.startsWith('autocompleteRow') &&
 					node.querySelector('[role="img"]')
-				) {
-					handleAutocompleteRow(node);
-					continue;
-				}
+				)
+					await handleAutocompleteRow(node);
 			}
 		}
 	}

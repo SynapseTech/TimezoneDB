@@ -41,7 +41,7 @@ async function injectUserProfile() {
 	const timezone = await fetchTimezone('github', userId);
 	if (timezone === 'unspecified') return;
 
-	const formattedZone = formatTimezone(timezone, true);
+	const formattedZone = await formatTimezone(timezone, true);
 	const el = h(
 		'li',
 		{
@@ -77,6 +77,6 @@ async function injectUserProfile() {
 	});
 }
 
-export function inject() {
-	if (document.querySelector('.user-profile-bio')) injectUserProfile();
+export async function inject() {
+	if (document.querySelector('.user-profile-bio')) await injectUserProfile();
 }

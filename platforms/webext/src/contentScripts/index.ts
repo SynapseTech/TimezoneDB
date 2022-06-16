@@ -5,16 +5,16 @@ import { inject as injectDiscord } from './modules/discord';
 import { initReact } from './util/react';
 
 // Firefox `browser.tabs.executeScript()` requires scripts return a primitive value
-(() => {
+(async () => {
 	initReact();
 
 	switch (window.location.host) {
 		case 'github.com':
-			injectGithub();
+			await injectGithub();
 			console.log('[TimezoneDB] Loaded GitHub module.');
 			break;
 		case 'twitter.com':
-			injectTwitter();
+			await injectTwitter();
 			console.log('[TimezoneDB] Loaded Twitter module.');
 			break;
 		case 'canary.discord.com':
