@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "description": "",
-  "license": "",
-  "version": "",
-  "author": "",
-  "permissions": [ "ext_api" ]
+	"name": "",
+	"description": "",
+	"license": "",
+	"version": "",
+	"author": "",
+	"permissions": ["ext_api"]
 }

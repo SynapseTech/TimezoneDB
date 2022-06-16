@@ -6,26 +6,26 @@ import { initReact } from './util/react';
 
 // Firefox `browser.tabs.executeScript()` requires scripts return a primitive value
 (() => {
-    initReact();
+	initReact();
 
-    switch (window.location.host) {
-        case 'github.com':
-            injectGithub();
-            console.log('[TimezoneDB] Loaded GitHub module.')
-            break;
-        case 'twitter.com':
-            injectTwitter();
-            console.log('[TimezoneDB] Loaded Twitter module.')
-            break;
-        case 'canary.discord.com':
-        case 'discord.com':
-        case 'ptb.discord.com':
-            injectDiscord();
-            console.log('[TimezoneDB] Loaded Discord module.')
-            break;
-        case 'www.twitch.tv':
-            injectTwitch();
-            console.log('[TimezoneDB] Loaded Twitch module.')
-            break;
-    }
-})()
+	switch (window.location.host) {
+		case 'github.com':
+			injectGithub();
+			console.log('[TimezoneDB] Loaded GitHub module.');
+			break;
+		case 'twitter.com':
+			injectTwitter();
+			console.log('[TimezoneDB] Loaded Twitter module.');
+			break;
+		case 'canary.discord.com':
+		case 'discord.com':
+		case 'ptb.discord.com':
+			injectDiscord();
+			console.log('[TimezoneDB] Loaded Discord module.');
+			break;
+		case 'www.twitch.tv':
+			injectTwitch();
+			console.log('[TimezoneDB] Loaded Twitch module.');
+			break;
+	}
+})();

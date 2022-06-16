@@ -31,169 +31,231 @@ import { h, css } from '~/contentScripts/util/dom';
 import { fetchTimezone } from '~/contentScripts/util/fetch';
 import { formatTimezone } from '~/contentScripts/util/misc';
 
-export const match = /^https:\/\/(.+\.)?discord\.com\/(channels|activity|login|app|library|store)/
+export const match =
+	/^https:\/\/(.+\.)?discord\.com\/(channels|activity|login|app|library|store)/;
 
 const Styles = {
-    header: css({
-        fontFamily: 'var(--font-display)',
-        fontSize: '12px',
-        fontWeight: '700',
-        lineHeight: '16px',
-        color: 'var(--header-secondary)',
-        textTransform: 'uppercase',
-        marginBottom: '8px',
-    }),
-    text: css({
-        fontSize: '14px',
-        lineHeight: '18px',
-        fontWeight: '400',
-        color: 'var(--text-normal)',
-        marginBottom: '8px',
-    }),
+	header: css({
+		fontFamily: 'var(--font-display)',
+		fontSize: '12px',
+		fontWeight: '700',
+		lineHeight: '16px',
+		color: 'var(--header-secondary)',
+		textTransform: 'uppercase',
+		marginBottom: '8px',
+	}),
+	text: css({
+		fontSize: '14px',
+		lineHeight: '18px',
+		fontWeight: '400',
+		color: 'var(--text-normal)',
+		marginBottom: '8px',
+	}),
+};
+
+async function handleMessage(node: HTMLElement) {
+	const id = await fetchReactProp(node, [
+		'return',
+		'return',
+		'memoizedProps',
+		'message',
+		'author',
+		'id',
+	]);
+	if (!id) return;
+
+	const timezone = await fetchTimezone('discord', id);
+	if (timezone === 'unspecified') return;
+
+	const header = node.querySelector('h2');
+	if (!header) return;
+
+	header.appendChild(
+		h(
+			'span',
+			{
+				class: 'timezonedb-timezone',
+				style: css({
+					color: 'var(--text-muted)',
+					fontSize: '.75rem',
+					lineHeight: '1.375rem',
+					fontWeight: '500',
+				}),
+			},
+			` • ${formatTimezone(timezone, true)}`,
+		),
+	);
 }
 
-async function handleMessage (node: HTMLElement) {
-    const id = await fetchReactProp(node, [ 'return', 'return', 'memoizedProps', 'message', 'author', 'id' ])
-    if (!id) return
+async function handleUserPopOut(node: HTMLElement) {
+	const id = await fetchReactProp(node, [
+		{ $find: 'userId', $in: ['child', 'memoizedProps'] },
+		'userId',
+	]);
+	if (!id) return;
 
-    const timezone = await fetchTimezone('discord', id)
-    if (timezone === 'unspecified') return
+	const timezone = await fetchTimezone('discord', id);
+	if (timezone === 'unspecified') return;
 
-    const header = node.querySelector('h2')
-    if (!header) return
+	const frag = document.createDocumentFragment();
+	frag.appendChild(h('div', { style: Styles.header }, 'Timezone'));
+	frag.appendChild(
+		h('div', { style: Styles.text }, formatTimezone(timezone, true)),
+	);
+	node.querySelector('[class^="bodyInnerWrapper"]')?.appendChild(frag);
 
-    header.appendChild(
-        h(
-            'span',
-            {
-                class: 'timezonedb-timezone',
-                style: css({
-                    color: 'var(--text-muted)',
-                    fontSize: '.75rem',
-                    lineHeight: '1.375rem',
-                    fontWeight: '500',
-                }),
-            },
-            ` • ${formatTimezone(timezone, true)}`
-        )
-    )
+	setTimeout(() => {
+		const { y, height } = node.getBoundingClientRect();
+		const bottom = window.innerHeight - y - height - 16;
+		if (bottom < 0)
+			node.style.top = `${parseInt(node.style.top, 10) + bottom}px`;
+	}, 5);
 }
 
-async function handleUserPopOut (node: HTMLElement) {
-    const id = await fetchReactProp(node, [ { $find: 'userId', $in: [ 'child', 'memoizedProps' ] }, 'userId' ])
-    if (!id) return
+async function handleUserModal(node: HTMLElement) {
+	const id = await fetchReactProp(node, [
+		'child',
+		'memoizedProps',
+		'user',
+		'id',
+	]);
+	if (!id) return;
 
-    const timezone = await fetchTimezone('discord', id)
-    if (timezone === 'unspecified') return
+	const timezone = await fetchTimezone('discord', id);
+	if (timezone === 'unspecified') return;
 
-    const frag = document.createDocumentFragment()
-    frag.appendChild(h('div', { style: Styles.header }, 'Timezone'))
-    frag.appendChild(h('div', { style: Styles.text }, formatTimezone(timezone, true)))
-    node.querySelector('[class^="bodyInnerWrapper"]')?.appendChild(frag)
+	const container = node.querySelector<HTMLElement>(
+		'[class^="userInfoSection"]',
+	);
+	if (!container) return;
 
-    setTimeout(() => {
-        const { y, height } = node.getBoundingClientRect()
-        const bottom = window.innerHeight - y - height - 16
-        if (bottom < 0) node.style.top = `${parseInt(node.style.top, 10) + bottom}px`
-    }, 5)
+	const frag = document.createDocumentFragment();
+	frag.appendChild(
+		h(
+			'div',
+			{ class: 'userInfoSectionHeader-owo', style: Styles.header },
+			'Timezone',
+		),
+	);
+	frag.appendChild(
+		h('div', { style: Styles.text }, formatTimezone(timezone, true)),
+	);
+
+	container.classList.add('has-timezone');
+	container.appendChild(frag);
 }
 
-async function handleUserModal (node: HTMLElement) {
-    const id = await fetchReactProp(node, [ 'child', 'memoizedProps', 'user', 'id' ])
-    if (!id) return
+async function handleAutocompleteRow(row: HTMLElement) {
+	if (row.querySelector('.timezonedb-autocomplete-timezones')) return;
 
-    const timezone = await fetchTimezone('discord', id)
-    if (timezone === 'unspecified') return
+	const id = await fetchReactProp(row, [
+		'return',
+		'return',
+		'return',
+		'return',
+		'key',
+	]);
+	if (!id) return;
 
-    const container = node.querySelector<HTMLElement>('[class^="userInfoSection"]')
-    if (!container) return
+	const timezone = await fetchTimezone('discord', id);
+	if (timezone === 'unspecified') return;
 
-    const frag = document.createDocumentFragment()
-    frag.appendChild(h('div', { class: 'userInfoSectionHeader-owo', style: Styles.header }, 'Timezone'));
-    frag.appendChild(h('div', { style: Styles.text }, formatTimezone(timezone, true)));
+	const tag = row.querySelector(
+		'[class*="autocompleteRowContentSecondary-"]',
+	);
+	if (!tag) return;
 
-    container.classList.add('has-timezone');
-    container.appendChild(frag);
+	const element = document.createElement('span');
+	element.className = 'timezonedb-autocomplete-timezones';
+	element.innerText = ` • ${formatTimezone(timezone, true)}`;
+	tag.appendChild(element);
 }
 
-async function handleAutocompleteRow (row: HTMLElement) {
-    if (row.querySelector('.timezonedb-autocomplete-timezones')) return
+function handleMutation(mutations: MutationRecord[]) {
+	for (const { addedNodes } of mutations) {
+		for (const node of addedNodes) {
+			if (node instanceof HTMLElement) {
+				if (node.id.startsWith('chat-messages-')) {
+					handleMessage(node);
+					continue;
+				}
 
-    const id = await fetchReactProp(row, [ 'return', 'return', 'return', 'return', 'key' ])
-    if (!id) return
+				if (node.className.startsWith('chat-')) {
+					console.log(
+						node.querySelectorAll('li[id^=chat-messages-]'),
+					);
+					node.querySelectorAll<HTMLElement>(
+						'li[id^=chat-messages-]',
+					).forEach((m) => handleMessage(m));
+					continue;
+				}
 
-    const timezone = await fetchTimezone('discord', id)
-    if (timezone === 'unspecified') return
+				if (
+					node.id.startsWith('popout_') &&
+					node.querySelector(
+						'div[role="dialog"][class^="userPopout-"]',
+					)
+				) {
+					handleUserPopOut(node);
+					continue;
+				}
 
-    const tag = row.querySelector('[class*="autocompleteRowContentSecondary-"]')
-    if (!tag) return
+				if (node.querySelector('div[class^="userInfoSection-"]')) {
+					if (node.querySelector('[aria-modal="true"]')) {
+						handleUserModal(node);
+						continue;
+					}
 
-    const element = document.createElement('span')
-    element.className = 'timezonedb-autocomplete-timezones'
-    element.innerText = ` • ${formatTimezone(timezone, true)}`
-    tag.appendChild(element)
+					const modal =
+						node.parentElement?.parentElement?.parentElement
+							?.parentElement;
+					if (modal) handleUserModal(modal);
+					continue;
+				}
+
+				if (node.className.startsWith('autocomplete-')) {
+					const rows = Array.from(
+						node.querySelectorAll('[class*="autocompleteRow-"]'),
+					) as HTMLElement[];
+					rows.filter((row) =>
+						row?.querySelector('[role="img"]'),
+					).forEach((row) => handleAutocompleteRow(row));
+					continue;
+				}
+
+				if (
+					node.className.startsWith('autocompleteRow') &&
+					node.querySelector('[role="img"]')
+				) {
+					handleAutocompleteRow(node);
+					continue;
+				}
+			}
+		}
+	}
 }
 
-function handleMutation (mutations: MutationRecord[]) {
-    for (const { addedNodes } of mutations) {
-        for (const node of addedNodes) {
-            if (node instanceof HTMLElement) {
-                if (node.id.startsWith('chat-messages-')) {
-                    handleMessage(node)
-                    continue
-                }
+export function inject() {
+	// Process messages already loaded
+	document
+		.querySelectorAll<HTMLElement>('li[id^=chat-messages-]')
+		.forEach((m) => handleMessage(m));
 
-                if (node.className.startsWith('chat-')) {
-                    console.log(node.querySelectorAll('li[id^=chat-messages-]'))
-                    node.querySelectorAll<HTMLElement>('li[id^=chat-messages-]').forEach((m) => handleMessage(m))
-                    continue
-                }
+	// Mutation observer
+	const observer = new MutationObserver(handleMutation);
+	observer.observe(document, { childList: true, subtree: true });
 
-                if (node.id.startsWith('popout_') && node.querySelector('div[role="dialog"][class^="userPopout-"]')) {
-                    handleUserPopOut(node)
-                    continue
-                }
-
-                if (node.querySelector('div[class^="userInfoSection-"]')) {
-                    if (node.querySelector('[aria-modal="true"]')) {
-                        handleUserModal(node)
-                        continue
-                    }
-
-                    const modal = node.parentElement?.parentElement?.parentElement?.parentElement
-                    if (modal) handleUserModal(modal)
-                    continue
-                }
-
-                if (node.className.startsWith('autocomplete-')) {
-                    const rows = Array.from(node.querySelectorAll('[class*="autocompleteRow-"]')) as HTMLElement[]
-                    rows.filter((row) => row?.querySelector('[role="img"]')).forEach((row) => handleAutocompleteRow(row))
-                    continue
-                }
-
-                if (node.className.startsWith('autocompleteRow') && node.querySelector('[role="img"]')) {
-                    handleAutocompleteRow(node)
-                    continue
-                }
-            }
-        }
-    }
-}
-
-export function inject () {
-    // Process messages already loaded
-    document.querySelectorAll<HTMLElement>('li[id^=chat-messages-]').forEach((m) => handleMessage(m))
-
-    // Mutation observer
-    const observer = new MutationObserver(handleMutation)
-    observer.observe(document, { childList: true, subtree: true })
-
-    const style = document.createElement('style')
-    style.textContent += '[class^="headerText-"] + .timezonedb-timezone { margin-right: .6rem; }'
-    style.textContent += '[class^="userInfoSection-"] [class^="userInfoSectionHeader-"] { grid-row: 1; }'
-    style.textContent += '[class^="userInfoSection-"] [class^="note-"]:last-child { grid-column: 1 / 3; }'
-    style.textContent += '[class^="userBio-"] { grid-row: 2; }'
-    style.textContent += '[class^="userBio-"] + [class^="userInfoSectionHeader-"] { grid-row: 3; grid-column: 1 / 3; }'
-    style.textContent += '[class^="userBio-"] ~ [class^="note-"] { grid-row: 4; grid-column: 1 / 3; }'
-    document.head.appendChild(style)
+	const style = document.createElement('style');
+	style.textContent +=
+		'[class^="headerText-"] + .timezonedb-timezone { margin-right: .6rem; }';
+	style.textContent +=
+		'[class^="userInfoSection-"] [class^="userInfoSectionHeader-"] { grid-row: 1; }';
+	style.textContent +=
+		'[class^="userInfoSection-"] [class^="note-"]:last-child { grid-column: 1 / 3; }';
+	style.textContent += '[class^="userBio-"] { grid-row: 2; }';
+	style.textContent +=
+		'[class^="userBio-"] + [class^="userInfoSectionHeader-"] { grid-row: 3; grid-column: 1 / 3; }';
+	style.textContent +=
+		'[class^="userBio-"] ~ [class^="note-"] { grid-row: 4; grid-column: 1 / 3; }';
+	document.head.appendChild(style);
 }

@@ -1,3 +1,3 @@
 export interface ExtensionSettings {
-    apiUrl?: string;
+	apiUrl?: string;
 }
