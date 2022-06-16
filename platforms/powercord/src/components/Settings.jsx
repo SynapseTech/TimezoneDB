@@ -29,6 +29,7 @@ const { React } = require('powercord/webpack');
 const { SwitchItem, TextInput } = require('powercord/components/settings');
 const ErrorBoundary = require('./ErrorBoundary.jsx');
 const Preview = require('./Preview.jsx');
+const { DEFAULT_FORMAT, DEFAULT_API_URL } = require('../constants');
 
 function Settings({ getSetting, updateSetting, toggleSetting }) {
 	return (
@@ -38,36 +39,38 @@ function Settings({ getSetting, updateSetting, toggleSetting }) {
 			</ErrorBoundary>
 
 			<SwitchItem
-				value={getSetting('display-chat', true)}
-				onChange={() => toggleSetting('display-chat', true)}
+				value={getSetting('tzdb-display-chat', true)}
+				onChange={() => toggleSetting('tzdb-display-chat', true)}
 			>
 				Show timezone in chat
 			</SwitchItem>
 
 			<SwitchItem
-				value={getSetting('display-popout', true)}
-				onChange={() => toggleSetting('display-popout', true)}
+				value={getSetting('tzdb-display-popout', true)}
+				onChange={() => toggleSetting('tzdb-display-popout', true)}
 			>
 				Show timezone in pop-outs
 			</SwitchItem>
 
 			<SwitchItem
-				value={getSetting('display-profile', true)}
-				onChange={() => toggleSetting('display-profile', true)}
+				value={getSetting('tzdb-display-profile', true)}
+				onChange={() => toggleSetting('tzdb-display-profile', true)}
 			>
 				Show timezone in profiles
 			</SwitchItem>
 
 			<SwitchItem
-				value={getSetting('display-autocomplete', true)}
-				onChange={() => toggleSetting('display-autocomplete', true)}
+				value={getSetting('tzdb-display-autocomplete', true)}
+				onChange={() =>
+					toggleSetting('tzdb-display-autocomplete', true)
+				}
 			>
 				Show timezone in autocomplete
 			</SwitchItem>
 
 			<SwitchItem
-				value={getSetting('hide-self', false)}
-				onChange={() => toggleSetting('hide-self', false)}
+				value={getSetting('tzdb-hide-self', false)}
+				onChange={() => toggleSetting('tzdb-hide-self', false)}
 				note='This will locally hide your own timezone, if you do not wish it to appear.'
 			>
 				Do not show timezone for myself
@@ -77,7 +80,7 @@ function Settings({ getSetting, updateSetting, toggleSetting }) {
 				note={
 					"The base API endpoint. Don't change this unless you know what you're doing."
 				}
-				value={getSetting('api-url', 'https://tzdbapi.synapsetech.dev')}
+				value={getSetting('api-url', DEFAULT_API_URL)}
 				required
 				onChange={(val) =>
 					updateSetting(
@@ -87,11 +90,27 @@ function Settings({ getSetting, updateSetting, toggleSetting }) {
 				}
 			/>
 
+			<TextInput
+				note={'The date format'}
+				value={getSetting('time-format', DEFAULT_FORMAT)}
+				required
+				onChange={(val) => updateSetting('time-format', val)}
+			/>
+
 			<a
 				href='https://tzdb.synapsetech.dev/legal/attribution'
 				target='_blank'
 			>
 				Attribution
+			</a>
+			<a
+				style={{
+					paddingLeft: '2rem',
+				}}
+				href='https://github.com/felixge/node-dateformat#mask-options'
+				target='_blank'
+			>
+				Date Formatting Documentation
 			</a>
 		</div>
 	);

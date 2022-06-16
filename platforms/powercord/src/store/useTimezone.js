@@ -28,13 +28,13 @@
 const { get } = require('powercord/http');
 const { React, FluxDispatcher } = require('powercord/webpack');
 const { getTimezone, shouldFetchTimezone } = require('./store.js');
-const { FluxActions } = require('../constants.js');
+const { DEFAULT_API_URL } = require('../constants');
+const staticObjects = require('../static');
 
 async function doLoadTimezone(id) {
-	const base = powercord.api.settings.store.getSetting(
-		'timezonedb-powercord',
-		`api-url`,
-		'https://tzdbapi.synapsetech.dev',
+	const base = staticObjects.pluginInstance.settings.get(
+		'api-url',
+		DEFAULT_API_URL,
 	);
 
 	const timezone = await get(`${base}/v1/users/byPlatform/discord/${id}`)

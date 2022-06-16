@@ -37,6 +37,7 @@ const { getReactInstance } = require('powercord/util');
 const useTimezone = require('./store/useTimezone.js');
 const Timezone = require('./components/Timezone.js');
 const Settings = require('./components/Settings.jsx');
+const staticObjects = require('./static');
 
 class TimezoneDB extends Plugin {
 	async startPlugin() {
@@ -48,6 +49,7 @@ class TimezoneDB extends Plugin {
 		});
 
 		const _this = this;
+		staticObjects.pluginInstance = _this;
 		const UserInfoBase = await getModule(
 			(m) => m.default?.displayName == 'UserInfoBase',
 		);
@@ -61,6 +63,8 @@ class TimezoneDB extends Plugin {
 			MessageHeader,
 			'default',
 			function ([props], res) {
+				if (!_this.settings.get('tzdb-display-chat', true)) return res;
+
 				if (!memoizedType) {
 					const ogType = res.type;
 					memoizedType = (props) => {
@@ -91,6 +95,9 @@ class TimezoneDB extends Plugin {
 			UserPopOutComponents,
 			'UserPopoutProfileText',
 			function ([{ user }], res) {
+				if (!_this.settings.get('tzdb-display-popout', true))
+					return res;
+
 				if (!res.props.children[3]) {
 					res.props.children.push(
 						React.createElement(Timezone, {
@@ -161,7 +168,7 @@ class TimezoneDB extends Plugin {
 			Autocomplete.User.prototype,
 			'renderContent',
 			function (_, res) {
-				if (!_this.settings.get('display-autocomplete', true))
+				if (!_this.settings.get('tzdb-display-autocomplete', true))
 					return res;
 
 				const section = res.props.children[2].props.children;

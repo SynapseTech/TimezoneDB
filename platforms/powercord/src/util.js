@@ -28,6 +28,8 @@
 const dateFormat = require('./dateformat');
 
 const { React } = require('powercord/webpack');
+const { DEFAULT_FORMAT } = require('./constants');
+const staticObjects = require('./static');
 
 function wrapInHooks(fn) {
 	return function (...args) {
@@ -72,12 +74,16 @@ function adjustForTimezone(d, offset) {
 	return new Date(targetTime.getTime() + tzDifference * 1000);
 }
 
-function formatTimezone(zone, includeCurrent = false) {
+function formatTimezone(zone, includeCurrent = false, date = new Date()) {
 	let result = zone.id;
+	const format = staticObjects.pluginInstance.settings.get(
+		'time-format',
+		DEFAULT_FORMAT,
+	);
 
 	if (includeCurrent) {
-		const date = adjustForTimezone(new Date(), zone.offset);
-		result += ` (Currently ${dateFormat(date, 'h:MM TT')})`;
+		date = adjustForTimezone(date, zone.offset);
+		result += ` (Currently ${dateFormat(date, format)})`;
 	}
 
 	return result;
