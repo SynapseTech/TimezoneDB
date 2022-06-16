@@ -60,10 +60,10 @@ const screenshots = ref<ScreenshotData[]>([
 <template>
 	<Page nobg>
 		<header
-			class="min-h-[35vh] h-[35vh] w-full bg-gray-200 border-gray-300 border-b-[1px] border-opacity-10"
+			class="min-h-[35vh] w-full bg-gray-200 border-gray-300 border-b-[1px] border-opacity-10 flex flex-col justify-center"
 		>
 			<div
-				class="container mx-auto h-full flex flex-col items-center justify-center p-4"
+				class="container mx-auto flex flex-col items-center justify-center p-4"
 			>
 				<h1 class="font-light text-5xl text-center">TimezoneDB</h1>
 				<h2 class="mt-2 text-gray-600 text-xl text-center">
