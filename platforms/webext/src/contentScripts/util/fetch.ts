@@ -14,11 +14,15 @@ export async function fetchTimezone(
 	).settings as ExtensionSettings;
 	const apiUrl = extensionSettings.apiUrl;
 
-	const res = await fetch(
-		`${apiUrl}/v1/users/byPlatform/${accountType}/${id}`,
-	);
-	if (!res.ok) return 'unspecified';
+	try {
+		const res = await fetch(
+			`${apiUrl}/v1/users/byPlatform/${accountType}/${id}`,
+		);
+		if (!res.ok) return 'unspecified';
 
-	const body = (await res.json()) as User;
-	return body.timezoneInfo;
+		const body = (await res.json()) as User;
+		return body.timezoneInfo;
+	} catch (ignored) {
+		return 'unspecified';
+	}
 }

@@ -37,6 +37,8 @@ function fetchReactProp(targets, propPath) {
       }
     }
 
+    // Handle timestamps properly. for some reason fetching a moment object just breaks javascript with a weird cloning issue
+    if (typeof res === 'object' && !!res._isAMomentObject) res = res.toDate();
     props.push(res)
   }
 

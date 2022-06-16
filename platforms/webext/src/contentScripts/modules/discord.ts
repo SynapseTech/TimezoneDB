@@ -64,6 +64,21 @@ async function handleMessage(node: HTMLElement) {
 	]);
 	if (!id) return;
 
+	const maybeTimestamp = await fetchReactProp(node, [
+		'return',
+		'return',
+		'memoizedProps',
+		'message',
+		'timestamp',
+	]);
+
+	let timestamp: Date;
+	let useCurrent: boolean = false;
+	if (!maybeTimestamp) {
+		timestamp = new Date();
+		useCurrent = true;
+	} else timestamp = maybeTimestamp;
+
 	const timezone = await fetchTimezone('discord', id);
 	if (timezone === 'unspecified') return;
 
@@ -82,7 +97,12 @@ async function handleMessage(node: HTMLElement) {
 					fontWeight: '500',
 				}),
 			},
-			` • ${await formatTimezone(timezone, true)}`,
+			` • ${await formatTimezone(
+				timezone,
+				true,
+				timestamp,
+				useCurrent ? 'Currently' : 'Sent at',
+			)}`,
 		),
 	);
 }

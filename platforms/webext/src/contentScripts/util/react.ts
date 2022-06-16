@@ -79,6 +79,7 @@ function doFetchReactProp(
 	targets: Array<Element | null>,
 	propPath: QueryElement[],
 ) {
+	console.log('tgt', targets);
 	const first = targets.find(Boolean);
 	if (!first) return [];
 

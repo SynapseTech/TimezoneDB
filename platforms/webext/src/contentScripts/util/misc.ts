@@ -13,6 +13,8 @@ export function adjustForTimezone(d: Date, offset: number): Date {
 export async function formatTimezone(
 	zone: ZoneInfo,
 	includeCurrent = false,
+	date = new Date(),
+	currentText = 'Currently',
 ): Promise<string> {
 	let result = zone.id;
 
@@ -24,8 +26,8 @@ export async function formatTimezone(
 	const timeFormat = extensionSettings.timeFormat;
 
 	if (includeCurrent) {
-		const date = adjustForTimezone(new Date(), zone.offset);
-		result += ` (Currently ${dateFormat(date, timeFormat)})`;
+		date = adjustForTimezone(date, zone.offset);
+		result += ` (${currentText} ${dateFormat(date, timeFormat)})`;
 	}
 
 	return result;
