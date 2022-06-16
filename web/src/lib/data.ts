@@ -1,14 +1,14 @@
 export interface ZoneInfo {
-    id: string;
-    offset: number;
+	id: string;
+	offset: number;
 }
 
 export interface User {
-    id: number;
-    username: string;
-    githubId?: number;
-    discordId?: number;
-    twitterId?: number;
-    twitchId?: number;
-    timezoneInfo: ZoneInfo;
+	id: number;
+	username: string;
+	githubId?: number;
+	discordId?: number;
+	twitterId?: number;
+	twitchId?: number;
+	timezoneInfo: ZoneInfo;
 }
