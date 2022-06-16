@@ -25,39 +25,45 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-const { get } = require('powercord/http')
-const { FluxDispatcher } = require('powercord/webpack')
-const { shouldFetchTimezone } = require('./store.js')
-const { FluxActions } = require('../constants.js')
+const { get } = require('powercord/http');
+const { FluxDispatcher } = require('powercord/webpack');
+const { shouldFetchTimezone } = require('./store.js');
+const { FluxActions } = require('../constants.js');
 
 async function doLoadTimezone(ids) {
-  const base = powercord.api.settings.store.getSetting('timezonedb-powercord', `api-url`, 'https://tzdbapi.synapsetech.dev');
+	const base = powercord.api.settings.store.getSetting(
+		'timezonedb-powercord',
+		`api-url`,
+		'https://tzdbapi.synapsetech.dev',
+	);
 
-  for (const id of ids) {
+	for (const id of ids) {
+		const timezone = await get(`${base}/v1/users/byPlatform/discord/${id}`)
+			.then((r) => r.body.timezoneInfo || null)
+			.catch(() => null);
 
-    const timezone = await get(`${base}/v1/users/byPlatform/discord/${id}`)
-      .then(r => r.body.timezoneInfo || null)
-      .catch(() => null)
-
-    FluxDispatcher.dirtyDispatch({ type: 'TIMEZONEDB_TIMEZONE_LOADED', timezones: { [id]: timezone } })
-  }
+		FluxDispatcher.dirtyDispatch({
+			type: 'TIMEZONEDB_TIMEZONE_LOADED',
+			timezones: { [id]: timezone },
+		});
+	}
 }
 
-let timer = null
-let buffer = []
+let timer = null;
+let buffer = [];
 
 module.exports = {
-  loadTimezone: (id) => {
-    if (!shouldFetchTimezone(id) || buffer.includes(id)) return
+	loadTimezone: (id) => {
+		if (!shouldFetchTimezone(id) || buffer.includes(id)) return;
 
-    if (!timer) {
-      timer = setTimeout(() => {
-        doLoadTimezone(buffer)
-        buffer = []
-        timer = null
-      }, 50)
-    }
+		if (!timer) {
+			timer = setTimeout(() => {
+				doLoadTimezone(buffer);
+				buffer = [];
+				timer = null;
+			}, 50);
+		}
 
-    buffer.push(id)
-  }
-}
+		buffer.push(id);
+	},
+};

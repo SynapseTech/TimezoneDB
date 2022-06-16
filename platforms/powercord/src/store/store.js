@@ -25,34 +25,34 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-const { Flux, FluxDispatcher } = require('powercord/webpack')
-const { FluxActions } = require('../constants.js')
+const { Flux, FluxDispatcher } = require('powercord/webpack');
+const { FluxActions } = require('../constants.js');
 
-let timezones = {}
-let timestamps = {}
+let timezones = {};
+let timestamps = {};
 
 class TimezoneStore extends Flux.Store {
-  getStore () {
-    return {
-      timezones,
-      timestamps
-    }
-  }
+	getStore() {
+		return {
+			timezones,
+			timestamps,
+		};
+	}
 
-  getTimezone(id) {
-    return timezones[id]
-  }
+	getTimezone(id) {
+		return timezones[id];
+	}
 
-  shouldFetchTimezone (id) {
-    return !(id in timezones) // || timestamps[id] < Date.now()
-  }
+	shouldFetchTimezone(id) {
+		return !(id in timezones); // || timestamps[id] < Date.now()
+	}
 }
 
 module.exports = new TimezoneStore(FluxDispatcher, {
-  ['TIMEZONEDB_TIMEZONE_LOADED']: ({ timezones: timezonesList }) => {
-    Object.assign(timezones, timezonesList)
+	['TIMEZONEDB_TIMEZONE_LOADED']: ({ timezones: timezonesList }) => {
+		Object.assign(timezones, timezonesList);
 
-    const expiry = Date.now() + (30 * 60e3)
-    Object.keys(timezonesList).forEach((id) => (timestamps[id] = expiry))
-  }
-})
+		const expiry = Date.now() + 30 * 60e3;
+		Object.keys(timezonesList).forEach((id) => (timestamps[id] = expiry));
+	},
+});

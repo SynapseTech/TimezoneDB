@@ -1,18 +1,19 @@
 {
-  "name": "tzdb-powercord",
-  "displayName": "TimezoneDB",
-  "version": "0.0.1",
-  "description": "An easy, cross-platform method of keeping track of other people's timezones.",
-  "main": "build.js",
-  "scripts": {
-    "build": "node build.js"
-  },
-  "repository": "https://github.com/SynapseTech/TimezoneDB",
-  "author": "Synapse Technologies LLC",
-  "license": "MIT",
-  "private": true,
-  "devDependencies": {
-    "archiver": "^5.3.1",
-    "fs-extra": "^10.1.0"
-  }
+	"name": "tzdb-powercord",
+	"displayName": "TimezoneDB",
+	"version": "0.0.1",
+	"description": "An easy, cross-platform method of keeping track of other people's timezones.",
+	"main": "build.js",
+	"scripts": {
+		"build": "node build.js"
+	},
+	"repository": "https://github.com/SynapseTech/TimezoneDB",
+	"author": "Synapse Technologies LLC",
+	"license": "MIT",
+	"private": true,
+	"devDependencies": {
+		"archiver": "^5.3.1",
+		"fs-extra": "^10.1.0",
+		"prettier": "2.7.0"
+	}
 }

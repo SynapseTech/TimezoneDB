@@ -25,55 +25,76 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-const { React } = require('powercord/webpack')
-const { SwitchItem, TextInput } = require('powercord/components/settings')
-const ErrorBoundary = require('./ErrorBoundary.jsx')
-const Preview = require('./Preview.jsx')
+const { React } = require('powercord/webpack');
+const { SwitchItem, TextInput } = require('powercord/components/settings');
+const ErrorBoundary = require('./ErrorBoundary.jsx');
+const Preview = require('./Preview.jsx');
 
-function Settings ({ getSetting, updateSetting, toggleSetting }) {
-  return (
-    <div>
-      <ErrorBoundary>
-        <Preview/>
-      </ErrorBoundary>
+function Settings({ getSetting, updateSetting, toggleSetting }) {
+	return (
+		<div>
+			<ErrorBoundary>
+				<Preview />
+			</ErrorBoundary>
 
-      <SwitchItem value={getSetting('display-chat', true)} onChange={() => toggleSetting('display-chat', true)}>
-        Show timezone in chat
-      </SwitchItem>
+			<SwitchItem
+				value={getSetting('display-chat', true)}
+				onChange={() => toggleSetting('display-chat', true)}
+			>
+				Show timezone in chat
+			</SwitchItem>
 
-      <SwitchItem value={getSetting('display-popout', true)} onChange={() => toggleSetting('display-popout', true)}>
-        Show timezone in pop-outs
-      </SwitchItem>
+			<SwitchItem
+				value={getSetting('display-popout', true)}
+				onChange={() => toggleSetting('display-popout', true)}
+			>
+				Show timezone in pop-outs
+			</SwitchItem>
 
-      <SwitchItem value={getSetting('display-profile', true)} onChange={() => toggleSetting('display-profile', true)}>
-        Show timezone in profiles
-      </SwitchItem>
+			<SwitchItem
+				value={getSetting('display-profile', true)}
+				onChange={() => toggleSetting('display-profile', true)}
+			>
+				Show timezone in profiles
+			</SwitchItem>
 
-      <SwitchItem value={getSetting('display-autocomplete', true)} onChange={() => toggleSetting('display-autocomplete', true)}>
-        Show timezone in autocomplete
-      </SwitchItem>
+			<SwitchItem
+				value={getSetting('display-autocomplete', true)}
+				onChange={() => toggleSetting('display-autocomplete', true)}
+			>
+				Show timezone in autocomplete
+			</SwitchItem>
 
-      <SwitchItem
-        value={getSetting('hide-self', false)}
-        onChange={() => toggleSetting('hide-self', false)}
-        note='This will locally hide your own timezone, if you do not wish it to appear.'
-      >
-        Do not show timezone for myself
-      </SwitchItem>
+			<SwitchItem
+				value={getSetting('hide-self', false)}
+				onChange={() => toggleSetting('hide-self', false)}
+				note='This will locally hide your own timezone, if you do not wish it to appear.'
+			>
+				Do not show timezone for myself
+			</SwitchItem>
 
-      <TextInput
-        note={'The base API endpoint. Don\'t change this unless you know what you\'re doing.'}
-        value={getSetting('api-url', 'https://tzdbapi.synapsetech.dev')}
-        required
-        onChange={val => updateSetting('api-url', val.endsWith('/') ? val.slice(0, -1) : val)}
-      />
+			<TextInput
+				note={
+					"The base API endpoint. Don't change this unless you know what you're doing."
+				}
+				value={getSetting('api-url', 'https://tzdbapi.synapsetech.dev')}
+				required
+				onChange={(val) =>
+					updateSetting(
+						'api-url',
+						val.endsWith('/') ? val.slice(0, -1) : val,
+					)
+				}
+			/>
 
-      <a
-        href='https://tzdb.synapsetech.dev/legal/attribution'
-        target='_blank'
-      >Attribution</a>
-    </div>
-  )
+			<a
+				href='https://tzdb.synapsetech.dev/legal/attribution'
+				target='_blank'
+			>
+				Attribution
+			</a>
+		</div>
+	);
 }
 
-module.exports = React.memo(Settings)
+module.exports = React.memo(Settings);

@@ -28,70 +28,78 @@
 const { React, getModule } = require('powercord/webpack');
 const { WEBSITE } = require('../constants.js');
 
-const ChannelMessage = getModule([ 'getElementFromMessageId' ], false).default;
-const Message = getModule(m => m.prototype && m.prototype.getReaction && m.prototype.isSystemDM, false);
-const DiscordSettings = getModule([ 'MessageDisplayCompact' ], false);
-const { getCurrentUser } = getModule([ 'getCurrentUser', 'getUser' ], false);
+const ChannelMessage = getModule(['getElementFromMessageId'], false).default;
+const Message = getModule(
+	(m) => m.prototype && m.prototype.getReaction && m.prototype.isSystemDM,
+	false,
+);
+const DiscordSettings = getModule(['MessageDisplayCompact'], false);
+const { getCurrentUser } = getModule(['getCurrentUser', 'getUser'], false);
 
 const CHANNEL = {
-  isPrivate: () => false,
-  isSystemDM: () => false,
-  getGuildId: () => 'uwu',
-  isThread: () => false,
-  isArchivedThread: () => false,
-  isForumChannel: () => false,
-  isForumPost: () => false,
+	isPrivate: () => false,
+	isSystemDM: () => false,
+	getGuildId: () => 'uwu',
+	isThread: () => false,
+	isArchivedThread: () => false,
+	isForumChannel: () => false,
+	isForumPost: () => false,
 };
 
-const EMOJIS = [ '🎀', '🍩', '🍭', '☕', '🌸', '🌹', '🐿️', '🐈', '👒', '🧣' ]
+const EMOJIS = ['🎀', '🍩', '🍭', '☕', '🌸', '🌹', '🐿️', '🐈', '👒', '🧣'];
 
-function useMessages () {
-  return React.useMemo(() => [
-    new Message({
-      id: 'timezonedb-fake-1',
-      type: 0,
-      author: getCurrentUser(),
-      content: 'Hey look, its me 🤩'
-    }),
-    new Message({
-      id: 'timezonedb-fake-2',
-      type: 0,
-      author: {
-        id: '543542278967394322',
-        username: `Lizzy A`,
-        toString: () => `Lizzy A`,
-        isSystemUser: () => false,
-        isVerifiedBot: () => false,
-        isNonUserBot: () => false,
-        getAvatarURL: () => 'https://avatars.githubusercontent.com/u/45880278'
-      },
-      content: `By the way, to share your own timezone go to ${WEBSITE} and set it there.`
-    })
-  ])
+function useMessages() {
+	return React.useMemo(() => [
+		new Message({
+			id: 'timezonedb-fake-1',
+			type: 0,
+			author: getCurrentUser(),
+			content: 'Hey look, its me 🤩',
+		}),
+		new Message({
+			id: 'timezonedb-fake-2',
+			type: 0,
+			author: {
+				id: '543542278967394322',
+				username: `Lizzy A`,
+				toString: () => `Lizzy A`,
+				isSystemUser: () => false,
+				isVerifiedBot: () => false,
+				isNonUserBot: () => false,
+				getAvatarURL: () =>
+					'https://avatars.githubusercontent.com/u/45880278',
+			},
+			content: `By the way, to share your own timezone go to ${WEBSITE} and set it there.`,
+		}),
+	]);
 }
 
-function Settings ({ appearance }) {
-  const compact = DiscordSettings.MessageDisplayCompact.useSetting()
-  const [ message1, message2 ] = useMessages()
+function Settings({ appearance }) {
+	const compact = DiscordSettings.MessageDisplayCompact.useSetting();
+	const [message1, message2] = useMessages();
 
-  return (
-    <ul className={`group-spacing-${compact ? '0' : '16'} timezonedb-preview`}>
-      <ChannelMessage
-        compact={compact}
-        channel={CHANNEL}
-        message={message1}
-        id={`example-1-${appearance}`}
-        groupId='timezonedb-fake-1'
-      />
-      <ChannelMessage
-        compact={compact}
-        channel={CHANNEL}
-        message={message2}
-        id={`example-2-${appearance}`}
-        groupId='timezonedb-fake-2'
-      />
-    </ul>
-  );
+	return (
+		<ul
+			className={`group-spacing-${
+				compact ? '0' : '16'
+			} timezonedb-preview`}
+		>
+			<ChannelMessage
+				compact={compact}
+				channel={CHANNEL}
+				message={message1}
+				id={`example-1-${appearance}`}
+				groupId='timezonedb-fake-1'
+			/>
+			<ChannelMessage
+				compact={compact}
+				channel={CHANNEL}
+				message={message2}
+				id={`example-2-${appearance}`}
+				groupId='timezonedb-fake-2'
+			/>
+		</ul>
+	);
 }
 
 module.exports = React.memo(Settings);

@@ -25,59 +25,73 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-const { resolve } = require('path')
-const { React, getModule } = require('powercord/webpack')
-const { Card } = require('powercord/components')
-const { SETTINGS_FOLDER } = require('powercord/constants')
-const { gotoOrJoinServer } = require('powercord/util')
+const { resolve } = require('path');
+const { React, getModule } = require('powercord/webpack');
+const { Card } = require('powercord/components');
+const { SETTINGS_FOLDER } = require('powercord/constants');
+const { gotoOrJoinServer } = require('powercord/util');
 const { DISCORD_INVITE } = require('../constants');
 
-const REPO = 'SynapseTech/TimezoneDB'
+const REPO = 'SynapseTech/TimezoneDB';
 
 class ErrorBoundary extends React.PureComponent {
-  constructor (props) {
-    super(props)
+	constructor(props) {
+		super(props);
 
-    this.state = {
-      crashed: false
-    }
-  }
+		this.state = {
+			crashed: false,
+		};
+	}
 
-  componentDidCatch (e) {
-    const basePath = resolve(SETTINGS_FOLDER, '..')
+	componentDidCatch(e) {
+		const basePath = resolve(SETTINGS_FOLDER, '..');
 
-    this.setState({
-      crashed: true,
-      error: (e.stack || '')
-        .split('\n')
-        .filter(l => !l.includes('discordapp.com/assets/') && !l.includes('discord.com/assets/'))
-        .join('\n')
-        .split(basePath)
-        .join('')
-    })
-  }
+		this.setState({
+			crashed: true,
+			error: (e.stack || '')
+				.split('\n')
+				.filter(
+					(l) =>
+						!l.includes('discordapp.com/assets/') &&
+						!l.includes('discord.com/assets/'),
+				)
+				.join('\n')
+				.split(basePath)
+				.join(''),
+		});
+	}
 
-  render () {
-    if (this.state.crashed) {
-      return (
-        <Card className='timezonedb-error'>
-          <p>
-            An error occurred while rendering the preview. Please let us know by opening an issue
-            on the <a href={`https://github.com/${REPO}/issues`} target='_blank'>GitHub repository</a>,
-            or by filing a bug report in <a href='#' onClick={this.joinDiscord}>our server</a>.
-          </p>
-          <code>{this.state.error}</code>
-        </Card>
-      )
-    }
+	render() {
+		if (this.state.crashed) {
+			return (
+				<Card className='timezonedb-error'>
+					<p>
+						An error occurred while rendering the preview. Please
+						let us know by opening an issue on the{' '}
+						<a
+							href={`https://github.com/${REPO}/issues`}
+							target='_blank'
+						>
+							GitHub repository
+						</a>
+						, or by filing a bug report in{' '}
+						<a href='#' onClick={this.joinDiscord}>
+							our server
+						</a>
+						.
+					</p>
+					<code>{this.state.error}</code>
+				</Card>
+			);
+		}
 
-    return this.props.children
-  }
+		return this.props.children;
+	}
 
-  joinDiscord() {
-    getModule(['popLayer'], false).popLayer()
-    gotoOrJoinServer(DISCORD_INVITE)
-  }
+	joinDiscord() {
+		getModule(['popLayer'], false).popLayer();
+		gotoOrJoinServer(DISCORD_INVITE);
+	}
 }
 
-module.exports = ErrorBoundary
+module.exports = ErrorBoundary;
