@@ -1,7 +1,7 @@
 {
 	"name": "tzdb-powercord",
 	"displayName": "TimezoneDB",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "An easy, cross-platform method of keeping track of other people's timezones.",
 	"main": "build.js",
 	"scripts": {
