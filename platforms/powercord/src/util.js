@@ -74,7 +74,12 @@ function adjustForTimezone(d, offset) {
 	return new Date(targetTime.getTime() + tzDifference * 1000);
 }
 
-function formatTimezone(zone, includeCurrent = false, date = new Date()) {
+function formatTimezone(
+	zone,
+	includeCurrent = false,
+	date = new Date(),
+	customCurrentText = 'Currently',
+) {
 	let result = zone.id;
 	const format = staticObjects.pluginInstance.settings.get(
 		'time-format',
@@ -83,7 +88,7 @@ function formatTimezone(zone, includeCurrent = false, date = new Date()) {
 
 	if (includeCurrent) {
 		date = adjustForTimezone(date, zone.offset);
-		result += ` (Currently ${dateFormat(date, format)})`;
+		result += ` (${customCurrentText} ${dateFormat(date, format)})`;
 	}
 
 	return result;

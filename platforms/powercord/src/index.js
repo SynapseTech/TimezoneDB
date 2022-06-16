@@ -76,6 +76,8 @@ class TimezoneDB extends Plugin {
 								React.createElement(Timezone, {
 									userId: props.message.author.id,
 									prefix: ' • ',
+									date: props.message.timestamp.toDate(),
+									customCurrentText: 'Sent at',
 									displayCurrent: true,
 								}),
 							),

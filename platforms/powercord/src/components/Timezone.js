@@ -39,10 +39,17 @@ function Timezone({
 	display,
 	timezone,
 	displayCurrent,
+	date,
+	customCurrentText,
 }) {
 	React.useEffect(() => void loadTimezone(userId), [userId]);
 	if (!timezone) return null;
-	const p = formatTimezone(timezone, displayCurrent ?? false);
+	const p = formatTimezone(
+		timezone,
+		displayCurrent ?? false,
+		date ?? new Date(),
+		customCurrentText ?? 'Currently',
+	);
 
 	if (!p || !display) return null;
 	return render
