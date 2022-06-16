@@ -21,7 +21,8 @@
 		"start:firefox": "web-ext run --source-dir ./extension --target=firefox-desktop",
 		"clear": "rimraf extension/dist extension/manifest.json extension.*",
 		"lint": "eslint '{src,scripts}/**/*.{json,ts,js,vue}'",
-		"test": "vitest test"
+		"test": "vitest test",
+		"prepare": "cd ../.. && husky install platforms/webext/.husky"
 	},
 	"devDependencies": {
 		"@antfu/eslint-config": "^0.25.1",
@@ -42,8 +43,10 @@
 		"eslint": "^8.13.0",
 		"esno": "^0.16.3",
 		"fs-extra": "^10.1.0",
+		"husky": "^8.0.1",
 		"jsdom": "^19.0.0",
 		"kolorist": "^1.5.1",
+		"lint-staged": "^13.0.1",
 		"npm-run-all": "^4.1.5",
 		"prettier": "2.7.0",
 		"rimraf": "^3.0.2",
@@ -66,5 +69,8 @@
 	},
 	"resolutions": {
 		"**/node-forge": "^1.3.0"
+	},
+	"lint-staged": {
+		"**/*": "prettier --write --ignore-unknown"
 	}
 }
