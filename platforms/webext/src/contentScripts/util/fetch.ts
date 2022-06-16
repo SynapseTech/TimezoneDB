@@ -1,6 +1,7 @@
 import { Account } from '~/types/misc';
 import type { ExtensionSettings } from '~/types/settings';
 import type { User, ZoneInfo } from '~/types/api';
+import { defaults } from '~/types/settings';
 
 export async function fetchTimezone(
 	accountType: Account,
@@ -8,9 +9,7 @@ export async function fetchTimezone(
 ): Promise<ZoneInfo | 'unspecified'> {
 	let extensionSettings: ExtensionSettings = (
 		await browser.storage.sync.get({
-			settings: {
-				apiUrl: 'https://tzdbapi.synapsetech.dev',
-			},
+			settings: defaults,
 		})
 	).settings as ExtensionSettings;
 	const apiUrl = extensionSettings.apiUrl;

@@ -50,7 +50,7 @@ async function injectProfileHeader(header: HTMLElement) {
 
 	const prevPronouns = header.querySelector<HTMLElement>('[data-timezonedb]');
 	if (prevPronouns) {
-		prevPronouns.innerText = formatTimezone(timezone, true);
+		prevPronouns.innerText = await formatTimezone(timezone, true);
 		return;
 	}
 
@@ -60,7 +60,7 @@ async function injectProfileHeader(header: HTMLElement) {
 			'span',
 			{ class: template.className, 'data-timezonedb': 'true' },
 			globe({ class: template.children[0].getAttribute('class')! }),
-			formatTimezone(timezone, true),
+			await formatTimezone(timezone, true),
 		),
 	);
 }
@@ -108,7 +108,7 @@ async function injectProfilePopOut(popout: HTMLElement) {
 					marginRight: '4px',
 				}),
 			}),
-			formatTimezone(timezone),
+			await formatTimezone(timezone),
 		),
 	);
 
@@ -117,7 +117,7 @@ async function injectProfilePopOut(popout: HTMLElement) {
 	userInfo.appendChild(element);
 }
 
-function handleMutation(nodes: MutationRecord[]) {
+async function handleMutation(nodes: MutationRecord[]) {
 	const layers = document.querySelector<HTMLElement>('#layers');
 	if (!layers) return;
 
@@ -136,7 +136,7 @@ function handleMutation(nodes: MutationRecord[]) {
 					const prevPronouns =
 						header.querySelector('[data-timezonedb]');
 					if (prevPronouns) prevPronouns.remove();
-					injectProfileHeader(header);
+					await injectProfileHeader(header);
 					continue;
 				}
 
@@ -152,29 +152,28 @@ function handleMutation(nodes: MutationRecord[]) {
 						'[data-testid="UserProfileHeader_Items"]',
 					)!;
 					if (header.querySelector('[data-timezonedb]')) continue;
-					injectProfileHeader(header);
+					await injectProfileHeader(header);
 					continue;
 				}
 
 				if (layers.contains(added)) {
 					const link = added.querySelector('a[href*="/following"]');
 					if (link)
-						injectProfilePopOut(
+						await injectProfilePopOut(
 							link.parentElement!.parentElement!.parentElement!
 								.parentElement!,
 						);
-					continue;
 				}
 			}
 		}
 	}
 }
 
-export function inject() {
+export async function inject() {
 	const header = document.querySelector<HTMLElement>(
 		'[data-testid="UserProfileHeader_Items"]',
 	);
-	if (header) injectProfileHeader(header);
+	if (header) await injectProfileHeader(header);
 
 	const observer = new MutationObserver(handleMutation);
 	observer.observe(document, { childList: true, subtree: true });

@@ -91,7 +91,7 @@ async function injectChat(element: HTMLElement) {
 						padding: '0 2px',
 					}),
 				},
-				formatTimezone(timezone),
+				await formatTimezone(timezone),
 			),
 			badgesContainer.firstChild!,
 		);
@@ -105,7 +105,7 @@ async function injectChat(element: HTMLElement) {
 						(element.getAttribute('style') || '') +
 						css({ opacity: '0.7' }),
 				},
-				` (${formatTimezone(timezone)})`,
+				` (${await formatTimezone(timezone)})`,
 			),
 		);
 	}
@@ -155,7 +155,7 @@ async function injectViewerCard(element: HTMLElement) {
 						fontSize: 'var(--font-size-6)',
 					}),
 				},
-				formatTimezone(timezone, true),
+				await formatTimezone(timezone, true),
 			),
 		),
 	);
@@ -183,7 +183,7 @@ async function injectStreamerAbout() {
 		'.timezonedb-streamer-about div',
 	);
 	if (prevPronounsContainer) {
-		prevPronounsContainer.innerText = formatTimezone(timezone, true);
+		prevPronounsContainer.innerText = await formatTimezone(timezone, true);
 		return;
 	}
 
@@ -204,10 +204,10 @@ async function injectStreamerAbout() {
 		),
 	);
 
-	el.appendChild(h('div', {}, formatTimezone(timezone, true)));
+	el.appendChild(h('div', {}, await formatTimezone(timezone, true)));
 }
 
-function handleMutation(nodes: MutationRecord[]) {
+async function handleMutation(nodes: MutationRecord[]) {
 	for (const { addedNodes } of nodes) {
 		for (const added of addedNodes) {
 			if (added instanceof HTMLElement) {
@@ -219,7 +219,7 @@ function handleMutation(nodes: MutationRecord[]) {
 						added.className.includes('chat-line__') &&
 						displayName
 					) {
-						injectChat(displayName);
+						await injectChat(displayName);
 						continue;
 					}
 				}
@@ -229,17 +229,12 @@ function handleMutation(nodes: MutationRecord[]) {
 					settings.popout &&
 					viewerCard?.dataset.aTarget === 'viewer-card'
 				) {
-					injectViewerCard(added);
+					await injectViewerCard(added);
 					continue;
 				}
 
-				if (
-					settings.streamer &&
-					added.querySelector('.about-section')
-				) {
-					injectStreamerAbout();
-					continue;
-				}
+				if (settings.streamer && added.querySelector('.about-section'))
+					await injectStreamerAbout();
 			}
 		}
 	}
