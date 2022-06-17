@@ -36,15 +36,14 @@ will be no secondary or tertiary goals.
 Moved to the issues tab.
 
 # Contributing
-All the essential API logic for the project can be found under the `api`
-directory and is written in Kotlin. [Ktor](https://ktor.io) is used for HTTP
-handling.
+All the essential API logic for the project is in the `api` directory and
+written in Kotlin. [Ktor](https://ktor.io) is used for HTTP handling.
 
-All supported platform integrations will be included in subdirectories of the 
+All supported platform integrations are included in subdirectories of the
 `platforms` directory.
 
-The website code will be kept inside the `web` directory and written using
-Typescript and Vue.js.
+The website code is inside the `web` directory and written using Typescript and
+Vue.js.
 
 Before you contribute, we ask that you have a working knowledge of HTTP services
 and the languages we are using to facilitate such communications in this project
