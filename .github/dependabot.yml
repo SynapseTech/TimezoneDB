@@ -13,6 +13,10 @@ updates:
     directory: "platforms/webext/" # Location of package manifests
     schedule:
       interval: "daily"
+  - package-ecosystem: "npm" # See documentation for possible values
+    directory: "platforms/powercord/" # Location of package manifests
+    schedule:
+      interval: "daily"
   - package-ecosystem: "gradle" # See documentation for possible values
     directory: "api/" # Location of package manifests
     schedule:
