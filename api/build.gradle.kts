@@ -14,7 +14,7 @@ repositories {
 }
 
 group = "dev.synapsetech.tzdb"
-version = "0.0.1"
+version = "0.1.0"
 application {
     mainClass.set("dev.synapsetech.tzdb.ApplicationKt")
 
@@ -37,9 +37,7 @@ dependencies {
     implementation("io.ktor:ktor-server-netty-jvm:$ktor_version")
     implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
 
-    // Logging
-    implementation("ch.qos.logback:logback-classic:$logback_version")
-
+    implementation("ch.qos.logback:logback-classic:$logback_version") // Logging
     implementation("org.litote.kmongo:kmongo-serialization:4.6.0") // MongoDB
     implementation("xyz.downgoon:snowflake:1.0.0") // ID generation
     implementation("com.google.guava:guava:31.1-jre") // Guava

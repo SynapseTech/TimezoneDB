@@ -82,17 +82,17 @@
 					<a
 						class="btn disabled sky noFullMobile mt-2 ml-2"
 						aria-disabled="true"
-						>Add to Firefox (Coming Soon)</a
+						>Firefox Coming Soon</a
 					>
 					<a
 						class="btn disabled sky noFullMobile mt-2 ml-2"
 						aria-disabled="true"
-						>Add to Edge (Coming Soon)</a
+						>Edge Coming Soon</a
 					>
 					<a
 						class="btn discord noFullMobile mt-2 ml-2"
 						download="timezonedb-powercord.zip"
-						href="https://downloads.synapsetech.workers.dev/tzdb-powercord-v0.0.2-release.zip"
+						href="https://downloads.synapsetech.workers.dev/tzdb-powercord-v0.1.0-release.zip"
 						>Download Powercord plugin</a
 					>
 				</div>
