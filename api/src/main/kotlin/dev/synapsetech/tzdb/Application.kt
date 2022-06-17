@@ -13,9 +13,9 @@ fun main(args: Array<String>) {
         "./config.json"
     } else args[0]
     MainConfig.loadFile(File(configFile))
-    Mongo.init(MainConfig.INSTANCE.database)
+    Mongo.init(MainConfig.instance.database)
 
-    embeddedServer(Netty, port = MainConfig.INSTANCE.port, host = "0.0.0.0") {
+    embeddedServer(Netty, port = MainConfig.instance.port, host = "0.0.0.0") {
         configureHTTP()
         configureRouting()
         configureSecurity()

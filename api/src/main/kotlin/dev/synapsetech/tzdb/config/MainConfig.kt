@@ -14,11 +14,11 @@ data class MainConfig(
     val jwt: JwtConfigPart,
 ) {
     companion object {
-        lateinit var INSTANCE: MainConfig
+        lateinit var instance: MainConfig
         private val json = Json { ignoreUnknownKeys = true }
 
         fun loadFile(file: File) {
-            INSTANCE = json.decodeFromString(file.readText())
+            instance = json.decodeFromString(file.readText())
         }
     }
 }

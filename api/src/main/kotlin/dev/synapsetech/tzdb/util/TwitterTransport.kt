@@ -11,8 +11,8 @@ import kotlinx.serialization.Serializable
 data class TwitterUser(val email: String, val name: String, val id: Long)
 
 object TwitterTransport {
-    private val consumerKey = MainConfig.INSTANCE.oauth.twitter.consumerKey
-    private val consumerSecret = MainConfig.INSTANCE.oauth.twitter.consumerSecret
+    private val consumerKey = MainConfig.instance.oauth.twitter.consumerKey
+    private val consumerSecret = MainConfig.instance.oauth.twitter.consumerSecret
     private val encoder = OAuthEncoder()
 
     suspend fun getUser(oAuthTokenSecret: String, oAuthToken: String): TwitterUser {

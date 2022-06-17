@@ -16,7 +16,6 @@ import io.ktor.client.request.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import io.ktor.server.sessions.*
 import java.util.*
 
 const val discordAuthorizeUrl = "https://discord.com/api/oauth2/authorize"
@@ -29,30 +28,30 @@ const val twitchAuthorizeUrl = "https://id.twitch.tv/oauth2/authorize"
 const val twitchTokenUrl = "https://id.twitch.tv/oauth2/token"
 
 fun genJwt(userId: Long): String = JWT.create()
-    .withAudience(MainConfig.INSTANCE.jwt.audience)
-    .withIssuer(MainConfig.INSTANCE.jwt.domain)
+    .withAudience(MainConfig.instance.jwt.audience)
+    .withIssuer(MainConfig.instance.jwt.domain)
     .withClaim("userId", userId)
     .withExpiresAt(Date(System.currentTimeMillis() + 7 * 24 * 60 * 60 * 1000)) // a week
-    .sign(Algorithm.HMAC256(MainConfig.INSTANCE.jwt.secret))
+    .sign(Algorithm.HMAC256(MainConfig.instance.jwt.secret))
 
 val jwtVerifier: JWTVerifier = JWT
-    .require(Algorithm.HMAC256(MainConfig.INSTANCE.jwt.secret))
-    .withAudience(MainConfig.INSTANCE.jwt.audience)
-    .withIssuer(MainConfig.INSTANCE.jwt.domain)
+    .require(Algorithm.HMAC256(MainConfig.instance.jwt.secret))
+    .withAudience(MainConfig.instance.jwt.audience)
+    .withIssuer(MainConfig.instance.jwt.domain)
     .build()
 
 fun Application.configureSecurity() {
     install(Authentication) {
         oauth("auth-oauth-discord") {
-            urlProvider = { MainConfig.INSTANCE.oauth.discord.redirectUri }
+            urlProvider = { MainConfig.instance.oauth.discord.redirectUri }
             providerLookup = {
                 OAuthServerSettings.OAuth2ServerSettings(
                     name = "discord",
                     authorizeUrl = discordAuthorizeUrl,
                     accessTokenUrl = discordTokenUrl,
                     requestMethod = HttpMethod.Post,
-                    clientId = MainConfig.INSTANCE.oauth.discord.clientId,
-                    clientSecret = MainConfig.INSTANCE.oauth.discord.clientSecret,
+                    clientId = MainConfig.instance.oauth.discord.clientId,
+                    clientSecret = MainConfig.instance.oauth.discord.clientSecret,
                     defaultScopes = listOf("identify", "email"),
                 )
             }
@@ -60,15 +59,15 @@ fun Application.configureSecurity() {
         }
 
         oauth("auth-oauth-github") {
-            urlProvider = { MainConfig.INSTANCE.oauth.github.redirectUri }
+            urlProvider = { MainConfig.instance.oauth.github.redirectUri }
             providerLookup = {
                 OAuthServerSettings.OAuth2ServerSettings(
                     name = "github",
                     authorizeUrl = githubAuthorizeUrl,
                     accessTokenUrl = githubTokenUrl,
                     requestMethod = HttpMethod.Post,
-                    clientId = MainConfig.INSTANCE.oauth.github.clientId,
-                    clientSecret = MainConfig.INSTANCE.oauth.github.clientSecret,
+                    clientId = MainConfig.instance.oauth.github.clientId,
+                    clientSecret = MainConfig.instance.oauth.github.clientSecret,
                     defaultScopes = listOf("user:email")
                 )
             }
@@ -76,30 +75,30 @@ fun Application.configureSecurity() {
         }
 
         oauth("auth-oauth-twitter") {
-            urlProvider = { MainConfig.INSTANCE.oauth.twitter.redirectUri }
+            urlProvider = { MainConfig.instance.oauth.twitter.redirectUri }
             providerLookup = {
                 OAuthServerSettings.OAuth1aServerSettings(
                     name = "twitter",
                     requestTokenUrl = "https://api.twitter.com/oauth/request_token",
                     authorizeUrl = "https://api.twitter.com/oauth/authorize",
                     accessTokenUrl = "https://api.twitter.com/oauth/access_token",
-                    consumerKey = MainConfig.INSTANCE.oauth.twitter.consumerKey,
-                    consumerSecret = MainConfig.INSTANCE.oauth.twitter.consumerSecret,
+                    consumerKey = MainConfig.instance.oauth.twitter.consumerKey,
+                    consumerSecret = MainConfig.instance.oauth.twitter.consumerSecret,
                 )
             }
             client = httpClient
         }
 
         oauth("auth-oauth-twitch") {
-            urlProvider = { MainConfig.INSTANCE.oauth.twitch.redirectUri }
+            urlProvider = { MainConfig.instance.oauth.twitch.redirectUri }
             providerLookup = {
                 OAuthServerSettings.OAuth2ServerSettings(
                     name = "twitch",
                     authorizeUrl = twitchAuthorizeUrl,
                     accessTokenUrl = twitchTokenUrl,
                     requestMethod = HttpMethod.Post,
-                    clientId = MainConfig.INSTANCE.oauth.twitch.clientId,
-                    clientSecret = MainConfig.INSTANCE.oauth.twitch.clientSecret,
+                    clientId = MainConfig.instance.oauth.twitch.clientId,
+                    clientSecret = MainConfig.instance.oauth.twitch.clientSecret,
                     defaultScopes = listOf("user:read:email")
                 )
             }
@@ -107,10 +106,11 @@ fun Application.configureSecurity() {
         }
 
         jwt("auth-jwt") {
-            realm = MainConfig.INSTANCE.jwt.realm
+            val jwtAudience = MainConfig.instance.jwt.audience
+            realm = MainConfig.instance.jwt.realm
             verifier(jwtVerifier)
             validate { credential ->
-                if (credential.payload.getClaim("userId").asLong() != null)
+                if (credential.payload.audience.contains(jwtAudience) && credential.payload.getClaim("userId").asLong() != null)
                     JWTPrincipal(credential.payload)
                 else null
             }
@@ -202,7 +202,7 @@ fun Application.configureSecurity() {
                 }
 
                 val token = genJwt(userId!!)
-                val webUri = Url(MainConfig.INSTANCE.webUrl).toURI().resolve("/?token=$token")
+                val webUri = Url(MainConfig.instance.webUrl).toURI().resolve("/?token=$token")
                 call.respondRedirect(webUri.toString())
             }
         }
@@ -304,7 +304,7 @@ fun Application.configureSecurity() {
                 }
 
                 val token = genJwt(userId!!)
-                val webUri = Url(MainConfig.INSTANCE.webUrl).toURI().resolve("/?token=$token")
+                val webUri = Url(MainConfig.instance.webUrl).toURI().resolve("/?token=$token")
                 call.respondRedirect(webUri.toString())
             }
         }
@@ -387,7 +387,7 @@ fun Application.configureSecurity() {
                 }
 
                 val token = genJwt(userId!!)
-                val webUri = Url(MainConfig.INSTANCE.webUrl).toURI().resolve("/?token=$token")
+                val webUri = Url(MainConfig.instance.webUrl).toURI().resolve("/?token=$token")
                 call.respondRedirect(webUri.toString())
             }
         }
@@ -438,7 +438,7 @@ fun Application.configureSecurity() {
                     headers {
                         append("Accept", "application/json")
                         append("Authorization", "Bearer ${principal?.accessToken}")
-                        append("Client-Id", MainConfig.INSTANCE.oauth.twitch.clientId)
+                        append("Client-Id", MainConfig.instance.oauth.twitch.clientId)
                     }
                 }
 
@@ -477,7 +477,7 @@ fun Application.configureSecurity() {
                 }
 
                 val token = genJwt(userId!!)
-                val webUri = Url(MainConfig.INSTANCE.webUrl).toURI().resolve("/?token=$token")
+                val webUri = Url(MainConfig.instance.webUrl).toURI().resolve("/?token=$token")
                 call.respondRedirect(webUri.toString())
             }
         }
