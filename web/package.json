@@ -13,7 +13,7 @@
 		"@fortawesome/fontawesome-svg-core": "^6.1.1",
 		"@fortawesome/free-brands-svg-icons": "^6.1.1",
 		"@fortawesome/free-solid-svg-icons": "^6.1.1",
-		"@fortawesome/vue-fontawesome": "3.0.0",
+		"@fortawesome/vue-fontawesome": "3.0.1",
 		"@vueuse/core": "^8.7.3",
 		"pinia": "^2.0.13",
 		"pinia-plugin-persistedstate": "^1.6.1",
