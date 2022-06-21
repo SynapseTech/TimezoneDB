@@ -61,7 +61,7 @@
 		"vitest": "^0.15.1",
 		"vue": "^3.2.33",
 		"vue-demi": "^0.13.1",
-		"web-ext": "^7.0.0",
+		"web-ext": "^7.1.0",
 		"webext-bridge": "^5.0.4",
 		"webextension-polyfill": "^0.9.0"
 	},
