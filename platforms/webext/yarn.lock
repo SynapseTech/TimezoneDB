@@ -4099,10 +4099,10 @@ mlly@^0.3.6:
   resolved "https://registry.yarnpkg.com/mlly/-/mlly-0.3.19.tgz#a4aac171d2142eafc9c9d4c1937dac5a11f70565"
   integrity sha512-zMq5n3cOf4fOzA4WoeulxagbAgMChdev3MgP6K51k7M0u2whTXxupfIY4VVzws4vxkiWhwH1rVQcsw7zDGfRhA==
 
-mlly@^0.5.2:
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/mlly/-/mlly-0.5.2.tgz#67b908e967cfcaee27e90bef8a84aaede599bd21"
-  integrity sha512-4GTELSSErv6ZZJYU98fZNuIBJcXSz+ktHdRrCYEqU1m6ZlebOCG0jwZ+IEd9vOrbpYsVBBMC5OTrEyLnKRcauQ==
+mlly@^0.5.3:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/mlly/-/mlly-0.5.3.tgz#8a613b6273886490a5f462ce18fa486492cf053b"
+  integrity sha512-im69tuLD9EJh9fc9TZRpJEFvsBcGMez7glUCWDcHWWCKzhvPmNvyaYjp/+h0qJJN/Xovrs//GzGjOOKmFw4Gog==
   dependencies:
     pathe "^0.2.0"
     pkg-types "^0.3.2"
@@ -5541,10 +5541,10 @@ strip-json-comments@~2.0.1:
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
   integrity sha1-PFMZQukIwml8DsNEhYwobHygpgo=
 
-strip-literal@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/strip-literal/-/strip-literal-0.3.0.tgz#922502f1befeb08f2f79025d1be713e252ba3bd6"
-  integrity sha512-J+lfm3Pw5nzURj2B8acyvUSBqs3JbjM8WAfrmeH3qcn32+ew6kFwbZFV9+X8k9UOIAkQw9WPSzFZy3083c7l5Q==
+strip-literal@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/strip-literal/-/strip-literal-0.4.0.tgz#0f90e86daecc1eb23c61c62d25238ffad4524634"
+  integrity sha512-ql/sBDoJOybTKSIOWrrh8kgUEMjXMwRAkZTD0EwiwxQH/6tTPkZvMIEjp0CRlpi6V5FMiJyvxeRkEi1KrGISoA==
   dependencies:
     acorn "^8.7.1"
 
@@ -5793,20 +5793,20 @@ unbox-primitive@^1.0.2:
     has-symbols "^1.0.3"
     which-boxed-primitive "^1.0.2"
 
-unimport@^0.2.7:
-  version "0.2.8"
-  resolved "https://registry.yarnpkg.com/unimport/-/unimport-0.2.8.tgz#7ec27254beaf1aafce7264e2be3c9214d442fde0"
-  integrity sha512-p/p8vFjYaazasl5BuMfZg78HZq9luG3q5aeAq0Of6CB2aaNSYHn49ESM8QCJe9LqAyEnvYuFFq4XX5+Qt3rnVA==
+unimport@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/unimport/-/unimport-0.3.0.tgz#52496f04e7ce18a50f4a111af0e6722f8ee1e75d"
+  integrity sha512-RxvfvKBY+CyBmIuYSuBeosSiudgcVakdhVofy5mO5sJ3purQRc5yjLw0Lir7MKHnqe6XT1++8flgAvpxu1UkqQ==
   dependencies:
     "@rollup/pluginutils" "^4.2.1"
     escape-string-regexp "^5.0.0"
     fast-glob "^3.2.11"
     local-pkg "^0.4.1"
     magic-string "^0.26.2"
-    mlly "^0.5.2"
+    mlly "^0.5.3"
     pathe "^0.3.0"
     scule "^0.2.1"
-    strip-literal "^0.3.0"
+    strip-literal "^0.4.0"
     unplugin "^0.7.0"
 
 unique-string@^2.0.0:
@@ -5838,16 +5838,16 @@ universalify@^2.0.0:
   resolved "https://registry.yarnpkg.com/universalify/-/universalify-2.0.0.tgz#75a4984efedc4b08975c5aeb73f530d02df25717"
   integrity sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ==
 
-unplugin-auto-import@^0.8.8:
-  version "0.8.8"
-  resolved "https://registry.yarnpkg.com/unplugin-auto-import/-/unplugin-auto-import-0.8.8.tgz#a8d3bbbe9af0fd84f729032d9c1198afd2326216"
-  integrity sha512-cVZ79zMR1v4VCZ9emFTUnltmazCc2B4hObyVrxJdlgJ2sK8qub6JfjFt38rCF6MVEddkHiWCU6wZR1qbdqe+ig==
+unplugin-auto-import@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/unplugin-auto-import/-/unplugin-auto-import-0.9.0.tgz#affb50220b16a32c409991932a553a61c4e4dd7c"
+  integrity sha512-6h32xuwfpXQwXN9lAZtEDbb8rNGdBn/zg/H8HoXHtnm63t67zL2NDLxb0S3rJugKrQdhHhxaLgckN3gB36TnXw==
   dependencies:
     "@antfu/utils" "^0.5.2"
     "@rollup/pluginutils" "^4.2.1"
     local-pkg "^0.4.1"
     magic-string "^0.26.2"
-    unimport "^0.2.7"
+    unimport "^0.3.0"
     unplugin "^0.7.0"
 
 unplugin-icons@^0.14.5:
