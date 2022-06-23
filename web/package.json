@@ -17,7 +17,7 @@
 		"@vueuse/core": "^8.7.4",
 		"pinia": "^2.0.13",
 		"pinia-plugin-persistedstate": "^1.6.1",
-		"sass": "^1.52.3",
+		"sass": "^1.53.0",
 		"vue": "^3.2.37",
 		"vue-multiselect": "^3.0.0-alpha.2",
 		"vue-router": "^4.0.16"
