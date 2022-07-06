@@ -20,7 +20,7 @@
 		"sass": "^1.53.0",
 		"vue": "^3.2.37",
 		"vue-multiselect": "^3.0.0-alpha.2",
-		"vue-router": "^4.1.0"
+		"vue-router": "^4.1.1"
 	},
 	"devDependencies": {
 		"@rushstack/eslint-patch": "^1.1.4",
