@@ -364,7 +364,7 @@
   resolved "https://registry.yarnpkg.com/@types/web-bluetooth/-/web-bluetooth-0.0.14.tgz#94e175b53623384bff1f354cdb3197a8d63cdbe5"
   integrity sha512-5d2RhCard1nQUC3aHcq/gHzWYO6K0WJmAbjO7mQJgCQKtZpgXxv1rOM6O/dBDhDYYVutk1sciOgNSe+5YyfM8A==
 
-"@types/webextension-polyfill@^0.8.2":
+"@types/webextension-polyfill@^0.8.3":
   version "0.8.3"
   resolved "https://registry.yarnpkg.com/@types/webextension-polyfill/-/webextension-polyfill-0.8.3.tgz#eb601b3fcf524f0ecf7d7579ccbd237928d0dda7"
   integrity sha512-GN+Hjzy9mXjWoXKmaicTegv3FJ0WFZ3aYz77Wk8TMp1IY3vEzvzj1vnsa0ggV7vMI1i+PUxe4qqnIJKCzf9aTg==
@@ -6130,21 +6130,16 @@ web-ext@^7.1.0:
     yargs "17.5.1"
     zip-dir "2.0.0"
 
-webext-bridge@^5.0.4:
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/webext-bridge/-/webext-bridge-5.0.4.tgz#396bc652af337f2cceb224963637787611a60d36"
-  integrity sha512-y/qnOAjkqM5n6zc1IPKb5IUwOFfcJXcmR+mNHdAkinwDCST2BWEQ5WyvpZAtLNLnLd4w/YFmjdqzU8qctFYktg==
+webext-bridge@^5.0.5:
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/webext-bridge/-/webext-bridge-5.0.5.tgz#1465135343fbe5ee944323294ac90cd97b663304"
+  integrity sha512-STCv6pLfQtUHmZQ96Tmov+CrdGjjc08xG6o/VH7TlDvchAPmXEG7faPdHfIzkcs0qp0sedDkq7oDzXAei19vtw==
   dependencies:
-    "@types/webextension-polyfill" "^0.8.2"
+    "@types/webextension-polyfill" "^0.8.3"
     nanoevents "^6.0.2"
     serialize-error "^9.0.0"
     tiny-uid "^1.1.1"
-    webextension-polyfill "^0.8.0"
-
-webextension-polyfill@^0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/webextension-polyfill/-/webextension-polyfill-0.8.0.tgz#f80e9f4b7f81820c420abd6ffbebfa838c60e041"
-  integrity sha512-a19+DzlT6Kp9/UI+mF9XQopeZ+n2ussjhxHJ4/pmIGge9ijCDz7Gn93mNnjpZAk95T4Tae8iHZ6sSf869txqiQ==
+    webextension-polyfill "^0.9.0"
 
 webextension-polyfill@^0.9.0:
   version "0.9.0"
