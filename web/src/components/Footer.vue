@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
+	import { faGithub } from '@fortawesome/free-brands-svg-icons';
 </script>
 
 <template>
@@ -28,20 +28,24 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 			<router-link to="/legal/attribution" class="footerLink">
 				Attribution
 			</router-link>
+
+			<a class="footerLink" href="https://discord.gg/7vtx32JgMM">
+				Join our Discord
+			</a>
 		</div>
 	</footer>
 </template>
 
 <style scoped lang="scss">
-footer {
-	@apply py-8 bg-gray-300 border-gray-400 border-t-[1px] border-opacity-10 text-gray-600 flex flex-col lg:flex-row items-center justify-center flex-grow-0 flex-wrap;
-}
-
-.footerLink {
-	@apply hover:underline;
-
-	&:not(:first-of-type) {
-		@apply ml-8;
+	footer {
+		@apply py-8 bg-gray-300 border-gray-400 border-t-[1px] border-opacity-10 text-gray-600 flex flex-col lg:flex-row items-center justify-center flex-grow-0 flex-wrap;
 	}
-}
+
+	.footerLink {
+		@apply hover:underline;
+
+		&:not(:first-of-type) {
+			@apply ml-8;
+		}
+	}
 </style>
