@@ -29,6 +29,16 @@ const router = createRouter({
 			name: 'attribution',
 			component: () => import('../views/legal/Attribution.vue'),
 		},
+		{
+			path: '/dev/api',
+			name: 'apiDocsIndex',
+			component: () => import('../views/developers/ApiDocsIndexView.vue'),
+		},
+		{
+			path: '/dev/api/users',
+			name: 'apiDocsUsers',
+			component: () => import('../views/developers/ApiDocsUsersView.vue'),
+		},
 	],
 });
 

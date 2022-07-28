@@ -1,0 +1,55 @@
+@import 'button';
+
+.sidebarItem {
+	@apply text-gray-500 py-2 px-4 rounded-lg;
+
+	&.active {
+		@apply bg-sky-500 text-white;
+	}
+
+	&:hover:not(.active) {
+		@apply text-sky-500 bg-gray-100;
+	}
+
+	&:not(:first-child) {
+		@apply mt-2;
+	}
+}
+
+.sidebarHeader {
+	@apply font-bold text-lg;
+
+	&:not(:first-child) {
+		@apply mt-4;
+	}
+}
+
+.docPageHeading {
+	@apply font-light text-4xl mb-3;
+}
+
+.blockLink {
+	@apply border-[1px] rounded-lg border-gray-500 px-6 py-3 flex items-center w-full;
+
+	&:hover {
+		@apply bg-gray-300;
+	}
+
+	&:not(:first-of-type) {
+		@apply mt-2;
+	}
+}
+
+.endpoint {
+	&:not(:first-child) {
+		@apply mt-4;
+	}
+
+	.heading {
+		@apply text-2xl font-light mb-2 flex content-center;
+
+		.method {
+			@apply bg-sky-500 text-white rounded py-0.5 px-1 text-lg font-bold mr-2;
+		}
+	}
+}
