@@ -167,9 +167,9 @@
   version "1.2.1"
   resolved "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
 
-"@iconify/json@^2.1.78":
-  version "2.1.81"
-  resolved "https://registry.npmjs.org/@iconify/json/-/json-2.1.81.tgz"
+"@iconify/json@^2.1.84":
+  version "2.1.84"
+  resolved "https://registry.yarnpkg.com/@iconify/json/-/json-2.1.84.tgz#3403d6d442ea219b566ad73a39a421212c676046"
   dependencies:
     "@iconify/types" "*"
     pathe "^0.3.0"
@@ -306,9 +306,9 @@
   version "3.0.5"
   resolved "https://registry.npmjs.org/@types/minimatch/-/minimatch-3.0.5.tgz"
 
-"@types/node@*", "@types/node@^18.0.4":
-  version "18.0.6"
-  resolved "https://registry.npmjs.org/@types/node/-/node-18.0.6.tgz"
+"@types/node@*", "@types/node@^18.6.2":
+  version "18.6.2"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.6.2.tgz#ffc5f0f099d27887c8d9067b54e55090fcd54126"
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"
@@ -324,9 +324,9 @@
   version "2.0.6"
   resolved "https://registry.npmjs.org/@types/unist/-/unist-2.0.6.tgz"
 
-"@types/web-bluetooth@^0.0.14":
-  version "0.0.14"
-  resolved "https://registry.npmjs.org/@types/web-bluetooth/-/web-bluetooth-0.0.14.tgz"
+"@types/web-bluetooth@^0.0.15":
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/@types/web-bluetooth/-/web-bluetooth-0.0.15.tgz#d60330046a6ed8a13b4a53df3813c44942ebdf72"
 
 "@types/webextension-polyfill@^0.8.3":
   version "0.8.3"
@@ -532,22 +532,22 @@
   version "2.0.2"
   resolved "https://registry.npmjs.org/@vue/test-utils/-/test-utils-2.0.2.tgz"
 
-"@vueuse/core@^8.9.3":
-  version "8.9.4"
-  resolved "https://registry.npmjs.org/@vueuse/core/-/core-8.9.4.tgz"
+"@vueuse/core@^9.0.0":
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-9.0.0.tgz#2e3d37dc08e1e18ebe385c40a41a7d2b7eb2ae0c"
   dependencies:
-    "@types/web-bluetooth" "^0.0.14"
-    "@vueuse/metadata" "8.9.4"
-    "@vueuse/shared" "8.9.4"
+    "@types/web-bluetooth" "^0.0.15"
+    "@vueuse/metadata" "9.0.0"
+    "@vueuse/shared" "9.0.0"
     vue-demi "*"
 
-"@vueuse/metadata@8.9.4":
-  version "8.9.4"
-  resolved "https://registry.npmjs.org/@vueuse/metadata/-/metadata-8.9.4.tgz"
+"@vueuse/metadata@9.0.0":
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/@vueuse/metadata/-/metadata-9.0.0.tgz#330cdd814f4b0a39ce41811ff6193f1c78d4f850"
 
-"@vueuse/shared@8.9.4":
-  version "8.9.4"
-  resolved "https://registry.npmjs.org/@vueuse/shared/-/shared-8.9.4.tgz"
+"@vueuse/shared@9.0.0":
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-9.0.0.tgz#0048c0567159a82a540195339a6752497d13c6ac"
   dependencies:
     vue-demi "*"
 
@@ -603,6 +603,10 @@ acorn@^7.1.1:
 acorn@^8.5.0, acorn@^8.7.1:
   version "8.7.1"
   resolved "https://registry.npmjs.org/acorn/-/acorn-8.7.1.tgz"
+
+acorn@^8.8.0:
+  version "8.8.0"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.8.0.tgz#88c0187620435c7f6015803f5539dae05a9dbea8"
 
 addons-linter@5.10.0:
   version "5.10.0"
@@ -4466,9 +4470,9 @@ saxes@^6.0.0:
   dependencies:
     xmlchars "^2.2.0"
 
-scule@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.npmjs.org/scule/-/scule-0.2.1.tgz"
+scule@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/scule/-/scule-0.3.2.tgz#472445cecd8357165a94a067f78cee40e700b596"
 
 semver-diff@^4.0.0:
   version "4.0.0"
@@ -5030,9 +5034,9 @@ unbox-primitive@^1.0.2:
     has-symbols "^1.0.3"
     which-boxed-primitive "^1.0.2"
 
-unimport@^0.4.5:
-  version "0.4.7"
-  resolved "https://registry.npmjs.org/unimport/-/unimport-0.4.7.tgz"
+unimport@^0.6.4:
+  version "0.6.4"
+  resolved "https://registry.yarnpkg.com/unimport/-/unimport-0.6.4.tgz#65ab496e41ac37952dad0c49394c64c62be6238a"
   dependencies:
     "@rollup/pluginutils" "^4.2.1"
     escape-string-regexp "^5.0.0"
@@ -5041,9 +5045,9 @@ unimport@^0.4.5:
     magic-string "^0.26.2"
     mlly "^0.5.5"
     pathe "^0.3.2"
-    scule "^0.2.1"
+    scule "^0.3.2"
     strip-literal "^0.4.0"
-    unplugin "^0.7.2"
+    unplugin "^0.8.0"
 
 unique-string@^3.0.0:
   version "3.0.0"
@@ -5069,16 +5073,16 @@ universalify@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/universalify/-/universalify-2.0.0.tgz"
 
-unplugin-auto-import@^0.9.3:
-  version "0.9.5"
-  resolved "https://registry.npmjs.org/unplugin-auto-import/-/unplugin-auto-import-0.9.5.tgz"
+unplugin-auto-import@^0.10.2:
+  version "0.10.2"
+  resolved "https://registry.yarnpkg.com/unplugin-auto-import/-/unplugin-auto-import-0.10.2.tgz#adb6139f6dadd64a50e489f200dae503af2fae14"
   dependencies:
     "@antfu/utils" "^0.5.2"
     "@rollup/pluginutils" "^4.2.1"
     local-pkg "^0.4.2"
     magic-string "^0.26.2"
-    unimport "^0.4.5"
-    unplugin "^0.7.2"
+    unimport "^0.6.4"
+    unplugin "^0.8.0"
 
 unplugin-icons@^0.14.7:
   version "0.14.7"
@@ -5092,26 +5096,35 @@ unplugin-icons@^0.14.7:
     local-pkg "^0.4.1"
     unplugin "^0.7.0"
 
-unplugin-vue-components@^0.21.1:
-  version "0.21.1"
-  resolved "https://registry.npmjs.org/unplugin-vue-components/-/unplugin-vue-components-0.21.1.tgz"
+unplugin-vue-components@^0.21.2:
+  version "0.21.2"
+  resolved "https://registry.yarnpkg.com/unplugin-vue-components/-/unplugin-vue-components-0.21.2.tgz#d5b04b05e0521aa71fdfdba0b4ca392e3caa964d"
   dependencies:
     "@antfu/utils" "^0.5.2"
     "@rollup/pluginutils" "^4.2.1"
     chokidar "^3.5.3"
     debug "^4.3.4"
     fast-glob "^3.2.11"
-    local-pkg "^0.4.1"
+    local-pkg "^0.4.2"
     magic-string "^0.26.2"
     minimatch "^5.1.0"
     resolve "^1.22.1"
-    unplugin "^0.7.1"
+    unplugin "^0.7.2"
 
-unplugin@^0.7.0, unplugin@^0.7.1, unplugin@^0.7.2:
+unplugin@^0.7.0, unplugin@^0.7.2:
   version "0.7.2"
   resolved "https://registry.npmjs.org/unplugin/-/unplugin-0.7.2.tgz"
   dependencies:
     acorn "^8.7.1"
+    chokidar "^3.5.3"
+    webpack-sources "^3.2.3"
+    webpack-virtual-modules "^0.4.4"
+
+unplugin@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/unplugin/-/unplugin-0.8.0.tgz#aeabac40e89fb69e5c9366b4821c3836d1b6ffce"
+  dependencies:
+    acorn "^8.8.0"
     chokidar "^3.5.3"
     webpack-sources "^3.2.3"
     webpack-virtual-modules "^0.4.4"
@@ -5196,9 +5209,9 @@ vite-plugin-windicss@^1.8.7:
   optionalDependencies:
     fsevents "~2.3.2"
 
-vitest@^0.18.0:
-  version "0.18.1"
-  resolved "https://registry.npmjs.org/vitest/-/vitest-0.18.1.tgz"
+vitest@^0.19.1:
+  version "0.19.1"
+  resolved "https://registry.yarnpkg.com/vitest/-/vitest-0.19.1.tgz#8a89f4c873132d778d4206dbfbd6791c12f6d921"
   dependencies:
     "@types/chai" "^4.3.1"
     "@types/chai-subset" "^1.3.3"
@@ -5210,9 +5223,9 @@ vitest@^0.18.0:
     tinyspy "^1.0.0"
     vite "^2.9.12 || ^3.0.0-0"
 
-vue-demi@*, vue-demi@^0.13.4:
-  version "0.13.5"
-  resolved "https://registry.npmjs.org/vue-demi/-/vue-demi-0.13.5.tgz"
+vue-demi@*, vue-demi@^0.13.6:
+  version "0.13.6"
+  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.13.6.tgz#f9433cbd75e68a970dec066647f4ba6c08ced48f"
 
 vue-eslint-parser@^9.0.1:
   version "9.0.3"
