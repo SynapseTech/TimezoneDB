@@ -24,6 +24,13 @@
 				fixed-width
 			></font-awesome-icon>
 		</router-link>
+		<router-link to="/dev/api/zones" class="blockLink">
+			<span class="flex-grow pr-4">Zones Endpoint</span>
+			<font-awesome-icon
+				:icon="faArrowRight"
+				fixed-width
+			></font-awesome-icon>
+		</router-link>
 	</DocumentationPage>
 </template>
 

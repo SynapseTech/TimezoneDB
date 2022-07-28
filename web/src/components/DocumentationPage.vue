@@ -20,9 +20,7 @@
 			</aside>
 
 			<article class="flex-grow">
-				<div
-					class="container break-words overflow-y-auto px-16 pb-4 pt-8 h-full bg-gray-200"
-				>
+				<div class="docContent">
 					<h1 class="docPageHeading" v-if="props.title">
 						{{ props.title }}
 					</h1>

@@ -11,6 +11,9 @@
 	<router-link to="/dev/api/users" class="sidebarItem" active-class="active">
 		User Endpoints
 	</router-link>
+	<router-link to="/dev/api/zones" class="sidebarItem" active-class="active">
+		Zones Endpoint
+	</router-link>
 </template>
 
 <style scoped lang="scss">

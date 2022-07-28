@@ -53,3 +53,15 @@
 		}
 	}
 }
+
+.docContent {
+	@apply container break-words overflow-y-auto px-16 pb-4 pt-8 h-full bg-gray-200;
+
+	a:not(.blockLink) {
+		@apply cursor-pointer text-sky-500;
+
+		&:hover {
+			@apply underline;
+		}
+	}
+}

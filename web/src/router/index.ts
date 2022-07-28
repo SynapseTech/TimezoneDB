@@ -39,6 +39,11 @@ const router = createRouter({
 			name: 'apiDocsUsers',
 			component: () => import('../views/developers/ApiDocsUsersView.vue'),
 		},
+		{
+			path: '/dev/api/zones',
+			name: 'apiDocsZones',
+			component: () => import('../views/developers/ApiDocsZonesView.vue'),
+		},
 	],
 });
 
