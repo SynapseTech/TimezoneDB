@@ -5096,22 +5096,22 @@ unplugin-icons@^0.14.7:
     local-pkg "^0.4.1"
     unplugin "^0.7.0"
 
-unplugin-vue-components@^0.21.1:
-  version "0.21.1"
-  resolved "https://registry.npmjs.org/unplugin-vue-components/-/unplugin-vue-components-0.21.1.tgz"
+unplugin-vue-components@^0.21.2:
+  version "0.21.2"
+  resolved "https://registry.yarnpkg.com/unplugin-vue-components/-/unplugin-vue-components-0.21.2.tgz#d5b04b05e0521aa71fdfdba0b4ca392e3caa964d"
   dependencies:
     "@antfu/utils" "^0.5.2"
     "@rollup/pluginutils" "^4.2.1"
     chokidar "^3.5.3"
     debug "^4.3.4"
     fast-glob "^3.2.11"
-    local-pkg "^0.4.1"
+    local-pkg "^0.4.2"
     magic-string "^0.26.2"
     minimatch "^5.1.0"
     resolve "^1.22.1"
-    unplugin "^0.7.1"
+    unplugin "^0.7.2"
 
-unplugin@^0.7.0, unplugin@^0.7.1:
+unplugin@^0.7.0, unplugin@^0.7.2:
   version "0.7.2"
   resolved "https://registry.npmjs.org/unplugin/-/unplugin-0.7.2.tgz"
   dependencies:
