@@ -5084,17 +5084,17 @@ unplugin-auto-import@^0.10.2:
     unimport "^0.6.4"
     unplugin "^0.8.0"
 
-unplugin-icons@^0.14.7:
-  version "0.14.7"
-  resolved "https://registry.npmjs.org/unplugin-icons/-/unplugin-icons-0.14.7.tgz"
+unplugin-icons@^0.14.8:
+  version "0.14.8"
+  resolved "https://registry.yarnpkg.com/unplugin-icons/-/unplugin-icons-0.14.8.tgz#0711f4a941fd6fc1308b8ddd33e316c3cd1f2546"
   dependencies:
     "@antfu/install-pkg" "^0.1.0"
     "@antfu/utils" "^0.5.2"
     "@iconify/utils" "^1.0.33"
     debug "^4.3.4"
     kolorist "^1.5.1"
-    local-pkg "^0.4.1"
-    unplugin "^0.7.0"
+    local-pkg "^0.4.2"
+    unplugin "^0.8.0"
 
 unplugin-vue-components@^0.21.2:
   version "0.21.2"
@@ -5111,7 +5111,7 @@ unplugin-vue-components@^0.21.2:
     resolve "^1.22.1"
     unplugin "^0.7.2"
 
-unplugin@^0.7.0, unplugin@^0.7.2:
+unplugin@^0.7.2:
   version "0.7.2"
   resolved "https://registry.npmjs.org/unplugin/-/unplugin-0.7.2.tgz"
   dependencies:
