@@ -1,9 +1,5 @@
 package dev.synapsetech.tzdb.plugins
 
-import io.ktor.server.auth.*
-import kotlinx.serialization.Serializable
-import io.ktor.http.*
-import io.ktor.server.auth.jwt.*
 import com.auth0.jwt.JWT
 import com.auth0.jwt.JWTVerifier
 import com.auth0.jwt.algorithms.Algorithm
@@ -13,9 +9,15 @@ import dev.synapsetech.tzdb.httpClient
 import dev.synapsetech.tzdb.util.TwitterTransport
 import io.ktor.client.call.*
 import io.ktor.client.request.*
+import io.ktor.client.statement.*
+import io.ktor.http.*
 import io.ktor.server.application.*
+import io.ktor.server.auth.*
+import io.ktor.server.auth.jwt.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import kotlinx.serialization.Serializable
+import java.math.BigInteger
 import java.util.*
 
 const val discordAuthorizeUrl = "https://discord.com/api/oauth2/authorize"
@@ -26,6 +28,9 @@ const val githubTokenUrl = "https://github.com/login/oauth/access_token"
 
 const val twitchAuthorizeUrl = "https://id.twitch.tv/oauth2/authorize"
 const val twitchTokenUrl = "https://id.twitch.tv/oauth2/token"
+
+const val microsoftAuthorizeUrl = "https://login.live.com/oauth20_authorize.srf"
+const val microsoftTokenUrl = "https://login.live.com/oauth20_token.srf"
 
 fun genJwt(userId: Long): String = JWT.create()
     .withAudience(MainConfig.instance.jwt.audience)
@@ -105,6 +110,22 @@ fun Application.configureSecurity() {
             client = httpClient
         }
 
+        oauth("auth-oauth-microsoft") {
+            urlProvider = { MainConfig.instance.oauth.microsoft.redirectUri }
+            providerLookup = {
+                OAuthServerSettings.OAuth2ServerSettings(
+                    name = "microsoft",
+                    authorizeUrl = microsoftAuthorizeUrl,
+                    accessTokenUrl = microsoftTokenUrl,
+                    requestMethod = HttpMethod.Post,
+                    clientId = MainConfig.instance.oauth.microsoft.clientId,
+                    clientSecret = MainConfig.instance.oauth.microsoft.clientSecret,
+                    defaultScopes = listOf("XboxLive.signin", "Xboxlive.offline_access", "User.Read")
+                )
+            }
+            client = httpClient
+        }
+
         jwt("auth-jwt") {
             val jwtAudience = MainConfig.instance.jwt.audience
             realm = MainConfig.instance.jwt.realm
@@ -165,6 +186,7 @@ fun Application.configureSecurity() {
                 val response = httpClient.get("https://discord.com/api/users/@me") {
                     headers {
                         append("Authorization", "Bearer ${principal?.accessToken}")
+                        append("User-Agent", "TimezoneDB Authentication Agent/1.0 (+https://tzdb.synapsetech.dev)")
                     }
                 }
 
@@ -255,6 +277,7 @@ fun Application.configureSecurity() {
                     headers {
                         append("Accept", "application/vnd.github.v3+json")
                         append("Authorization", "token ${principal?.accessToken}")
+                        append("User-Agent", "TimezoneDB Authentication Agent/1.0 (+https://tzdb.synapsetech.dev)")
                     }
                 }
 
@@ -266,6 +289,7 @@ fun Application.configureSecurity() {
                         headers {
                             append("Accept", "application/vnd.github.v3+json")
                             append("Authorization", "token ${principal?.accessToken}")
+                            append("User-Agent", "TimezoneDB Authentication Agent/1.0 (+https://tzdb.synapsetech.dev)")
                         }
                     }
 
@@ -439,6 +463,7 @@ fun Application.configureSecurity() {
                         append("Accept", "application/json")
                         append("Authorization", "Bearer ${principal?.accessToken}")
                         append("Client-Id", MainConfig.instance.oauth.twitch.clientId)
+                        append("User-Agent", "TimezoneDB Authentication Agent/1.0 (+https://tzdb.synapsetech.dev)")
                     }
                 }
 
@@ -481,6 +506,133 @@ fun Application.configureSecurity() {
                 call.respondRedirect(webUri.toString())
             }
         }
+
+        get("/auth/microsoft") {
+            call.request.queryParameters["intent"]?.let { intent ->
+                if (intent == "link") {
+                    val jwt = call.request.queryParameters["token"] ?: run {
+                        call.respond(HttpStatusCode.BadRequest)
+                        return@get
+                    }
+
+                    val decoded = jwtVerifier.verify(jwt)
+                    val userId = decoded.getClaim("userId").asLong() ?: run {
+                        call.respond(HttpStatusCode.Unauthorized)
+                        return@get
+                    }
+
+                    call.response.cookies.append("tzdb-link-user", userId.toString())
+                }
+            }
+
+            call.respondRedirect("/auth/login/microsoft")
+        }
+
+        authenticate("auth-oauth-microsoft") {
+            get("/auth/login/microsoft") {
+                call.respondRedirect("/auth/callback/microsoft")
+            }
+
+            get("/auth/callback/microsoft") {
+                val principal: OAuthAccessTokenResponse.OAuth2? = call.principal()
+
+                var link = false
+                var userId: Long? = null
+
+                call.request.cookies["tzdb-link-user"]?.let {
+                    link = true
+                    userId = it.toLongOrNull()
+                }
+
+                call.response.cookies.appendExpired("tzdb-link-user")
+
+                if (link && userId == null) {
+                    call.respond(HttpStatusCode.BadRequest)
+                    return@get
+                }
+
+                val xboxTokenResponse = httpClient.post("https://user.auth.xboxlive.com:443/user/authenticate") {
+                    headers {
+                        append("x-xbl-contract-version", "1")
+                    }
+                    userAgent("TimezoneDB Authentication Agent/1.0 (+https://tzdb.synapsetech.dev)")
+                    contentType(ContentType.Application.Json)
+                    accept(ContentType.Application.Json)
+                    setBody(XboxTokenRequest(
+                        XboxTokenRequest.Companion.PropertiesData(
+                            "RPS",
+                            "user.auth.xboxlive.com",
+                            "d=${principal!!.accessToken}"
+                        ),
+                        "http://auth.xboxlive.com",
+                        "JWT"
+                    ))
+                }
+
+                val xboxTokenResponseData: XboxTokenResponse = xboxTokenResponse.body()
+                val xboxToken = xboxTokenResponseData.Token
+                val xboxUhs = xboxTokenResponseData.DisplayClaims.xui[0].uhs
+
+                val xstsTokenResponse = httpClient.post("https://xsts.auth.xboxlive.com:443/xsts/authorize") {
+                    headers {
+                        append("x-xbl-contract-version", "1")
+                    }
+                    userAgent("TimezoneDB Authentication Agent/1.0 (+https://tzdb.synapsetech.dev)")
+                    contentType(ContentType.Application.Json)
+                    accept(ContentType.Application.Json)
+                    setBody(XstsTokenRequest(
+                        XstsTokenRequest.Companion.PropertiesData("RETAIL", listOf(xboxToken)),
+                        "rp://api.minecraftservices.com/",
+                        "JWT"
+                    ))
+                }
+                val xstsTokenResponseData: XboxTokenResponse = xstsTokenResponse.body()
+                val xstsToken = xstsTokenResponseData.Token
+
+                val minecraftTokenResponse = httpClient.post("https://api.minecraftservices.com:443/authentication/login_with_xbox") {
+                    userAgent("TimezoneDB Authentication Agent/1.0 (+https://tzdb.synapsetech.dev)")
+                    contentType(ContentType.Application.Json)
+                    accept(ContentType.Application.Json)
+                    setBody(MinecraftTokenRequest(
+                        "XBL3.0 x=${xboxUhs};${xstsToken}"
+                    ))
+                }
+
+                val minecraftTokenResponseData: MinecraftTokenResponse = minecraftTokenResponse.body()
+
+                val minecraftProfileResponse = httpClient.get("https://api.minecraftservices.com:443/minecraft/profile") {
+                    headers {
+                        append("Authorization", "Bearer ${minecraftTokenResponseData.access_token}")
+                    }
+                    userAgent("TimezoneDB Authentication Agent/1.0 (+https://tzdb.synapsetech.dev)")
+                    accept(ContentType.Application.Json)
+                }
+
+                val minecraftProfile: MinecraftProfile = minecraftProfileResponse.body()
+
+                val bi1 = BigInteger(minecraftProfile.id.substring(0, 16), 16)
+                val bi2 = BigInteger(minecraftProfile.id.substring(16, 32), 16)
+                val minecraftUUID = UUID(bi1.toLong(), bi2.toLong()).toString()
+
+                val possibleOtherUser = User.findByMinecraftUUID(minecraftUUID)
+                if (link) {
+                    if (possibleOtherUser != null && possibleOtherUser._id != userId) {
+                        call.respond(HttpStatusCode.BadRequest, "Account already linked")
+                        return@get
+                    }
+
+                    val thisUser = User.findById(userId!!)!!
+                    thisUser.minecraftUUID = minecraftUUID
+                    thisUser.save()
+                } else {
+                    call.respond(HttpStatusCode.BadRequest, "Cannot use Minecraft for login.")
+                }
+//
+                val token = genJwt(userId!!)
+                val webUri = Url(MainConfig.instance.webUrl).toURI().resolve("/?token=$token")
+                call.respondRedirect(webUri.toString())
+            }
+        }
     }
 }
 
@@ -510,4 +662,63 @@ fun Application.configureSecurity() {
 
 @Serializable data class TwitchResponse(
     val data: List<TwitchUser>,
+)
+
+@Serializable data class XboxTokenRequest(
+    val Properties: PropertiesData,
+    val RelyingParty: String,
+    val TokenType: String,
+) {
+    companion object {
+        @Serializable data class PropertiesData(
+            val AuthMethod: String,
+            val SiteName: String,
+            val RpsTicket: String, // Microsoft naming at its finest. This is a JWT.
+        )
+    }
+}
+
+@Serializable data class XboxTokenResponse(
+    val IssueInstant: String,
+    val NotAfter: String,
+    val Token: String,
+    val DisplayClaims: DisplayClaimsData,
+) {
+    companion object {
+        @Serializable data class DisplayClaimsData(
+            val xui: List<UserHashData>,
+        )
+
+        @Serializable data class UserHashData(
+            val uhs: String,
+        )
+    }
+}
+
+@Serializable data class XstsTokenRequest(
+    val Properties: PropertiesData,
+    val RelyingParty: String,
+    val TokenType: String
+) {
+    companion object {
+        @Serializable data class PropertiesData(
+            val SandboxId: String,
+            val UserTokens: List<String>,
+        )
+    }
+}
+
+@Serializable data class MinecraftTokenRequest(
+    val identityToken: String,
+    val ensureLegacyEnabled: Boolean = true,
+)
+
+@Serializable data class MinecraftTokenResponse(
+    val username: String,
+    val access_token: String,
+)
+
+@Serializable data class MinecraftProfile(
+    val name: String,
+    val id: String,
 )

@@ -130,4 +130,20 @@
 			}
 		}
 	}
+
+	&.xbox {
+		background-color: $xbox;
+
+		.linkTag {
+			color: $xbox;
+		}
+
+		&:hover:not(.disabled) {
+			background-color: darken($xbox, 10);
+
+			.linkTag {
+				color: darken($xbox, 10);
+			}
+		}
+	}
 }

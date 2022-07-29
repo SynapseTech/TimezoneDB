@@ -10,5 +10,6 @@ export interface User {
 	discordId?: number;
 	twitterId?: number;
 	twitchId?: number;
+	minecraftUUID?: number;
 	timezoneInfo: ZoneInfo;
 }

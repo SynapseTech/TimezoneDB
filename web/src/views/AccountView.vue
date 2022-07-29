@@ -1,72 +1,73 @@
 <script setup lang="ts">
-import {
-	faGithub,
-	faDiscord,
-	faTwitter,
-	faTwitch,
-} from '@fortawesome/free-brands-svg-icons';
-import { computed, onMounted, ref } from 'vue';
-import type { User, ZoneInfo } from '../lib/data';
-import {
-	getUser,
-	redirectLogin,
-	deleteAccount,
-	getZones,
-	patchUser,
-} from '../lib/api';
-// @ts-ignore
-import VueSelect from 'vue-multiselect';
-import Page from '../components/Page.vue';
+	import {
+		faGithub,
+		faDiscord,
+		faTwitter,
+		faTwitch,
+		faXbox,
+	} from '@fortawesome/free-brands-svg-icons';
+	import { computed, onMounted, ref } from 'vue';
+	import type { User, ZoneInfo } from '../lib/data';
+	import {
+		getUser,
+		redirectLogin,
+		deleteAccount,
+		getZones,
+		patchUser,
+	} from '../lib/api';
+	// @ts-ignore
+	import VueSelect from 'vue-multiselect';
+	import Page from '../components/Page.vue';
 
-const account = ref<User | undefined>();
-const zones = ref<ZoneInfo[]>([]);
-const selectedZoneId = ref<string>('utc');
+	const account = ref<User | undefined>();
+	const zones = ref<ZoneInfo[]>([]);
+	const selectedZoneId = ref<string>('utc');
 
-const toastColor = ref<'red' | 'green'>('green');
-const toastMessage = ref<string>('');
-const showToast = ref(false);
-const toastClass = computed(() => ({
-	toast: true,
-	[toastColor.value]: true,
-}));
+	const toastColor = ref<'red' | 'green'>('green');
+	const toastMessage = ref<string>('');
+	const showToast = ref(false);
+	const toastClass = computed(() => ({
+		toast: true,
+		[toastColor.value]: true,
+	}));
 
-onMounted(async () => {
-	account.value = await getUser();
-	console.log(account.value);
-	zones.value = await getZones();
-	selectedZoneId.value = account.value?.timezoneInfo.id ?? 'utc';
-});
+	onMounted(async () => {
+		account.value = await getUser();
+		console.log(account.value);
+		zones.value = await getZones();
+		selectedZoneId.value = account.value?.timezoneInfo.id ?? 'utc';
+	});
 
-function saveAccount() {
-	patchUser({ zoneId: selectedZoneId.value })
-		.then(async () => {
-			account.value = await getUser();
-			toastColor.value = 'green';
-			toastMessage.value = 'Account saved!';
-			showToast.value = true;
-			setTimeout(() => {
-				showToast.value = false;
-			}, 3000);
-		})
-		.catch(() => {
-			toastColor.value = 'red';
-			toastMessage.value = 'Could not save account!';
-			showToast.value = true;
-			setTimeout(() => {
-				showToast.value = false;
-			}, 3000);
-		});
-}
+	function saveAccount() {
+		patchUser({ zoneId: selectedZoneId.value })
+			.then(async () => {
+				account.value = await getUser();
+				toastColor.value = 'green';
+				toastMessage.value = 'Account saved!';
+				showToast.value = true;
+				setTimeout(() => {
+					showToast.value = false;
+				}, 3000);
+			})
+			.catch(() => {
+				toastColor.value = 'red';
+				toastMessage.value = 'Could not save account!';
+				showToast.value = true;
+				setTimeout(() => {
+					showToast.value = false;
+				}, 3000);
+			});
+	}
 
-const confirmationMessage = 'delete my account';
+	const confirmationMessage = 'delete my account';
 
-function confirmDeleteAccount() {
-	const answer = prompt(
-		`Please type "${confirmationMessage}" below to delete your account.`,
-	);
+	function confirmDeleteAccount() {
+		const answer = prompt(
+			`Please type "${confirmationMessage}" below to delete your account.`,
+		);
 
-	if (answer === confirmationMessage) deleteAccount();
-}
+		if (answer === confirmationMessage) deleteAccount();
+	}
 </script>
 
 <template>
@@ -131,6 +132,19 @@ function confirmDeleteAccount() {
 							account.twitchId ? 'Linked' : 'Not Linked'
 						}}</span>
 					</button>
+					<button
+						class="btn xbox"
+						@click="redirectLogin('microsoft', true)"
+					>
+						<font-awesome-icon
+							:icon="faXbox"
+							class="mr-2"
+						></font-awesome-icon>
+						Xbox/Microsoft
+						<span class="linkTag">{{
+							account.minecraftUUID ? 'Linked' : 'Not Linked'
+						}}</span>
+					</button>
 				</div>
 			</section>
 
@@ -172,49 +186,49 @@ function confirmDeleteAccount() {
 </template>
 
 <style scoped lang="scss">
-@import '../styles/button.scss';
+	@import '../styles/button.scss';
 
-.accounts {
-	@apply flex flex-wrap;
+	.accounts {
+		@apply flex flex-wrap;
 
-	.btn {
-		@apply mb-3;
+		.btn {
+			@apply mb-3;
 
-		&:last-of-type {
-			@apply mb-0 lg:mb-3;
+			&:last-of-type {
+				@apply mb-0 lg:mb-3;
+			}
+
+			&:not(:last-of-type) {
+				@apply lg:mr-3 inline-flex;
+			}
 		}
+	}
+
+	.toast {
+		@apply bottom-2 right-2 rounded text-white px-3 py-2 absolute;
+
+		&.red {
+			@apply bg-red-500;
+		}
+
+		&.green {
+			@apply bg-green-500;
+		}
+	}
+
+	.settingSection {
+		@apply flex flex-col items-center lg:items-start;
 
 		&:not(:last-of-type) {
-			@apply lg:mr-3 inline-flex;
+			@apply mb-8;
+		}
+
+		.heading {
+			@apply text-3xl mb-4 font-bold;
+		}
+
+		.description {
+			@apply mb-2 text-center lg:text-left;
 		}
 	}
-}
-
-.toast {
-	@apply bottom-2 right-2 rounded text-white px-3 py-2 absolute;
-
-	&.red {
-		@apply bg-red-500;
-	}
-
-	&.green {
-		@apply bg-green-500;
-	}
-}
-
-.settingSection {
-	@apply flex flex-col items-center lg:items-start;
-
-	&:not(:last-of-type) {
-		@apply mb-8;
-	}
-
-	.heading {
-		@apply text-3xl mb-4 font-bold;
-	}
-
-	.description {
-		@apply mb-2 text-center lg:text-left;
-	}
-}
 </style>

@@ -100,6 +100,17 @@ fun Route.userRoutes() {
                 if (user != null) call.respond(user.toApiJson())
                 else call.respond(HttpStatusCode.NotFound)
             }
+
+            get("/minecraft/{uuid}") {
+                val minecraftUUID = call.parameters["uuid"] ?: run {
+                    call.respond(HttpStatusCode.BadRequest)
+                    return@get
+                }
+
+                val user = User.findByMinecraftUUID(minecraftUUID)
+                if (user != null) call.respond(user.toApiJson())
+                else call.respond(HttpStatusCode.NotFound)
+            }
         }
     }
 }
