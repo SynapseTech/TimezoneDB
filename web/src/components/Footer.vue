@@ -29,6 +29,10 @@
 				Attribution
 			</router-link>
 
+			<router-link to="/dev/api" class="footerLink">
+				API Docs
+			</router-link>
+
 			<a class="footerLink" href="https://discord.gg/7vtx32JgMM">
 				Join our Discord
 			</a>
