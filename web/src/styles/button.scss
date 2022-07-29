@@ -1,4 +1,4 @@
-@import './colors.scss';
+@import 'colors';
 
 .btn {
 	@apply rounded text-white px-3 py-2 flex items-center w-full lg:w-auto justify-center;
@@ -90,7 +90,7 @@
 			color: $twitter;
 		}
 
-		&:hove:not(.disabled) {
+		&:hover:not(.disabled) {
 			background-color: darken($twitter, 10);
 
 			.linkTag {

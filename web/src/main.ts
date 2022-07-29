@@ -7,6 +7,8 @@ import router from './router';
 
 import 'vue-multiselect/dist/vue-multiselect.css';
 import './tailwind-include.css';
+import 'prismjs';
+import 'prismjs/themes/prism.css';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { fas } from '@fortawesome/free-solid-svg-icons';

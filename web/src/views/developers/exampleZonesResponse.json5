@@ -1,0 +1,6 @@
+[
+	{ id: 'Africa/Abidjan', offset: 0 },
+	{ id: 'Africa/Accra', offset: 0 },
+	{ id: 'Africa/Addis_Ababa', offset: 10800 },
+	// ...
+]
