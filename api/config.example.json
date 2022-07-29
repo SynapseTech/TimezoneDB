@@ -21,6 +21,11 @@
       "clientId": "",
       "clientSecret": "",
       "redirectUri": ""
+    },
+    "microsoft": {
+      "clientId": "",
+      "clientSecret": "",
+      "redirectUri": ""
     }
   },
   "database": {
