@@ -1336,9 +1336,10 @@ pify@^2.3.0:
   version "2.3.0"
   resolved "https://registry.npmjs.org/pify/-/pify-2.3.0.tgz"
 
-pinia-plugin-persistedstate@^1.6.3:
-  version "1.6.3"
-  resolved "https://registry.npmjs.org/pinia-plugin-persistedstate/-/pinia-plugin-persistedstate-1.6.3.tgz"
+pinia-plugin-persistedstate@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/pinia-plugin-persistedstate/-/pinia-plugin-persistedstate-2.0.1.tgz#a0a274013fabd2f9eecaae9056a0eb6792c4ac11"
+  integrity sha512-ch9tbtBVplUfIFCg3jk3HMeWNFDIfqAvTpkiPzjeeuB8CTV+Nr+FVvGIDs3O0h3khC3Mm2ITSOVCKEWslBFZaw==
 
 pinia@^2.0.17:
   version "2.0.17"
