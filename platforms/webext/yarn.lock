@@ -5073,9 +5073,9 @@ universalify@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/universalify/-/universalify-2.0.0.tgz"
 
-unplugin-auto-import@^0.10.2:
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/unplugin-auto-import/-/unplugin-auto-import-0.10.2.tgz#adb6139f6dadd64a50e489f200dae503af2fae14"
+unplugin-auto-import@^0.10.3:
+  version "0.10.3"
+  resolved "https://registry.yarnpkg.com/unplugin-auto-import/-/unplugin-auto-import-0.10.3.tgz#79e42247977618008d87ae20a919c99dc97672cb"
   dependencies:
     "@antfu/utils" "^0.5.2"
     "@rollup/pluginutils" "^4.2.1"
