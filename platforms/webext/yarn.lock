@@ -5124,9 +5124,9 @@ unplugin-icons@^0.14.8:
     local-pkg "^0.4.2"
     unplugin "^0.8.0"
 
-unplugin-vue-components@^0.21.2:
-  version "0.21.2"
-  resolved "https://registry.yarnpkg.com/unplugin-vue-components/-/unplugin-vue-components-0.21.2.tgz#d5b04b05e0521aa71fdfdba0b4ca392e3caa964d"
+unplugin-vue-components@^0.22.0:
+  version "0.22.0"
+  resolved "https://registry.yarnpkg.com/unplugin-vue-components/-/unplugin-vue-components-0.22.0.tgz#cbfc298fb64c2f4f22bb755c18aa3e67dca24b3f"
   dependencies:
     "@antfu/utils" "^0.5.2"
     "@rollup/pluginutils" "^4.2.1"
@@ -5137,20 +5137,11 @@ unplugin-vue-components@^0.21.2:
     magic-string "^0.26.2"
     minimatch "^5.1.0"
     resolve "^1.22.1"
-    unplugin "^0.7.2"
+    unplugin "^0.8.1"
 
-unplugin@^0.7.2:
-  version "0.7.2"
-  resolved "https://registry.npmjs.org/unplugin/-/unplugin-0.7.2.tgz"
-  dependencies:
-    acorn "^8.7.1"
-    chokidar "^3.5.3"
-    webpack-sources "^3.2.3"
-    webpack-virtual-modules "^0.4.4"
-
-unplugin@^0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/unplugin/-/unplugin-0.8.0.tgz#aeabac40e89fb69e5c9366b4821c3836d1b6ffce"
+unplugin@^0.8.0, unplugin@^0.8.1:
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/unplugin/-/unplugin-0.8.1.tgz#4517b6a8ec3d944e838f9c346921d9777cd159e1"
   dependencies:
     acorn "^8.8.0"
     chokidar "^3.5.3"
