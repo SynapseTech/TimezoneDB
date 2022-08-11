@@ -3605,12 +3605,21 @@ mkdirp@~0.5.1:
   dependencies:
     minimist "^1.2.6"
 
-mlly@^0.5.3, mlly@^0.5.5:
+mlly@^0.5.3:
   version "0.5.5"
   resolved "https://registry.npmjs.org/mlly/-/mlly-0.5.5.tgz"
   dependencies:
     pathe "^0.3.2"
     pkg-types "^0.3.3"
+
+mlly@^0.5.7:
+  version "0.5.9"
+  resolved "https://registry.yarnpkg.com/mlly/-/mlly-0.5.9.tgz#b6ebaea014e62d0e358a6c92c78387c4bd61d1e8"
+  dependencies:
+    acorn "^8.8.0"
+    pathe "^0.3.3"
+    pkg-types "^0.3.3"
+    ufo "^0.8.5"
 
 moment@^2.19.3:
   version "2.29.4"
@@ -4042,6 +4051,10 @@ path-type@^4.0.0:
 pathe@^0.3.0, pathe@^0.3.2:
   version "0.3.2"
   resolved "https://registry.npmjs.org/pathe/-/pathe-0.3.2.tgz"
+
+pathe@^0.3.3:
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/pathe/-/pathe-0.3.4.tgz#35bfb1e92373f98d9711cc74e7d6475a0654deae"
 
 pathval@^1.1.1:
   version "1.1.1"
@@ -5053,6 +5066,10 @@ typescript@^4.7.4:
   version "4.7.4"
   resolved "https://registry.npmjs.org/typescript/-/typescript-4.7.4.tgz"
 
+ufo@^0.8.5:
+  version "0.8.5"
+  resolved "https://registry.yarnpkg.com/ufo/-/ufo-0.8.5.tgz#e367b4205ece9d9723f2fa54f887d43ed1bce5d0"
+
 unbox-primitive@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmjs.org/unbox-primitive/-/unbox-primitive-1.0.2.tgz"
@@ -5062,20 +5079,20 @@ unbox-primitive@^1.0.2:
     has-symbols "^1.0.3"
     which-boxed-primitive "^1.0.2"
 
-unimport@^0.6.4:
-  version "0.6.4"
-  resolved "https://registry.yarnpkg.com/unimport/-/unimport-0.6.4.tgz#65ab496e41ac37952dad0c49394c64c62be6238a"
+unimport@^0.6.5:
+  version "0.6.7"
+  resolved "https://registry.yarnpkg.com/unimport/-/unimport-0.6.7.tgz#7b2e2063b88ee8ea363d2d751f7c82a6960beac3"
   dependencies:
     "@rollup/pluginutils" "^4.2.1"
     escape-string-regexp "^5.0.0"
     fast-glob "^3.2.11"
     local-pkg "^0.4.2"
     magic-string "^0.26.2"
-    mlly "^0.5.5"
-    pathe "^0.3.2"
+    mlly "^0.5.7"
+    pathe "^0.3.3"
     scule "^0.3.2"
     strip-literal "^0.4.0"
-    unplugin "^0.8.0"
+    unplugin "^0.9.0"
 
 unique-string@^3.0.0:
   version "3.0.0"
@@ -5101,16 +5118,16 @@ universalify@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/universalify/-/universalify-2.0.0.tgz"
 
-unplugin-auto-import@^0.10.3:
-  version "0.10.3"
-  resolved "https://registry.yarnpkg.com/unplugin-auto-import/-/unplugin-auto-import-0.10.3.tgz#79e42247977618008d87ae20a919c99dc97672cb"
+unplugin-auto-import@^0.11.1:
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/unplugin-auto-import/-/unplugin-auto-import-0.11.1.tgz#c77b0e29890ea5efd013a6f893d436765462e9f0"
   dependencies:
     "@antfu/utils" "^0.5.2"
     "@rollup/pluginutils" "^4.2.1"
     local-pkg "^0.4.2"
     magic-string "^0.26.2"
-    unimport "^0.6.4"
-    unplugin "^0.8.0"
+    unimport "^0.6.5"
+    unplugin "^0.9.0"
 
 unplugin-icons@^0.14.8:
   version "0.14.8"
@@ -5151,6 +5168,15 @@ unplugin@^0.7.2:
 unplugin@^0.8.0:
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/unplugin/-/unplugin-0.8.0.tgz#aeabac40e89fb69e5c9366b4821c3836d1b6ffce"
+  dependencies:
+    acorn "^8.8.0"
+    chokidar "^3.5.3"
+    webpack-sources "^3.2.3"
+    webpack-virtual-modules "^0.4.4"
+
+unplugin@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/unplugin/-/unplugin-0.9.0.tgz#ebad287d61aa1b1f16de60feea74e8dd12224819"
   dependencies:
     acorn "^8.8.0"
     chokidar "^3.5.3"
