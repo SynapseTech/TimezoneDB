@@ -171,9 +171,10 @@
     "@typescript-eslint/types" "5.25.0"
     eslint-visitor-keys "^3.3.0"
 
-"@vitejs/plugin-vue@^2.3.1":
-  version "2.3.3"
-  resolved "https://registry.npmjs.org/@vitejs/plugin-vue/-/plugin-vue-2.3.3.tgz"
+"@vitejs/plugin-vue@^2.3.4":
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/@vitejs/plugin-vue/-/plugin-vue-2.3.4.tgz#966a6279060eb2d9d1a02ea1a331af071afdcf9e"
+  integrity sha512-IfFNbtkbIm36O9KB8QodlwwYvTEsJb4Lll4c2IwB3VHc2gie2mSPtSzL0eYay7X2jd/2WX02FjSGTWR6OPr/zg==
 
 "@volar/code-gen@0.40.1":
   version "0.40.1"
@@ -1386,10 +1387,10 @@ pify@^2.3.0:
   version "2.3.0"
   resolved "https://registry.npmjs.org/pify/-/pify-2.3.0.tgz"
 
-pinia-plugin-persistedstate@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/pinia-plugin-persistedstate/-/pinia-plugin-persistedstate-2.1.0.tgz#4d7d9d21ed0b1e77fa082d714459d24943000405"
-  integrity sha512-qqFWulmvt2r07JqVwud+q9RyRgJrXQmu5pFtXogsV1Z1kHN1H5hxZfMmbezK6VpPPLTSnQ/dXd9c7NRc4Lfk9Q==
+pinia-plugin-persistedstate@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/pinia-plugin-persistedstate/-/pinia-plugin-persistedstate-2.1.1.tgz#584c416cdc278689ae9d49483621ec96dcb7d6ef"
+  integrity sha512-HUgsU5IRtM75eAQiIqzT3p1oPEuYH1/B2ipTMU++yE+FV0LkHaBswdKXs0RMWYCmugO8s62oxLTh/N1dLNp+5A==
 
 pinia@^2.0.17:
   version "2.0.17"
@@ -1542,10 +1543,10 @@ rxjs@^7.5.5:
   dependencies:
     tslib "^2.1.0"
 
-sass@^1.54.2:
-  version "1.54.2"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.54.2.tgz#574cad83814c930ef2475921b9cb5d8203ae8867"
-  integrity sha512-wbVV26sejsCIbBScZZtNkvnrB/bVCQ8hSlZ01D9nzsVh9zLqCkWrlpvTb3YEb6xsuNi9cx75hncqwikHFSz7tw==
+sass@^1.54.4:
+  version "1.54.4"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.54.4.tgz#803ff2fef5525f1dd01670c3915b4b68b6cba72d"
+  integrity sha512-3tmF16yvnBwtlPrNBHw/H907j8MlOX8aTBnlNX1yrKx24RKcJGPyLhFUwkoKBKesR3unP93/2z14Ll8NicwQUA==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
     immutable "^4.0.0"
