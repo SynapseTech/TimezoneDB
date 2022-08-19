@@ -5196,9 +5196,9 @@ vitest@^0.22.1:
     tinyspy "^1.0.2"
     vite "^2.9.12 || ^3.0.0-0"
 
-vue-demi@*, vue-demi@^0.13.6:
-  version "0.13.6"
-  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.13.6.tgz#f9433cbd75e68a970dec066647f4ba6c08ced48f"
+vue-demi@*, vue-demi@^0.13.8:
+  version "0.13.8"
+  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.13.8.tgz#5c568fb3b4d8f848acc658dfccd3d875035b5653"
 
 vue-eslint-parser@^9.0.1:
   version "9.0.3"
