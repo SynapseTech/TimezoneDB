@@ -80,7 +80,7 @@
 						>Add to Chrome</a
 					>
 					<RouterLink
-						to="/downloads"
+						to="/integrations"
 						class="btn green noFullMobile mt-2 ml-2"
 					>
 						Other Downloads

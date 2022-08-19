@@ -1,0 +1,113 @@
+.timezonedb-timezone:empty {
+	display: none !important;
+}
+
+:is(.message-2CShn3, .message-24k8JL) .timezonedb-timezone {
+	display: inline-block;
+	cursor: default;
+	height: 1.25rem;
+	line-height: 1.375rem;
+	font-size: 0.75rem;
+	font-weight: 500;
+	color: var(--text-muted);
+	user-select: none;
+}
+
+:is(.message-2CShn3, .message-24k8JL) .timezonedb-timezone span {
+	user-select: text;
+}
+
+/* Compact chat timezones */
+.message-2CShn3.compact-2Nkcau .timezonedb-timezone {
+	display: inline;
+	line-height: 0;
+	margin-left: -4px;
+	margin-right: 0.5rem;
+}
+
+/* Profile modal */
+/*
+.userInfoSection-q_35fn:first-child {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-column-gap: 16px;
+}
+.userInfoSection-q_35fn .userInfoSectionHeader-3TYk6R {
+  grid-row: 1;
+}
+.userInfoSection-q_35fn .note-367eZJ:last-child {
+  grid-column: 1 / 3;
+}
+.userBio-3tlrzS {
+  grid-row: 2;
+}
+.userBio-3tlrzS + .userInfoSectionHeader-3TYk6R {
+  grid-row: 3;
+  grid-column: 1 / 3;
+}
+.userBio-3tlrzS ~ .note-367eZJ {
+  grid-row: 4;
+  grid-column: 1 / 3;
+}
+*/
+
+/* Tooltip example */
+.timezonedb-example {
+	max-width: none;
+}
+
+.timezonedb-example ul {
+	list-style-type: disc;
+	padding-left: 15px;
+	margin-top: 2px;
+}
+
+.timezonedb-example li {
+	margin-left: 2px;
+}
+
+/* Setter modal */
+.timezonedb-modal .content-1LAB8Z {
+	overflow: visible !important;
+	margin-right: 8px;
+	z-index: 500;
+}
+.timezonedb-modal .footer-2gL1pp {
+	display: flex;
+	align-items: center;
+}
+
+/* Settings preview */
+.timezonedb-preview {
+	margin-bottom: 30px;
+}
+
+.timezonedb-preview,
+.timezonedb-preview :is(.avatar-2e8lTP, .pointerEvents-9SZWKj) {
+	pointer-events: none;
+}
+
+.timezonedb-preview a {
+	pointer-events: auto;
+}
+
+.timezonedb-preview .message-2CShn3 {
+	background: none !important;
+}
+
+.timezonedb-preview .buttonContainer-1502pf {
+	display: none;
+}
+
+/* Error boundary */
+.timezonedb-error {
+	padding: 20px;
+	margin-bottom: 20px;
+	color: var(--text-normal);
+	border-color: #f04747;
+	background-color: #f0474730;
+}
+
+.timezonedb-error p {
+	margin-top: 0;
+}
