@@ -20,9 +20,9 @@ const router = createRouter({
 			component: () => import('../views/LoginView.vue'),
 		},
 		{
-			path: '/downloads',
-			name: 'downloads',
-			component: () => import('../views/DownloadsView.vue'),
+			path: '/integrations',
+			name: 'integrations',
+			component: () => import('../views/IntegrationsView.vue'),
 		},
 		{
 			path: '/legal/attribution',

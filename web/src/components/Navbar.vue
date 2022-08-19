@@ -30,10 +30,10 @@
 				<RouterLink
 					class="item lightweight hiddenMobile"
 					active-class="active"
-					to="/downloads"
+					to="/integrations"
 				>
 					<div class="bottomBar" />
-					Downloads
+					Integrations
 				</RouterLink>
 			</div>
 
