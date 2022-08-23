@@ -14,7 +14,7 @@
 		"@fortawesome/free-brands-svg-icons": "^6.1.2",
 		"@fortawesome/free-solid-svg-icons": "^6.1.2",
 		"@fortawesome/vue-fontawesome": "3.0.1",
-		"@vueuse/core": "^9.1.0",
+		"@vueuse/core": "^9.1.1",
 		"pinia": "^2.0.20",
 		"pinia-plugin-persistedstate": "^2.1.1",
 		"prismjs": "^1.29.0",
