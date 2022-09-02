@@ -5105,9 +5105,9 @@ unplugin-auto-import@^0.11.2:
     unimport "^0.6.7"
     unplugin "^0.9.3"
 
-unplugin-icons@^0.14.8:
-  version "0.14.8"
-  resolved "https://registry.yarnpkg.com/unplugin-icons/-/unplugin-icons-0.14.8.tgz#0711f4a941fd6fc1308b8ddd33e316c3cd1f2546"
+unplugin-icons@^0.14.9:
+  version "0.14.9"
+  resolved "https://registry.yarnpkg.com/unplugin-icons/-/unplugin-icons-0.14.9.tgz#8ab967996032ad1bf8d99974340c850f09ff86a5"
   dependencies:
     "@antfu/install-pkg" "^0.1.0"
     "@antfu/utils" "^0.5.2"
@@ -5115,7 +5115,7 @@ unplugin-icons@^0.14.8:
     debug "^4.3.4"
     kolorist "^1.5.1"
     local-pkg "^0.4.2"
-    unplugin "^0.8.0"
+    unplugin "^0.9.5"
 
 unplugin-vue-components@^0.22.4:
   version "0.22.4"
@@ -5132,18 +5132,9 @@ unplugin-vue-components@^0.22.4:
     resolve "^1.22.1"
     unplugin "^0.9.0"
 
-unplugin@^0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/unplugin/-/unplugin-0.8.0.tgz#aeabac40e89fb69e5c9366b4821c3836d1b6ffce"
-  dependencies:
-    acorn "^8.8.0"
-    chokidar "^3.5.3"
-    webpack-sources "^3.2.3"
-    webpack-virtual-modules "^0.4.4"
-
-unplugin@^0.9.0, unplugin@^0.9.3:
-  version "0.9.3"
-  resolved "https://registry.yarnpkg.com/unplugin/-/unplugin-0.9.3.tgz#baeec1e3d70d18f693597ef3fcc441779e164e7f"
+unplugin@^0.9.0, unplugin@^0.9.3, unplugin@^0.9.5:
+  version "0.9.5"
+  resolved "https://registry.yarnpkg.com/unplugin/-/unplugin-0.9.5.tgz#2e546c044e0631e699ebd6fb521eeb7bbcb8899f"
   dependencies:
     acorn "^8.8.0"
     chokidar "^3.5.3"
