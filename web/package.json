@@ -12,14 +12,14 @@
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "^6.1.2",
 		"@fortawesome/free-brands-svg-icons": "^6.1.2",
-		"@fortawesome/free-solid-svg-icons": "^6.1.2",
+		"@fortawesome/free-solid-svg-icons": "^6.2.0",
 		"@fortawesome/vue-fontawesome": "3.0.1",
 		"@vueuse/core": "^9.1.1",
 		"pinia": "^2.0.21",
 		"pinia-plugin-persistedstate": "^2.1.1",
 		"prismjs": "^1.29.0",
 		"sass": "^1.54.6",
-		"vue": "^3.2.37",
+		"vue": "^3.2.38",
 		"vue-multiselect": "^3.0.0-alpha.2",
 		"vue-prism-component": "^2.0.0",
 		"vue-router": "^4.1.5"
@@ -41,7 +41,7 @@
 		"tailwindcss": "^3.1.8",
 		"typescript": "~4.8.2",
 		"vite": "^2.9.14",
-		"vue-tsc": "^0.40.4"
+		"vue-tsc": "^0.40.6"
 	},
 	"lint-staged": {
 		"**/*": "prettier --write --ignore-unknown"
