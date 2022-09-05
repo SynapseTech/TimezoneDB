@@ -545,22 +545,22 @@
   version "2.0.2"
   resolved "https://registry.npmjs.org/@vue/test-utils/-/test-utils-2.0.2.tgz"
 
-"@vueuse/core@^9.1.1":
-  version "9.1.1"
-  resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-9.1.1.tgz#a5c09c33ccee58cfd53bc3ec2d5a0d304155529e"
+"@vueuse/core@^9.2.0":
+  version "9.2.0"
+  resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-9.2.0.tgz#58e3588b9bc5a69010aa9104b00056ee9ebff738"
   dependencies:
     "@types/web-bluetooth" "^0.0.15"
-    "@vueuse/metadata" "9.1.1"
-    "@vueuse/shared" "9.1.1"
+    "@vueuse/metadata" "9.2.0"
+    "@vueuse/shared" "9.2.0"
     vue-demi "*"
 
-"@vueuse/metadata@9.1.1":
-  version "9.1.1"
-  resolved "https://registry.yarnpkg.com/@vueuse/metadata/-/metadata-9.1.1.tgz#b3fe4b97e62096f7566cd8eb107c503998b2c9a6"
+"@vueuse/metadata@9.2.0":
+  version "9.2.0"
+  resolved "https://registry.yarnpkg.com/@vueuse/metadata/-/metadata-9.2.0.tgz#6bf7c9c44b9f5ece405837226a0e04a997994458"
 
-"@vueuse/shared@9.1.1":
-  version "9.1.1"
-  resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-9.1.1.tgz#811f47629e281a19013ae6dcdf11ed3e1e91e023"
+"@vueuse/shared@9.2.0":
+  version "9.2.0"
+  resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-9.2.0.tgz#7831051b2c1d01c3413c749468ee53a86024510e"
   dependencies:
     vue-demi "*"
 
