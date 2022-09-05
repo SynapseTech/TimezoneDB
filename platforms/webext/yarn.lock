@@ -2,11 +2,11 @@
 # yarn lockfile v1
 
 
-"@antfu/eslint-config-basic@0.26.2":
-  version "0.26.2"
-  resolved "https://registry.yarnpkg.com/@antfu/eslint-config-basic/-/eslint-config-basic-0.26.2.tgz#6b7a0f412ba4d1ae6ab6fabb6b61fc2da73e06c6"
+"@antfu/eslint-config-basic@0.26.3":
+  version "0.26.3"
+  resolved "https://registry.yarnpkg.com/@antfu/eslint-config-basic/-/eslint-config-basic-0.26.3.tgz#51fd59a3ddd5adbfe2b38b5807d9ad647e70aefc"
   dependencies:
-    eslint-plugin-antfu "0.26.2"
+    eslint-plugin-antfu "0.26.3"
     eslint-plugin-eslint-comments "^3.2.0"
     eslint-plugin-html "^7.1.0"
     eslint-plugin-import "^2.26.0"
@@ -19,36 +19,36 @@
     jsonc-eslint-parser "^2.1.0"
     yaml-eslint-parser "^1.1.0"
 
-"@antfu/eslint-config-react@0.26.2":
-  version "0.26.2"
-  resolved "https://registry.yarnpkg.com/@antfu/eslint-config-react/-/eslint-config-react-0.26.2.tgz#d0787545930952ddad48d0dc687283fa236cad3e"
+"@antfu/eslint-config-react@0.26.3":
+  version "0.26.3"
+  resolved "https://registry.yarnpkg.com/@antfu/eslint-config-react/-/eslint-config-react-0.26.3.tgz#32fd76405ed42b96e027ad08ee7eb7b2fcc05223"
   dependencies:
-    "@antfu/eslint-config-ts" "0.26.2"
+    "@antfu/eslint-config-ts" "0.26.3"
     eslint-plugin-react "^7.31.1"
 
-"@antfu/eslint-config-ts@0.26.2":
-  version "0.26.2"
-  resolved "https://registry.yarnpkg.com/@antfu/eslint-config-ts/-/eslint-config-ts-0.26.2.tgz#fcbe47402150403edb42492fa87d1e61f49687d8"
+"@antfu/eslint-config-ts@0.26.3":
+  version "0.26.3"
+  resolved "https://registry.yarnpkg.com/@antfu/eslint-config-ts/-/eslint-config-ts-0.26.3.tgz#7f6310018592fd51d24c901a6ed7334da6aeb952"
   dependencies:
-    "@antfu/eslint-config-basic" "0.26.2"
-    "@typescript-eslint/eslint-plugin" "^5.35.1"
-    "@typescript-eslint/parser" "^5.35.1"
+    "@antfu/eslint-config-basic" "0.26.3"
+    "@typescript-eslint/eslint-plugin" "^5.36.1"
+    "@typescript-eslint/parser" "^5.36.1"
 
-"@antfu/eslint-config-vue@0.26.2":
-  version "0.26.2"
-  resolved "https://registry.yarnpkg.com/@antfu/eslint-config-vue/-/eslint-config-vue-0.26.2.tgz#d004977b5643addbae42e97e98fc6036e77b48ef"
+"@antfu/eslint-config-vue@0.26.3":
+  version "0.26.3"
+  resolved "https://registry.yarnpkg.com/@antfu/eslint-config-vue/-/eslint-config-vue-0.26.3.tgz#ebea72f4dc54d2cae674776d34e69263ccfb686f"
   dependencies:
-    "@antfu/eslint-config-ts" "0.26.2"
+    "@antfu/eslint-config-ts" "0.26.3"
     eslint-plugin-vue "^9.4.0"
 
-"@antfu/eslint-config@^0.26.2":
-  version "0.26.2"
-  resolved "https://registry.yarnpkg.com/@antfu/eslint-config/-/eslint-config-0.26.2.tgz#c91df85ad72b5649a300fa144461a7144e1a17c0"
+"@antfu/eslint-config@^0.26.3":
+  version "0.26.3"
+  resolved "https://registry.yarnpkg.com/@antfu/eslint-config/-/eslint-config-0.26.3.tgz#680290ced130de3cab91f96c6bcf82dc8e368533"
   dependencies:
-    "@antfu/eslint-config-react" "0.26.2"
-    "@antfu/eslint-config-vue" "0.26.2"
-    "@typescript-eslint/eslint-plugin" "^5.35.1"
-    "@typescript-eslint/parser" "^5.35.1"
+    "@antfu/eslint-config-react" "0.26.3"
+    "@antfu/eslint-config-vue" "0.26.3"
+    "@typescript-eslint/eslint-plugin" "^5.36.1"
+    "@typescript-eslint/parser" "^5.36.1"
     eslint-plugin-eslint-comments "^3.2.0"
     eslint-plugin-html "^7.1.0"
     eslint-plugin-import "^2.26.0"
@@ -354,7 +354,7 @@
   dependencies:
     "@types/node" "*"
 
-"@typescript-eslint/eslint-plugin@^5.35.1", "@typescript-eslint/eslint-plugin@^5.36.2":
+"@typescript-eslint/eslint-plugin@^5.36.1", "@typescript-eslint/eslint-plugin@^5.36.2":
   version "5.36.2"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-5.36.2.tgz#6df092a20e0f9ec748b27f293a12cb39d0c1fe4d"
   dependencies:
@@ -368,21 +368,14 @@
     semver "^7.3.7"
     tsutils "^3.21.0"
 
-"@typescript-eslint/parser@^5.35.1":
-  version "5.36.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-5.36.0.tgz#c08883073fb65acaafd268a987fd2314ce80c789"
+"@typescript-eslint/parser@^5.36.1":
+  version "5.36.2"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-5.36.2.tgz#3ddf323d3ac85a25295a55fcb9c7a49ab4680ddd"
   dependencies:
-    "@typescript-eslint/scope-manager" "5.36.0"
-    "@typescript-eslint/types" "5.36.0"
-    "@typescript-eslint/typescript-estree" "5.36.0"
+    "@typescript-eslint/scope-manager" "5.36.2"
+    "@typescript-eslint/types" "5.36.2"
+    "@typescript-eslint/typescript-estree" "5.36.2"
     debug "^4.3.4"
-
-"@typescript-eslint/scope-manager@5.36.0":
-  version "5.36.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/scope-manager/-/scope-manager-5.36.0.tgz#f4f859913add160318c0a5daccd3a030d1311530"
-  dependencies:
-    "@typescript-eslint/types" "5.36.0"
-    "@typescript-eslint/visitor-keys" "5.36.0"
 
 "@typescript-eslint/scope-manager@5.36.2":
   version "5.36.2"
@@ -400,25 +393,9 @@
     debug "^4.3.4"
     tsutils "^3.21.0"
 
-"@typescript-eslint/types@5.36.0":
-  version "5.36.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-5.36.0.tgz#cde7b94d1c09a4f074f46db99e7bd929fb0a5559"
-
 "@typescript-eslint/types@5.36.2":
   version "5.36.2"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-5.36.2.tgz#a5066e500ebcfcee36694186ccc57b955c05faf9"
-
-"@typescript-eslint/typescript-estree@5.36.0":
-  version "5.36.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-5.36.0.tgz#0acce61b4850bdb0e578f0884402726680608789"
-  dependencies:
-    "@typescript-eslint/types" "5.36.0"
-    "@typescript-eslint/visitor-keys" "5.36.0"
-    debug "^4.3.4"
-    globby "^11.1.0"
-    is-glob "^4.0.3"
-    semver "^7.3.7"
-    tsutils "^3.21.0"
 
 "@typescript-eslint/typescript-estree@5.36.2":
   version "5.36.2"
@@ -432,7 +409,7 @@
     semver "^7.3.7"
     tsutils "^3.21.0"
 
-"@typescript-eslint/utils@5.36.2", "@typescript-eslint/utils@^5.35.1":
+"@typescript-eslint/utils@5.36.2", "@typescript-eslint/utils@^5.36.1":
   version "5.36.2"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/utils/-/utils-5.36.2.tgz#b01a76f0ab244404c7aefc340c5015d5ce6da74c"
   dependencies:
@@ -442,13 +419,6 @@
     "@typescript-eslint/typescript-estree" "5.36.2"
     eslint-scope "^5.1.1"
     eslint-utils "^3.0.0"
-
-"@typescript-eslint/visitor-keys@5.36.0":
-  version "5.36.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/visitor-keys/-/visitor-keys-5.36.0.tgz#565d35a5ca00d00a406a942397ead2cb190663ba"
-  dependencies:
-    "@typescript-eslint/types" "5.36.0"
-    eslint-visitor-keys "^3.3.0"
 
 "@typescript-eslint/visitor-keys@5.36.2":
   version "5.36.2"
@@ -1930,11 +1900,11 @@ eslint-module-utils@^2.7.3:
     debug "^3.2.7"
     find-up "^2.1.0"
 
-eslint-plugin-antfu@0.26.2:
-  version "0.26.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-antfu/-/eslint-plugin-antfu-0.26.2.tgz#cb913bc8c71dd3b99f792cb6a976469ae0be0541"
+eslint-plugin-antfu@0.26.3:
+  version "0.26.3"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-antfu/-/eslint-plugin-antfu-0.26.3.tgz#b5a6ae10893fa2cdca0b0b365bafac5ce51bb2ad"
   dependencies:
-    "@typescript-eslint/utils" "^5.35.1"
+    "@typescript-eslint/utils" "^5.36.1"
 
 eslint-plugin-es@^4.1.0:
   version "4.1.0"
