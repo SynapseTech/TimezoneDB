@@ -26,7 +26,7 @@
 	},
 	"devDependencies": {
 		"@antfu/eslint-config": "^0.26.3",
-		"@iconify/json": "^2.1.103",
+		"@iconify/json": "^2.1.104",
 		"@types/dateformat": "^5.0.0",
 		"@types/fs-extra": "^9.0.13",
 		"@types/node": "^18.7.15",
