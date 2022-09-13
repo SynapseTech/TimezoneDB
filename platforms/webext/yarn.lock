@@ -564,20 +564,20 @@
   dependencies:
     vue-demi "*"
 
-"@windicss/config@1.8.7":
-  version "1.8.7"
-  resolved "https://registry.npmjs.org/@windicss/config/-/config-1.8.7.tgz"
+"@windicss/config@1.8.8":
+  version "1.8.8"
+  resolved "https://registry.yarnpkg.com/@windicss/config/-/config-1.8.8.tgz#296ede5ac54179c6e86c5b2746fa50de78e8eb65"
   dependencies:
     debug "^4.3.4"
     jiti "^1.14.0"
     windicss "^3.5.6"
 
-"@windicss/plugin-utils@1.8.7":
-  version "1.8.7"
-  resolved "https://registry.npmjs.org/@windicss/plugin-utils/-/plugin-utils-1.8.7.tgz"
+"@windicss/plugin-utils@1.8.8":
+  version "1.8.8"
+  resolved "https://registry.yarnpkg.com/@windicss/plugin-utils/-/plugin-utils-1.8.8.tgz#4764e68a39a09189f1b46047ab0057eac7c91c0d"
   dependencies:
     "@antfu/utils" "^0.5.2"
-    "@windicss/config" "1.8.7"
+    "@windicss/config" "1.8.8"
     debug "^4.3.4"
     fast-glob "^3.2.11"
     magic-string "^0.26.2"
@@ -5201,11 +5201,11 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-vite-plugin-windicss@^1.8.7:
-  version "1.8.7"
-  resolved "https://registry.npmjs.org/vite-plugin-windicss/-/vite-plugin-windicss-1.8.7.tgz"
+vite-plugin-windicss@^1.8.8:
+  version "1.8.8"
+  resolved "https://registry.yarnpkg.com/vite-plugin-windicss/-/vite-plugin-windicss-1.8.8.tgz#ff1adf7d1a1c38634c77a4c0125fa730d16138e7"
   dependencies:
-    "@windicss/plugin-utils" "1.8.7"
+    "@windicss/plugin-utils" "1.8.8"
     debug "^4.3.4"
     kolorist "^1.5.1"
     windicss "^3.5.6"
