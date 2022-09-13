@@ -179,9 +179,9 @@
   version "1.2.1"
   resolved "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
 
-"@iconify/json@^2.1.104":
-  version "2.1.104"
-  resolved "https://registry.yarnpkg.com/@iconify/json/-/json-2.1.104.tgz#5d0cfb1f31868499c759adca6f3840caea3ec057"
+"@iconify/json@^2.1.106":
+  version "2.1.106"
+  resolved "https://registry.yarnpkg.com/@iconify/json/-/json-2.1.106.tgz#7bd2fa0f2892c57f2b5f52663f9918c067473686"
   dependencies:
     "@iconify/types" "*"
     pathe "^0.3.0"
@@ -2284,9 +2284,9 @@ fast-deep-equal@^3.1.1, fast-deep-equal@^3.1.3:
   version "3.1.3"
   resolved "https://registry.npmjs.org/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz"
 
-fast-glob@^3.2.11, fast-glob@^3.2.9:
-  version "3.2.11"
-  resolved "https://registry.npmjs.org/fast-glob/-/fast-glob-3.2.11.tgz"
+fast-glob@^3.2.11, fast-glob@^3.2.12, fast-glob@^3.2.9:
+  version "3.2.12"
+  resolved "https://registry.yarnpkg.com/fast-glob/-/fast-glob-3.2.12.tgz#7f39ec99c2e6ab030337142da9e0c18f37afae80"
   dependencies:
     "@nodelib/fs.stat" "^2.0.2"
     "@nodelib/fs.walk" "^1.2.3"
@@ -3423,9 +3423,9 @@ magic-string@^0.25.7:
   dependencies:
     sourcemap-codec "^1.4.8"
 
-magic-string@^0.26.2:
-  version "0.26.2"
-  resolved "https://registry.npmjs.org/magic-string/-/magic-string-0.26.2.tgz"
+magic-string@^0.26.2, magic-string@^0.26.3:
+  version "0.26.3"
+  resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.26.3.tgz#25840b875140f7b4785ab06bddc384270b7dd452"
   dependencies:
     sourcemap-codec "^1.4.8"
 
@@ -5083,20 +5083,20 @@ unplugin-icons@^0.14.9:
     local-pkg "^0.4.2"
     unplugin "^0.9.5"
 
-unplugin-vue-components@^0.22.4:
-  version "0.22.4"
-  resolved "https://registry.yarnpkg.com/unplugin-vue-components/-/unplugin-vue-components-0.22.4.tgz#774a96339368f3b8436fa7c20e059d9fee42c983"
+unplugin-vue-components@^0.22.7:
+  version "0.22.7"
+  resolved "https://registry.yarnpkg.com/unplugin-vue-components/-/unplugin-vue-components-0.22.7.tgz#91c7e308fec33af83729fd22d51d81f18bb558b1"
   dependencies:
     "@antfu/utils" "^0.5.2"
     "@rollup/pluginutils" "^4.2.1"
     chokidar "^3.5.3"
     debug "^4.3.4"
-    fast-glob "^3.2.11"
+    fast-glob "^3.2.12"
     local-pkg "^0.4.2"
-    magic-string "^0.26.2"
+    magic-string "^0.26.3"
     minimatch "^5.1.0"
     resolve "^1.22.1"
-    unplugin "^0.9.0"
+    unplugin "^0.9.5"
 
 unplugin@^0.9.0, unplugin@^0.9.3, unplugin@^0.9.5:
   version "0.9.5"
