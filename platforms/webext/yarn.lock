@@ -344,9 +344,9 @@
   version "0.8.3"
   resolved "https://registry.yarnpkg.com/@types/webextension-polyfill/-/webextension-polyfill-0.8.3.tgz#eb601b3fcf524f0ecf7d7579ccbd237928d0dda7"
 
-"@types/webextension-polyfill@^0.9.0":
-  version "0.9.0"
-  resolved "https://registry.npmjs.org/@types/webextension-polyfill/-/webextension-polyfill-0.9.0.tgz"
+"@types/webextension-polyfill@^0.9.1":
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/@types/webextension-polyfill/-/webextension-polyfill-0.9.1.tgz#fcb5c352e2e461d0287774db89bc326b15b47844"
 
 "@types/yauzl@2.10.0":
   version "2.10.0"
