@@ -68,7 +68,7 @@
     execa "^5.1.1"
     find-up "^5.0.0"
 
-"@antfu/utils@^0.5.0", "@antfu/utils@^0.5.2":
+"@antfu/utils@^0.5.2":
   version "0.5.2"
   resolved "https://registry.npmjs.org/@antfu/utils/-/utils-0.5.2.tgz"
 
@@ -186,20 +186,24 @@
     "@iconify/types" "*"
     pathe "^0.3.0"
 
-"@iconify/types@*", "@iconify/types@^1.1.0":
+"@iconify/types@*":
   version "1.1.0"
   resolved "https://registry.npmjs.org/@iconify/types/-/types-1.1.0.tgz"
 
-"@iconify/utils@^1.0.33":
-  version "1.0.33"
-  resolved "https://registry.npmjs.org/@iconify/utils/-/utils-1.0.33.tgz"
+"@iconify/types@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@iconify/types/-/types-2.0.0.tgz#ab0e9ea681d6c8a1214f30cd741fe3a20cc57f57"
+
+"@iconify/utils@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@iconify/utils/-/utils-2.0.0.tgz#2a807c79b2dea549a014166c4311961935d25780"
   dependencies:
     "@antfu/install-pkg" "^0.1.0"
-    "@antfu/utils" "^0.5.0"
-    "@iconify/types" "^1.1.0"
+    "@antfu/utils" "^0.5.2"
+    "@iconify/types" "^2.0.0"
     debug "^4.3.4"
     kolorist "^1.5.1"
-    local-pkg "^0.4.1"
+    local-pkg "^0.4.2"
 
 "@mdn/browser-compat-data@5.1.8":
   version "5.1.8"
@@ -3345,7 +3349,7 @@ load-json-file@^4.0.0:
     pify "^3.0.0"
     strip-bom "^3.0.0"
 
-local-pkg@^0.4.1, local-pkg@^0.4.2:
+local-pkg@^0.4.2:
   version "0.4.2"
   resolved "https://registry.npmjs.org/local-pkg/-/local-pkg-0.4.2.tgz"
 
@@ -5105,15 +5109,15 @@ unplugin-auto-import@^0.11.2:
     unimport "^0.6.7"
     unplugin "^0.9.3"
 
-unplugin-icons@^0.14.9:
-  version "0.14.9"
-  resolved "https://registry.yarnpkg.com/unplugin-icons/-/unplugin-icons-0.14.9.tgz#8ab967996032ad1bf8d99974340c850f09ff86a5"
+unplugin-icons@^0.14.10:
+  version "0.14.10"
+  resolved "https://registry.yarnpkg.com/unplugin-icons/-/unplugin-icons-0.14.10.tgz#1a88898df10844439b461e8316fe0a21f4b9dd8e"
   dependencies:
     "@antfu/install-pkg" "^0.1.0"
     "@antfu/utils" "^0.5.2"
-    "@iconify/utils" "^1.0.33"
+    "@iconify/utils" "^2.0.0"
     debug "^4.3.4"
-    kolorist "^1.5.1"
+    kolorist "^1.6.0"
     local-pkg "^0.4.2"
     unplugin "^0.9.5"
 
