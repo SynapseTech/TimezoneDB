@@ -53,9 +53,9 @@
     jsonc-eslint-parser "^2.1.0"
     yaml-eslint-parser "^1.1.0"
 
-"@antfu/install-pkg@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.npmjs.org/@antfu/install-pkg/-/install-pkg-0.1.0.tgz"
+"@antfu/install-pkg@^0.1.0", "@antfu/install-pkg@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@antfu/install-pkg/-/install-pkg-0.1.1.tgz#157bb04f0de8100b9e4c01734db1a6c77e98bbb5"
   dependencies:
     execa "^5.1.1"
     find-up "^5.0.0"
@@ -4995,17 +4995,17 @@ unplugin-auto-import@^0.11.2:
     unimport "^0.6.7"
     unplugin "^0.9.3"
 
-unplugin-icons@^0.14.10:
-  version "0.14.10"
-  resolved "https://registry.yarnpkg.com/unplugin-icons/-/unplugin-icons-0.14.10.tgz#1a88898df10844439b461e8316fe0a21f4b9dd8e"
+unplugin-icons@^0.14.11:
+  version "0.14.11"
+  resolved "https://registry.yarnpkg.com/unplugin-icons/-/unplugin-icons-0.14.11.tgz#fc63a8a67b2700a0b95884a4fc7d14b8350cabd4"
   dependencies:
-    "@antfu/install-pkg" "^0.1.0"
+    "@antfu/install-pkg" "^0.1.1"
     "@antfu/utils" "^0.5.2"
     "@iconify/utils" "^2.0.0"
     debug "^4.3.4"
     kolorist "^1.6.0"
     local-pkg "^0.4.2"
-    unplugin "^0.9.5"
+    unplugin "^0.9.6"
 
 unplugin-vue-components@^0.22.7:
   version "0.22.7"
@@ -5022,14 +5022,14 @@ unplugin-vue-components@^0.22.7:
     resolve "^1.22.1"
     unplugin "^0.9.5"
 
-unplugin@^0.9.0, unplugin@^0.9.3, unplugin@^0.9.5:
-  version "0.9.5"
-  resolved "https://registry.yarnpkg.com/unplugin/-/unplugin-0.9.5.tgz#2e546c044e0631e699ebd6fb521eeb7bbcb8899f"
+unplugin@^0.9.0, unplugin@^0.9.3, unplugin@^0.9.5, unplugin@^0.9.6:
+  version "0.9.6"
+  resolved "https://registry.yarnpkg.com/unplugin/-/unplugin-0.9.6.tgz#f449173b619b9970bf3190d5419a66a727bb5d18"
   dependencies:
     acorn "^8.8.0"
     chokidar "^3.5.3"
     webpack-sources "^3.2.3"
-    webpack-virtual-modules "^0.4.4"
+    webpack-virtual-modules "^0.4.5"
 
 upath@2.0.1:
   version "2.0.1"
@@ -5239,9 +5239,9 @@ webpack-sources@^3.2.3:
   version "3.2.3"
   resolved "https://registry.npmjs.org/webpack-sources/-/webpack-sources-3.2.3.tgz"
 
-webpack-virtual-modules@^0.4.4:
-  version "0.4.4"
-  resolved "https://registry.npmjs.org/webpack-virtual-modules/-/webpack-virtual-modules-0.4.4.tgz"
+webpack-virtual-modules@^0.4.5:
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/webpack-virtual-modules/-/webpack-virtual-modules-0.4.5.tgz#e476842dab5eafb7beb844aa2f747fc12ebbf6ec"
 
 whatwg-encoding@^2.0.0:
   version "2.0.0"
