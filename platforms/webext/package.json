@@ -29,7 +29,7 @@
 		"@iconify/json": "^2.1.117",
 		"@types/dateformat": "^5.0.0",
 		"@types/fs-extra": "^9.0.13",
-		"@types/node": "^18.8.0",
+		"@types/node": "^18.8.2",
 		"@types/webextension-polyfill": "^0.9.1",
 		"@typescript-eslint/eslint-plugin": "^5.39.0",
 		"@vitejs/plugin-vue": "^2.3.4",
