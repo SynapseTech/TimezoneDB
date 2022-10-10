@@ -4910,7 +4910,7 @@ tiny-uid@^1.1.1:
   version "1.1.1"
   resolved "https://registry.npmjs.org/tiny-uid/-/tiny-uid-1.1.1.tgz"
 
-tinybench@^2.2.1:
+tinybench@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/tinybench/-/tinybench-2.3.0.tgz#febb2e697c735c0cdb8eb1e43cb1d2fa1821f983"
 
@@ -5258,9 +5258,9 @@ vite@^3.0.0:
   optionalDependencies:
     fsevents "~2.3.2"
 
-vitest@^0.24.0:
-  version "0.24.0"
-  resolved "https://registry.yarnpkg.com/vitest/-/vitest-0.24.0.tgz#61555b7b56e07f04a1692352de7d4803de0f5c88"
+vitest@^0.24.1:
+  version "0.24.1"
+  resolved "https://registry.yarnpkg.com/vitest/-/vitest-0.24.1.tgz#4b4ceb3d9c6710e8fb7a3b936b740f9c9f9cde10"
   dependencies:
     "@types/chai" "^4.3.3"
     "@types/chai-subset" "^1.3.3"
@@ -5269,7 +5269,7 @@ vitest@^0.24.0:
     debug "^4.3.4"
     local-pkg "^0.4.2"
     strip-literal "^0.4.2"
-    tinybench "^2.2.1"
+    tinybench "^2.3.0"
     tinypool "^0.3.0"
     tinyspy "^1.0.2"
     vite "^3.0.0"
