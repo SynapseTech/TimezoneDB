@@ -59,7 +59,7 @@
 		"vite": "^2.9.14",
 		"vite-plugin-windicss": "^1.8.8",
 		"vitest": "^0.24.1",
-		"vue": "^3.2.40",
+		"vue": "^3.2.41",
 		"vue-demi": "^0.13.11",
 		"web-ext": "^7.2.0",
 		"webext-bridge": "^5.0.5",
