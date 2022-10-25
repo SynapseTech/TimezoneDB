@@ -3281,9 +3281,9 @@ jsonc-eslint-parser@^2.0.4, jsonc-eslint-parser@^2.1.0:
     espree "^9.0.0"
     semver "^7.3.5"
 
-jsonc-parser@^3.0.0:
-  version "3.1.0"
-  resolved "https://registry.npmjs.org/jsonc-parser/-/jsonc-parser-3.1.0.tgz"
+jsonc-parser@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/jsonc-parser/-/jsonc-parser-3.2.0.tgz#31ff3f4c2b9793f89c67212627c51c6394f88e76"
 
 jsonfile@^6.0.1:
   version "6.1.0"
@@ -3555,7 +3555,7 @@ magic-string@^0.25.7:
   dependencies:
     sourcemap-codec "^1.4.8"
 
-magic-string@^0.26.2, magic-string@^0.26.7:
+magic-string@^0.26.2, magic-string@^0.26.4, magic-string@^0.26.7:
   version "0.26.7"
   resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.26.7.tgz#caf7daf61b34e9982f8228c4527474dac8981d6f"
   dependencies:
@@ -3679,20 +3679,13 @@ mkdirp@~0.5.1:
   dependencies:
     minimist "^1.2.6"
 
-mlly@^0.5.3:
-  version "0.5.5"
-  resolved "https://registry.npmjs.org/mlly/-/mlly-0.5.5.tgz"
-  dependencies:
-    pathe "^0.3.2"
-    pkg-types "^0.3.3"
-
-mlly@^0.5.7:
-  version "0.5.13"
-  resolved "https://registry.yarnpkg.com/mlly/-/mlly-0.5.13.tgz#2ee8fbaadda0fccad4d1096d024b1fb0aaeea11e"
+mlly@^0.5.14, mlly@^0.5.16:
+  version "0.5.16"
+  resolved "https://registry.yarnpkg.com/mlly/-/mlly-0.5.16.tgz#adb7d39fed81396a50b43173c88589de314015c7"
   dependencies:
     acorn "^8.8.0"
-    pathe "^0.3.4"
-    pkg-types "^0.3.3"
+    pathe "^0.3.8"
+    pkg-types "^0.3.5"
     ufo "^0.8.5"
 
 moment@^2.19.3:
@@ -4111,9 +4104,13 @@ path-type@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/path-type/-/path-type-4.0.0.tgz"
 
-pathe@^0.3.0, pathe@^0.3.2, pathe@^0.3.3, pathe@^0.3.4:
+pathe@^0.3.0:
   version "0.3.5"
   resolved "https://registry.yarnpkg.com/pathe/-/pathe-0.3.5.tgz#87e5c1164ded1bebeb9dea5dab63563144062303"
+
+pathe@^0.3.7, pathe@^0.3.8:
+  version "0.3.9"
+  resolved "https://registry.yarnpkg.com/pathe/-/pathe-0.3.9.tgz#4baff768f37f03e3d9341502865fb93116f65191"
 
 pathval@^1.1.1:
   version "1.1.1"
@@ -4181,13 +4178,13 @@ pino@8.6.1:
     sonic-boom "^3.1.0"
     thread-stream "^2.0.0"
 
-pkg-types@^0.3.3:
-  version "0.3.3"
-  resolved "https://registry.npmjs.org/pkg-types/-/pkg-types-0.3.3.tgz"
+pkg-types@^0.3.5:
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/pkg-types/-/pkg-types-0.3.5.tgz#ea01c7cf28da9e4c5b85de9b250de4b3dc2e9abc"
   dependencies:
-    jsonc-parser "^3.0.0"
-    mlly "^0.5.3"
-    pathe "^0.3.0"
+    jsonc-parser "^3.2.0"
+    mlly "^0.5.14"
+    pathe "^0.3.7"
 
 pluralize@^8.0.0:
   version "8.0.0"
@@ -4906,7 +4903,7 @@ strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.npmjs.org/strip-json-comments/-/strip-json-comments-2.0.1.tgz"
 
-strip-literal@^0.4.0, strip-literal@^0.4.2:
+strip-literal@^0.4.2:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/strip-literal/-/strip-literal-0.4.2.tgz#4f9fa6c38bb157b924e9ace7155ebf8a2342cbcf"
   dependencies:
@@ -5136,20 +5133,20 @@ unbox-primitive@^1.0.2:
     has-symbols "^1.0.3"
     which-boxed-primitive "^1.0.2"
 
-unimport@^0.6.7:
-  version "0.6.7"
-  resolved "https://registry.yarnpkg.com/unimport/-/unimport-0.6.7.tgz#7b2e2063b88ee8ea363d2d751f7c82a6960beac3"
+unimport@^0.6.8:
+  version "0.6.8"
+  resolved "https://registry.yarnpkg.com/unimport/-/unimport-0.6.8.tgz#5f1b770aa0cc0557c67c9b2187ad2d226fcc06c1"
   dependencies:
     "@rollup/pluginutils" "^4.2.1"
     escape-string-regexp "^5.0.0"
-    fast-glob "^3.2.11"
+    fast-glob "^3.2.12"
     local-pkg "^0.4.2"
-    magic-string "^0.26.2"
-    mlly "^0.5.7"
-    pathe "^0.3.3"
+    magic-string "^0.26.4"
+    mlly "^0.5.16"
+    pathe "^0.3.8"
     scule "^0.3.2"
-    strip-literal "^0.4.0"
-    unplugin "^0.9.0"
+    strip-literal "^0.4.2"
+    unplugin "^0.9.6"
 
 unique-string@^3.0.0:
   version "3.0.0"
@@ -5175,16 +5172,16 @@ universalify@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/universalify/-/universalify-2.0.0.tgz"
 
-unplugin-auto-import@^0.11.2:
-  version "0.11.2"
-  resolved "https://registry.yarnpkg.com/unplugin-auto-import/-/unplugin-auto-import-0.11.2.tgz#9b541f65e2800f298b13d73bca8e4eb333f94de7"
+unplugin-auto-import@^0.11.3:
+  version "0.11.3"
+  resolved "https://registry.yarnpkg.com/unplugin-auto-import/-/unplugin-auto-import-0.11.3.tgz#fd3a6a18461d6ec6d068abfe8d71f2776adc798f"
   dependencies:
-    "@antfu/utils" "^0.5.2"
-    "@rollup/pluginutils" "^4.2.1"
+    "@antfu/utils" "^0.6.0"
+    "@rollup/pluginutils" "^5.0.2"
     local-pkg "^0.4.2"
-    magic-string "^0.26.2"
-    unimport "^0.6.7"
-    unplugin "^0.9.3"
+    magic-string "^0.26.7"
+    unimport "^0.6.8"
+    unplugin "^0.10.1"
 
 unplugin-icons@^0.14.12:
   version "0.14.12"
@@ -5222,7 +5219,7 @@ unplugin@^0.10.1:
     webpack-sources "^3.2.3"
     webpack-virtual-modules "^0.4.5"
 
-unplugin@^0.9.0, unplugin@^0.9.3, unplugin@^0.9.6:
+unplugin@^0.9.6:
   version "0.9.6"
   resolved "https://registry.yarnpkg.com/unplugin/-/unplugin-0.9.6.tgz#f449173b619b9970bf3190d5419a66a727bb5d18"
   dependencies:
