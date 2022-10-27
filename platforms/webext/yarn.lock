@@ -187,9 +187,9 @@
   version "1.2.1"
   resolved "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
 
-"@iconify/json@^2.1.127":
-  version "2.1.127"
-  resolved "https://registry.yarnpkg.com/@iconify/json/-/json-2.1.127.tgz#bb08302618950d90269a31ce5abdf40a2faa5abc"
+"@iconify/json@^2.1.129":
+  version "2.1.129"
+  resolved "https://registry.yarnpkg.com/@iconify/json/-/json-2.1.129.tgz#70d4e22313a6f8ea94b1c448905eeac5c0aac528"
   dependencies:
     "@iconify/types" "*"
     pathe "^0.3.0"
@@ -4104,11 +4104,7 @@ path-type@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/path-type/-/path-type-4.0.0.tgz"
 
-pathe@^0.3.0:
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/pathe/-/pathe-0.3.5.tgz#87e5c1164ded1bebeb9dea5dab63563144062303"
-
-pathe@^0.3.7, pathe@^0.3.8:
+pathe@^0.3.0, pathe@^0.3.7, pathe@^0.3.8:
   version "0.3.9"
   resolved "https://registry.yarnpkg.com/pathe/-/pathe-0.3.9.tgz#4baff768f37f03e3d9341502865fb93116f65191"
 
