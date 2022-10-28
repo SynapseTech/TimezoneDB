@@ -38,7 +38,7 @@ dependencies {
     implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
 
     implementation("ch.qos.logback:logback-classic:$logback_version") // Logging
-    implementation("org.litote.kmongo:kmongo-serialization:4.7.1") // MongoDB
+    implementation("org.litote.kmongo:kmongo-serialization:4.7.2") // MongoDB
     implementation("xyz.downgoon:snowflake:1.0.0") // ID generation
     implementation("com.google.guava:guava:31.1-jre") // Guava
 
