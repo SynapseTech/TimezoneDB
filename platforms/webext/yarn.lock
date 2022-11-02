@@ -64,9 +64,9 @@
   version "0.5.2"
   resolved "https://registry.npmjs.org/@antfu/utils/-/utils-0.5.2.tgz"
 
-"@antfu/utils@^0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@antfu/utils/-/utils-0.6.0.tgz#c555b859843127853ffbe1adde25f6a365daa820"
+"@antfu/utils@^0.6.0", "@antfu/utils@^0.6.2":
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/@antfu/utils/-/utils-0.6.2.tgz#7702df28b999db92e412b7ddbbfdc81dfcfc7797"
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.16.0":
   version "7.16.7"
@@ -5173,17 +5173,17 @@ unplugin-auto-import@^0.11.4:
     unimport "^0.7.0"
     unplugin "^0.10.2"
 
-unplugin-icons@^0.14.12:
-  version "0.14.12"
-  resolved "https://registry.yarnpkg.com/unplugin-icons/-/unplugin-icons-0.14.12.tgz#6ebd7a79bd0b1a3d21d71a358f26ea9aac3640a7"
+unplugin-icons@^0.14.13:
+  version "0.14.13"
+  resolved "https://registry.yarnpkg.com/unplugin-icons/-/unplugin-icons-0.14.13.tgz#6d3882a25f4614447fed4489a18b1ccde5031ea3"
   dependencies:
     "@antfu/install-pkg" "^0.1.1"
-    "@antfu/utils" "^0.5.2"
+    "@antfu/utils" "^0.6.2"
     "@iconify/utils" "^2.0.1"
     debug "^4.3.4"
     kolorist "^1.6.0"
     local-pkg "^0.4.2"
-    unplugin "^0.9.6"
+    unplugin "^0.10.2"
 
 unplugin-vue-components@^0.22.9:
   version "0.22.9"
@@ -5203,15 +5203,6 @@ unplugin-vue-components@^0.22.9:
 unplugin@^0.10.1, unplugin@^0.10.2:
   version "0.10.2"
   resolved "https://registry.yarnpkg.com/unplugin/-/unplugin-0.10.2.tgz#0f7089c3666f592cc448d746e39e7f41e9afb01a"
-  dependencies:
-    acorn "^8.8.0"
-    chokidar "^3.5.3"
-    webpack-sources "^3.2.3"
-    webpack-virtual-modules "^0.4.5"
-
-unplugin@^0.9.6:
-  version "0.9.6"
-  resolved "https://registry.yarnpkg.com/unplugin/-/unplugin-0.9.6.tgz#f449173b619b9970bf3190d5419a66a727bb5d18"
   dependencies:
     acorn "^8.8.0"
     chokidar "^3.5.3"
