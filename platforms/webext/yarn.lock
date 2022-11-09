@@ -2,43 +2,44 @@
 # yarn lockfile v1
 
 
-"@antfu/eslint-config-basic@0.27.0":
-  version "0.27.0"
-  resolved "https://registry.yarnpkg.com/@antfu/eslint-config-basic/-/eslint-config-basic-0.27.0.tgz#8b44d5e3f8baa6cb7e283bc439fb0c29330953b0"
+"@antfu/eslint-config-basic@0.29.4":
+  version "0.29.4"
+  resolved "https://registry.yarnpkg.com/@antfu/eslint-config-basic/-/eslint-config-basic-0.29.4.tgz#f467645f637c2b7d3ba4e9864710b20dd7f078e4"
   dependencies:
-    eslint-plugin-antfu "0.27.0"
+    eslint-plugin-antfu "0.29.4"
     eslint-plugin-eslint-comments "^3.2.0"
     eslint-plugin-html "^7.1.0"
     eslint-plugin-import "^2.26.0"
     eslint-plugin-jsonc "^2.4.0"
     eslint-plugin-markdown "^3.0.0"
     eslint-plugin-n "^15.2.5"
+    eslint-plugin-no-only-tests "^3.1.0"
     eslint-plugin-promise "^6.0.1"
     eslint-plugin-unicorn "^43.0.2"
     eslint-plugin-yml "^1.1.0"
     jsonc-eslint-parser "^2.1.0"
     yaml-eslint-parser "^1.1.0"
 
-"@antfu/eslint-config-ts@0.27.0":
-  version "0.27.0"
-  resolved "https://registry.yarnpkg.com/@antfu/eslint-config-ts/-/eslint-config-ts-0.27.0.tgz#eb1dcf0ac660d756c2b607c77d13dc4bb723aa78"
+"@antfu/eslint-config-ts@0.29.4":
+  version "0.29.4"
+  resolved "https://registry.yarnpkg.com/@antfu/eslint-config-ts/-/eslint-config-ts-0.29.4.tgz#d9a95f4cd6b89f4ac39a4142d4a8b16e524ce1b8"
   dependencies:
-    "@antfu/eslint-config-basic" "0.27.0"
+    "@antfu/eslint-config-basic" "0.29.4"
     "@typescript-eslint/eslint-plugin" "^5.36.1"
     "@typescript-eslint/parser" "^5.36.1"
 
-"@antfu/eslint-config-vue@0.27.0":
-  version "0.27.0"
-  resolved "https://registry.yarnpkg.com/@antfu/eslint-config-vue/-/eslint-config-vue-0.27.0.tgz#5ac79b40705793b77cb6a179b624fcdc58fbd99f"
+"@antfu/eslint-config-vue@0.29.4":
+  version "0.29.4"
+  resolved "https://registry.yarnpkg.com/@antfu/eslint-config-vue/-/eslint-config-vue-0.29.4.tgz#f9e2b71fb21350666501989a648dd13ab7404c80"
   dependencies:
-    "@antfu/eslint-config-ts" "0.27.0"
+    "@antfu/eslint-config-ts" "0.29.4"
     eslint-plugin-vue "^9.4.0"
 
-"@antfu/eslint-config@^0.27.0":
-  version "0.27.0"
-  resolved "https://registry.yarnpkg.com/@antfu/eslint-config/-/eslint-config-0.27.0.tgz#104491b7acdd47ee54326f784542405e06e8bc5a"
+"@antfu/eslint-config@^0.29.4":
+  version "0.29.4"
+  resolved "https://registry.yarnpkg.com/@antfu/eslint-config/-/eslint-config-0.29.4.tgz#42fba84d5c7fd32c8a5434cda6bebbc2e86e4447"
   dependencies:
-    "@antfu/eslint-config-vue" "0.27.0"
+    "@antfu/eslint-config-vue" "0.29.4"
     "@typescript-eslint/eslint-plugin" "^5.36.1"
     "@typescript-eslint/parser" "^5.36.1"
     eslint-plugin-eslint-comments "^3.2.0"
@@ -2051,9 +2052,9 @@ eslint-module-utils@^2.7.3:
     debug "^3.2.7"
     find-up "^2.1.0"
 
-eslint-plugin-antfu@0.27.0:
-  version "0.27.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-antfu/-/eslint-plugin-antfu-0.27.0.tgz#4c5bec54df263f2302d727964e1c84dcd36ddcb5"
+eslint-plugin-antfu@0.29.4:
+  version "0.29.4"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-antfu/-/eslint-plugin-antfu-0.29.4.tgz#4dbe6f77255d0b017acaca6ca309abf9d1fed181"
   dependencies:
     "@typescript-eslint/utils" "^5.36.1"
 
@@ -2121,6 +2122,10 @@ eslint-plugin-n@^15.2.5:
     minimatch "^3.1.2"
     resolve "^1.22.1"
     semver "^7.3.7"
+
+eslint-plugin-no-only-tests@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-no-only-tests/-/eslint-plugin-no-only-tests-3.1.0.tgz#f38e4935c6c6c4842bf158b64aaa20c366fe171b"
 
 eslint-plugin-no-unsanitized@4.0.1:
   version "4.0.1"
