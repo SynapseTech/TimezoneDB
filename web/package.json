@@ -19,7 +19,7 @@
 		"pinia-plugin-persistedstate": "^2.3.0",
 		"prismjs": "^1.29.0",
 		"sass": "^1.56.1",
-		"vue": "^3.2.43",
+		"vue": "^3.2.44",
 		"vue-multiselect": "^3.0.0-alpha.2",
 		"vue-prism-component": "^2.0.0",
 		"vue-router": "^4.1.6"
