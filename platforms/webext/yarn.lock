@@ -490,6 +490,15 @@
     estree-walker "^2.0.2"
     source-map "^0.6.1"
 
+"@vue/compiler-core@3.2.44":
+  version "3.2.44"
+  resolved "https://registry.yarnpkg.com/@vue/compiler-core/-/compiler-core-3.2.44.tgz#9ce3044db28b4b3d5de20cf345ad952f9303e91f"
+  dependencies:
+    "@babel/parser" "^7.16.4"
+    "@vue/shared" "3.2.44"
+    estree-walker "^2.0.2"
+    source-map "^0.6.1"
+
 "@vue/compiler-dom@3.2.43":
   version "3.2.43"
   resolved "https://registry.yarnpkg.com/@vue/compiler-dom/-/compiler-dom-3.2.43.tgz#4e6b0941e67888281e827804af6a8b7aaff9619d"
@@ -497,7 +506,14 @@
     "@vue/compiler-core" "3.2.43"
     "@vue/shared" "3.2.43"
 
-"@vue/compiler-sfc@3.2.43", "@vue/compiler-sfc@^3.2.38":
+"@vue/compiler-dom@3.2.44":
+  version "3.2.44"
+  resolved "https://registry.yarnpkg.com/@vue/compiler-dom/-/compiler-dom-3.2.44.tgz#0fac337a8a6b3cae586aa8cac62e418aa4c79a83"
+  dependencies:
+    "@vue/compiler-core" "3.2.44"
+    "@vue/shared" "3.2.44"
+
+"@vue/compiler-sfc@3.2.43":
   version "3.2.43"
   resolved "https://registry.yarnpkg.com/@vue/compiler-sfc/-/compiler-sfc-3.2.43.tgz#441bf77c1e8d72ed5924f79db45947d28267a52c"
   dependencies:
@@ -512,12 +528,34 @@
     postcss "^8.1.10"
     source-map "^0.6.1"
 
+"@vue/compiler-sfc@^3.2.44":
+  version "3.2.44"
+  resolved "https://registry.yarnpkg.com/@vue/compiler-sfc/-/compiler-sfc-3.2.44.tgz#3cc87afdd39d1d9294b45bdd3402ef405d2b0938"
+  dependencies:
+    "@babel/parser" "^7.16.4"
+    "@vue/compiler-core" "3.2.44"
+    "@vue/compiler-dom" "3.2.44"
+    "@vue/compiler-ssr" "3.2.44"
+    "@vue/reactivity-transform" "3.2.44"
+    "@vue/shared" "3.2.44"
+    estree-walker "^2.0.2"
+    magic-string "^0.25.7"
+    postcss "^8.1.10"
+    source-map "^0.6.1"
+
 "@vue/compiler-ssr@3.2.43":
   version "3.2.43"
   resolved "https://registry.yarnpkg.com/@vue/compiler-ssr/-/compiler-ssr-3.2.43.tgz#68d4b80ea6ceefa8d1514f67caadf314df7ddfe0"
   dependencies:
     "@vue/compiler-dom" "3.2.43"
     "@vue/shared" "3.2.43"
+
+"@vue/compiler-ssr@3.2.44":
+  version "3.2.44"
+  resolved "https://registry.yarnpkg.com/@vue/compiler-ssr/-/compiler-ssr-3.2.44.tgz#efba77f4df4ea1727752637764f9d10498daa7df"
+  dependencies:
+    "@vue/compiler-dom" "3.2.44"
+    "@vue/shared" "3.2.44"
 
 "@vue/reactivity-transform@3.2.43":
   version "3.2.43"
@@ -526,6 +564,16 @@
     "@babel/parser" "^7.16.4"
     "@vue/compiler-core" "3.2.43"
     "@vue/shared" "3.2.43"
+    estree-walker "^2.0.2"
+    magic-string "^0.25.7"
+
+"@vue/reactivity-transform@3.2.44":
+  version "3.2.44"
+  resolved "https://registry.yarnpkg.com/@vue/reactivity-transform/-/reactivity-transform-3.2.44.tgz#dab1175ee8ef1fa7e9d3d9ffe177ed03f70d4021"
+  dependencies:
+    "@babel/parser" "^7.16.4"
+    "@vue/compiler-core" "3.2.44"
+    "@vue/shared" "3.2.44"
     estree-walker "^2.0.2"
     magic-string "^0.25.7"
 
@@ -560,6 +608,10 @@
 "@vue/shared@3.2.43":
   version "3.2.43"
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.2.43.tgz#e2717e60cc3a761f8df76e5361f36fd597428db3"
+
+"@vue/shared@3.2.44":
+  version "3.2.44"
+  resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.2.44.tgz#d180eae83de86a48a3a0b6aaded546683443ca57"
 
 "@vue/test-utils@^2.2.1":
   version "2.2.1"
@@ -4196,25 +4248,9 @@ postcss-selector-parser@^6.0.9:
     cssesc "^3.0.0"
     util-deprecate "^1.0.2"
 
-postcss@8.4.18:
+postcss@8.4.18, postcss@^8.1.10, postcss@^8.4.13, postcss@^8.4.16:
   version "8.4.18"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.18.tgz#6d50046ea7d3d66a85e0e782074e7203bc7fbca2"
-  dependencies:
-    nanoid "^3.3.4"
-    picocolors "^1.0.0"
-    source-map-js "^1.0.2"
-
-postcss@^8.1.10, postcss@^8.4.13:
-  version "8.4.16"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.16.tgz#33a1d675fac39941f5f445db0de4db2b6e01d43c"
-  dependencies:
-    nanoid "^3.3.4"
-    picocolors "^1.0.0"
-    source-map-js "^1.0.2"
-
-postcss@^8.4.16:
-  version "8.4.17"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.17.tgz#f87863ec7cd353f81f7ab2dec5d67d861bbb1be5"
   dependencies:
     nanoid "^3.3.4"
     picocolors "^1.0.0"
