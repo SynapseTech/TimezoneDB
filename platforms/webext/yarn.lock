@@ -2,11 +2,11 @@
 # yarn lockfile v1
 
 
-"@antfu/eslint-config-basic@0.30.1":
-  version "0.30.1"
-  resolved "https://registry.yarnpkg.com/@antfu/eslint-config-basic/-/eslint-config-basic-0.30.1.tgz#76cc50ace757738017c31d857e8d1943e8ec80bc"
+"@antfu/eslint-config-basic@0.31.0":
+  version "0.31.0"
+  resolved "https://registry.yarnpkg.com/@antfu/eslint-config-basic/-/eslint-config-basic-0.31.0.tgz#24ba3d6e4daa4a9832f338799e90c00e404d8c19"
   dependencies:
-    eslint-plugin-antfu "0.30.1"
+    eslint-plugin-antfu "0.31.0"
     eslint-plugin-eslint-comments "^3.2.0"
     eslint-plugin-html "^7.1.0"
     eslint-plugin-import "^2.26.0"
@@ -20,30 +20,30 @@
     jsonc-eslint-parser "^2.1.0"
     yaml-eslint-parser "^1.1.0"
 
-"@antfu/eslint-config-ts@0.30.1":
-  version "0.30.1"
-  resolved "https://registry.yarnpkg.com/@antfu/eslint-config-ts/-/eslint-config-ts-0.30.1.tgz#69246f9f4afdf4049195b8910c3de868cf83230b"
+"@antfu/eslint-config-ts@0.31.0":
+  version "0.31.0"
+  resolved "https://registry.yarnpkg.com/@antfu/eslint-config-ts/-/eslint-config-ts-0.31.0.tgz#fc1841d112f5d9f70f7f2db23978e50c6010b8d6"
   dependencies:
-    "@antfu/eslint-config-basic" "0.30.1"
-    "@typescript-eslint/eslint-plugin" "^5.42.1"
-    "@typescript-eslint/parser" "^5.42.1"
+    "@antfu/eslint-config-basic" "0.31.0"
+    "@typescript-eslint/eslint-plugin" "^5.43.0"
+    "@typescript-eslint/parser" "^5.43.0"
 
-"@antfu/eslint-config-vue@0.30.1":
-  version "0.30.1"
-  resolved "https://registry.yarnpkg.com/@antfu/eslint-config-vue/-/eslint-config-vue-0.30.1.tgz#7ec7c4e18dcbef1fbced012531f6733b84dc233f"
+"@antfu/eslint-config-vue@0.31.0":
+  version "0.31.0"
+  resolved "https://registry.yarnpkg.com/@antfu/eslint-config-vue/-/eslint-config-vue-0.31.0.tgz#7a013af96b904dcabc68b604cc45508cb7a250dd"
   dependencies:
-    "@antfu/eslint-config-basic" "0.30.1"
-    "@antfu/eslint-config-ts" "0.30.1"
+    "@antfu/eslint-config-basic" "0.31.0"
+    "@antfu/eslint-config-ts" "0.31.0"
     eslint-plugin-vue "^9.7.0"
     local-pkg "^0.4.2"
 
-"@antfu/eslint-config@^0.30.1":
-  version "0.30.1"
-  resolved "https://registry.yarnpkg.com/@antfu/eslint-config/-/eslint-config-0.30.1.tgz#4aae4368c76342a93ffee7d9915fe0349598ddfe"
+"@antfu/eslint-config@^0.31.0":
+  version "0.31.0"
+  resolved "https://registry.yarnpkg.com/@antfu/eslint-config/-/eslint-config-0.31.0.tgz#af394a061821d0d4b4d03fcd835c07630c1342f1"
   dependencies:
-    "@antfu/eslint-config-vue" "0.30.1"
-    "@typescript-eslint/eslint-plugin" "^5.42.1"
-    "@typescript-eslint/parser" "^5.42.1"
+    "@antfu/eslint-config-vue" "0.31.0"
+    "@typescript-eslint/eslint-plugin" "^5.43.0"
+    "@typescript-eslint/parser" "^5.43.0"
     eslint-plugin-eslint-comments "^3.2.0"
     eslint-plugin-html "^7.1.0"
     eslint-plugin-import "^2.26.0"
@@ -374,7 +374,7 @@
   dependencies:
     "@types/node" "*"
 
-"@typescript-eslint/eslint-plugin@^5.42.1", "@typescript-eslint/eslint-plugin@^5.43.0":
+"@typescript-eslint/eslint-plugin@^5.43.0":
   version "5.43.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-5.43.0.tgz#4a5248eb31b454715ddfbf8cfbf497529a0a78bc"
   dependencies:
@@ -388,7 +388,7 @@
     semver "^7.3.7"
     tsutils "^3.21.0"
 
-"@typescript-eslint/parser@^5.42.1":
+"@typescript-eslint/parser@^5.43.0":
   version "5.43.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-5.43.0.tgz#9c86581234b88f2ba406f0b99a274a91c11630fd"
   dependencies:
@@ -429,7 +429,7 @@
     semver "^7.3.7"
     tsutils "^3.21.0"
 
-"@typescript-eslint/utils@5.43.0", "@typescript-eslint/utils@^5.42.1":
+"@typescript-eslint/utils@5.43.0", "@typescript-eslint/utils@^5.43.0":
   version "5.43.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/utils/-/utils-5.43.0.tgz#00fdeea07811dbdf68774a6f6eacfee17fcc669f"
   dependencies:
@@ -2028,11 +2028,11 @@ eslint-module-utils@^2.7.3:
     debug "^3.2.7"
     find-up "^2.1.0"
 
-eslint-plugin-antfu@0.30.1:
-  version "0.30.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-antfu/-/eslint-plugin-antfu-0.30.1.tgz#134b9054957cb2109ad4ddc8286b8f8b53f05fd5"
+eslint-plugin-antfu@0.31.0:
+  version "0.31.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-antfu/-/eslint-plugin-antfu-0.31.0.tgz#49577d9ef0bd8f089a511749883d7f614cea2969"
   dependencies:
-    "@typescript-eslint/utils" "^5.42.1"
+    "@typescript-eslint/utils" "^5.43.0"
 
 eslint-plugin-es@^4.1.0:
   version "4.1.0"
