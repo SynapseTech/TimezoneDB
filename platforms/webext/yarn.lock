@@ -533,9 +533,9 @@
   version "3.2.45"
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.2.45.tgz#a3fffa7489eafff38d984e23d0236e230c818bc2"
 
-"@vue/test-utils@^2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@vue/test-utils/-/test-utils-2.2.1.tgz#c16061e081e0f1d3d5a126b79ae93d2abb6d2c17"
+"@vue/test-utils@^2.2.3":
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/@vue/test-utils/-/test-utils-2.2.3.tgz#101ad79e920a80df14353fe7afae0b23b5772413"
 
 "@vueuse/core@^9.5.0":
   version "9.5.0"
