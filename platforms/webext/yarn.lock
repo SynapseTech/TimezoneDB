@@ -190,9 +190,9 @@
   version "1.2.1"
   resolved "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
 
-"@iconify/json@^2.1.140":
-  version "2.1.140"
-  resolved "https://registry.yarnpkg.com/@iconify/json/-/json-2.1.140.tgz#b2ba6351229b034dc31736cfd26c451ec8075c2b"
+"@iconify/json@^2.1.145":
+  version "2.1.145"
+  resolved "https://registry.yarnpkg.com/@iconify/json/-/json-2.1.145.tgz#19a9132e52c11d5bff6e15ea20d99eb161b60edc"
   dependencies:
     "@iconify/types" "*"
     pathe "^0.3.0"
