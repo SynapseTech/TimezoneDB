@@ -35,7 +35,7 @@
 		"@vitejs/plugin-vue": "^2.3.4",
 		"@vue/compiler-sfc": "^3.2.45",
 		"@vue/test-utils": "^2.2.3",
-		"@vueuse/core": "^9.5.0",
+		"@vueuse/core": "^9.10.0",
 		"bestzip": "^2.2.1",
 		"chokidar": "^3.5.3",
 		"cross-env": "^7.0.3",
