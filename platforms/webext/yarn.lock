@@ -67,10 +67,6 @@
   version "0.5.2"
   resolved "https://registry.npmjs.org/@antfu/utils/-/utils-0.5.2.tgz"
 
-"@antfu/utils@^0.6.0":
-  version "0.6.2"
-  resolved "https://registry.yarnpkg.com/@antfu/utils/-/utils-0.6.2.tgz#7702df28b999db92e412b7ddbbfdc81dfcfc7797"
-
 "@antfu/utils@^0.7.2":
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/@antfu/utils/-/utils-0.7.2.tgz#3bb6f37a6b188056fe9e2f363b6aa735ed65d7ca"
@@ -3562,7 +3558,7 @@ magic-string@^0.25.7:
   dependencies:
     sourcemap-codec "^1.4.8"
 
-magic-string@^0.26.2, magic-string@^0.26.7:
+magic-string@^0.26.2:
   version "0.26.7"
   resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.26.7.tgz#caf7daf61b34e9982f8228c4527474dac8981d6f"
   dependencies:
@@ -3672,13 +3668,13 @@ min-indent@^1.0.0:
   dependencies:
     brace-expansion "^1.1.7"
 
-minimatch@^5.0.1, minimatch@^5.1.0:
+minimatch@^5.0.1:
   version "5.1.0"
   resolved "https://registry.npmjs.org/minimatch/-/minimatch-5.1.0.tgz"
   dependencies:
     brace-expansion "^2.0.1"
 
-minimatch@^7.4.3:
+minimatch@^7.4.2, minimatch@^7.4.3:
   version "7.4.3"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-7.4.3.tgz#012cbf110a65134bb354ae9773b55256cdb045a2"
   dependencies:
@@ -5212,31 +5208,22 @@ unplugin-icons@^0.15.1:
     local-pkg "^0.4.2"
     unplugin "^1.0.1"
 
-unplugin-vue-components@^0.22.9:
-  version "0.22.9"
-  resolved "https://registry.yarnpkg.com/unplugin-vue-components/-/unplugin-vue-components-0.22.9.tgz#68f0824a606d07b20fc2636b46ce63c1d960c1b6"
+unplugin-vue-components@^0.24.1:
+  version "0.24.1"
+  resolved "https://registry.yarnpkg.com/unplugin-vue-components/-/unplugin-vue-components-0.24.1.tgz#b5c3419c30a603dd795e3a0d63c4c12f4a5d8274"
   dependencies:
-    "@antfu/utils" "^0.6.0"
+    "@antfu/utils" "^0.7.2"
     "@rollup/pluginutils" "^5.0.2"
     chokidar "^3.5.3"
     debug "^4.3.4"
     fast-glob "^3.2.12"
-    local-pkg "^0.4.2"
-    magic-string "^0.26.7"
-    minimatch "^5.1.0"
+    local-pkg "^0.4.3"
+    magic-string "^0.30.0"
+    minimatch "^7.4.2"
     resolve "^1.22.1"
-    unplugin "^0.10.1"
+    unplugin "^1.1.0"
 
-unplugin@^0.10.1:
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/unplugin/-/unplugin-0.10.2.tgz#0f7089c3666f592cc448d746e39e7f41e9afb01a"
-  dependencies:
-    acorn "^8.8.0"
-    chokidar "^3.5.3"
-    webpack-sources "^3.2.3"
-    webpack-virtual-modules "^0.4.5"
-
-unplugin@^1.0.1, unplugin@^1.3.1:
+unplugin@^1.0.1, unplugin@^1.1.0, unplugin@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/unplugin/-/unplugin-1.3.1.tgz#7af993ba8695d17d61b0845718380caf6af5109f"
   dependencies:
@@ -5469,10 +5456,6 @@ webidl-conversions@^7.0.0:
 webpack-sources@^3.2.3:
   version "3.2.3"
   resolved "https://registry.npmjs.org/webpack-sources/-/webpack-sources-3.2.3.tgz"
-
-webpack-virtual-modules@^0.4.5:
-  version "0.4.5"
-  resolved "https://registry.yarnpkg.com/webpack-virtual-modules/-/webpack-virtual-modules-0.4.5.tgz#e476842dab5eafb7beb844aa2f747fc12ebbf6ec"
 
 webpack-virtual-modules@^0.5.0:
   version "0.5.0"
