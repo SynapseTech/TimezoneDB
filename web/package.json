@@ -20,7 +20,7 @@
 		"prismjs": "^1.29.0",
 		"sass": "^1.60.0",
 		"vue": "^3.2.45",
-		"vue-multiselect": "^3.0.0-alpha.2",
+		"vue-multiselect": "^3.0.0-beta.1",
 		"vue-prism-component": "^2.0.0",
 		"vue-router": "^4.1.6"
 	},
